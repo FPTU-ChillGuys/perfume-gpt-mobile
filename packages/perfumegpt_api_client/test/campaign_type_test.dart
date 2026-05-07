@@ -3,7 +3,5 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CampaignType
 void main() {
-
-  group(CampaignType, () {
-  });
+  group(CampaignType, () {});
 }

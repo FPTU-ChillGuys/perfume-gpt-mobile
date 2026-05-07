@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateReturnRequestDto
 void main() {
-  final UpdateReturnRequestDto? instance = /* UpdateReturnRequestDto(...) */ null;
+  final UpdateReturnRequestDto? instance = /* UpdateReturnRequestDto(...) */
+      null;
   // TODO add properties to the entity
 
   group(UpdateReturnRequestDto, () {
@@ -36,6 +37,5 @@ void main() {
     test('to test the property `removeMediaIds`', () async {
       // TODO
     });
-
   });
 }

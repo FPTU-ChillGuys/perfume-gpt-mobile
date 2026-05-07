@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'pick_list_batch_info.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,113 +18,59 @@ part 'pick_list_batch_info.g.dart';
 class PickListBatchInfo {
   /// Returns a new [PickListBatchInfo] instance.
   PickListBatchInfo({
+    this.reservationId,
 
-     this.reservationId,
+    this.batchId,
 
-     this.batchId,
+    required this.batchCode,
 
-    required  this.batchCode,
+    this.note,
 
-     this.note,
+    this.reservedQuantity,
 
-     this.reservedQuantity,
-
-     this.expiryDate,
+    this.expiryDate,
   });
 
-  @JsonKey(
-    
-    name: r'reservationId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'reservationId', required: false, includeIfNull: false)
   final String? reservationId;
 
-
-
-  @JsonKey(
-    
-    name: r'batchId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'batchId', required: false, includeIfNull: false)
   final String? batchId;
 
-
-
-  @JsonKey(
-    
-    name: r'batchCode',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'batchCode', required: true, includeIfNull: false)
   final String batchCode;
 
-
-
-  @JsonKey(
-    
-    name: r'note',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'note', required: false, includeIfNull: false)
   final String? note;
 
-
-
-  @JsonKey(
-    
-    name: r'reservedQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'reservedQuantity', required: false, includeIfNull: false)
   final int? reservedQuantity;
 
-
-
-  @JsonKey(
-    
-    name: r'expiryDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'expiryDate', required: false, includeIfNull: false)
   final DateTime? expiryDate;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PickListBatchInfo &&
+          other.reservationId == reservationId &&
+          other.batchId == batchId &&
+          other.batchCode == batchCode &&
+          other.note == note &&
+          other.reservedQuantity == reservedQuantity &&
+          other.expiryDate == expiryDate;
 
+  @override
+  int get hashCode =>
+      reservationId.hashCode +
+      batchId.hashCode +
+      batchCode.hashCode +
+      (note == null ? 0 : note.hashCode) +
+      reservedQuantity.hashCode +
+      expiryDate.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is PickListBatchInfo &&
-      other.reservationId == reservationId &&
-      other.batchId == batchId &&
-      other.batchCode == batchCode &&
-      other.note == note &&
-      other.reservedQuantity == reservedQuantity &&
-      other.expiryDate == expiryDate;
-
-    @override
-    int get hashCode =>
-        reservationId.hashCode +
-        batchId.hashCode +
-        batchCode.hashCode +
-        (note == null ? 0 : note.hashCode) +
-        reservedQuantity.hashCode +
-        expiryDate.hashCode;
-
-  factory PickListBatchInfo.fromJson(Map<String, dynamic> json) => _$PickListBatchInfoFromJson(json);
+  factory PickListBatchInfo.fromJson(Map<String, dynamic> json) =>
+      _$PickListBatchInfoFromJson(json);
 
   Map<String, dynamic> toJson() => _$PickListBatchInfoToJson(this);
 
@@ -133,6 +78,4 @@ class PickListBatchInfo {
   String toString() {
     return toJson().toString();
   }
-
 }
-

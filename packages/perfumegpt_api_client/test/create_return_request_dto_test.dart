@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateReturnRequestDto
 void main() {
-  final CreateReturnRequestDto? instance = /* CreateReturnRequestDto(...) */ null;
+  final CreateReturnRequestDto? instance = /* CreateReturnRequestDto(...) */
+      null;
   // TODO add properties to the entity
 
   group(CreateReturnRequestDto, () {
@@ -61,6 +62,5 @@ void main() {
     test('to test the property `temporaryMediaIds`', () async {
       // TODO
     });
-
   });
 }

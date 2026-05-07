@@ -3,7 +3,9 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ConversationControllerGetMyConversationHistory200ResponseData
 void main() {
-  final ConversationControllerGetMyConversationHistory200ResponseData? instance = /* ConversationControllerGetMyConversationHistory200ResponseData(...) */ null;
+  final ConversationControllerGetMyConversationHistory200ResponseData?
+  instance = /* ConversationControllerGetMyConversationHistory200ResponseData(...) */
+      null;
   // TODO add properties to the entity
 
   group(ConversationControllerGetMyConversationHistory200ResponseData, () {
@@ -35,6 +37,5 @@ void main() {
     test('to test the property `totalPages`', () async {
       // TODO
     });
-
   });
 }

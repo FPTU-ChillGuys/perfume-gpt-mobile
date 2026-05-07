@@ -3,7 +3,5 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ReplenishmentPolicy
 void main() {
-
-  group(ReplenishmentPolicy, () {
-  });
+  group(ReplenishmentPolicy, () {});
 }

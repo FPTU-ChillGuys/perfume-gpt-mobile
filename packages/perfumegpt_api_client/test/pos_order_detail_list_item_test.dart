@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for PosOrderDetailListItem
 void main() {
-  final PosOrderDetailListItem? instance = /* PosOrderDetailListItem(...) */ null;
+  final PosOrderDetailListItem? instance = /* PosOrderDetailListItem(...) */
+      null;
   // TODO add properties to the entity
 
   group(PosOrderDetailListItem, () {
@@ -56,6 +57,5 @@ void main() {
     test('to test the property `finalTotal`', () async {
       // TODO
     });
-
   });
 }

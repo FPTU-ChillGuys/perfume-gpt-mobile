@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreatePaymentResponseDto
 void main() {
-  final CreatePaymentResponseDto? instance = /* CreatePaymentResponseDto(...) */ null;
+  final CreatePaymentResponseDto? instance = /* CreatePaymentResponseDto(...) */
+      null;
   // TODO add properties to the entity
 
   group(CreatePaymentResponseDto, () {
@@ -21,6 +22,5 @@ void main() {
     test('to test the property `orderId`', () async {
       // TODO
     });
-
   });
 }

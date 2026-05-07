@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for UpdateStorePolicyRequest
 void main() {
-  final UpdateStorePolicyRequest? instance = /* UpdateStorePolicyRequest(...) */ null;
+  final UpdateStorePolicyRequest? instance = /* UpdateStorePolicyRequest(...) */
+      null;
   // TODO add properties to the entity
 
   group(UpdateStorePolicyRequest, () {
@@ -28,9 +29,11 @@ void main() {
     });
 
     // int stockAdjustmentAutoApprovalThreshold
-    test('to test the property `stockAdjustmentAutoApprovalThreshold`', () async {
-      // TODO
-    });
-
+    test(
+      'to test the property `stockAdjustmentAutoApprovalThreshold`',
+      () async {
+        // TODO
+      },
+    );
   });
 }

@@ -23,7 +23,8 @@ class PosSignalRService {
   final _barcodeReceivedController = StreamController<String>.broadcast();
   final _orderDeliveredController = StreamController<String>.broadcast();
   final _displayUpdateController = StreamController<CartDisplayDto>.broadcast();
-  final _onlineOrderReceivedController = StreamController<Map<String, dynamic>>.broadcast();
+  final _onlineOrderReceivedController =
+      StreamController<Map<String, dynamic>>.broadcast();
 
   Stream<HubConnectionState> get connectionState =>
       _connectionStateController.stream;
@@ -36,7 +37,8 @@ class PosSignalRService {
   Stream<String> get onBarcodeReceived => _barcodeReceivedController.stream;
   Stream<String> get onOrderDelivered => _orderDeliveredController.stream;
   Stream<CartDisplayDto> get onDisplayUpdate => _displayUpdateController.stream;
-  Stream<Map<String, dynamic>> get onOnlineOrderReceived => _onlineOrderReceivedController.stream;
+  Stream<Map<String, dynamic>> get onOnlineOrderReceived =>
+      _onlineOrderReceivedController.stream;
 
   String? get currentSessionId => _sessionId;
   HubConnectionState get currentState =>
@@ -136,7 +138,9 @@ class PosSignalRService {
     }
   }
 
-  Future<void> syncOnlineOrderToCustomerDisplay(Map<String, dynamic> orderData) async {
+  Future<void> syncOnlineOrderToCustomerDisplay(
+    Map<String, dynamic> orderData,
+  ) async {
     if (_hubConnection?.state == HubConnectionState.Connected &&
         _sessionId != null) {
       try {

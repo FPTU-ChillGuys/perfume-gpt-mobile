@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'create_pickup_payment_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,50 +18,28 @@ part 'create_pickup_payment_request.g.dart';
 )
 class CreatePickupPaymentRequest {
   /// Returns a new [CreatePickupPaymentRequest] instance.
-  CreatePickupPaymentRequest({
+  CreatePickupPaymentRequest({this.paymentMethod, this.posSessionId});
 
-     this.paymentMethod,
-
-     this.posSessionId,
-  });
-
-  @JsonKey(
-    
-    name: r'paymentMethod',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'paymentMethod', required: false, includeIfNull: false)
   final PaymentMethod? paymentMethod;
 
-
-
-  @JsonKey(
-    
-    name: r'posSessionId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'posSessionId', required: false, includeIfNull: false)
   final String? posSessionId;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CreatePickupPaymentRequest &&
+          other.paymentMethod == paymentMethod &&
+          other.posSessionId == posSessionId;
 
+  @override
+  int get hashCode =>
+      paymentMethod.hashCode +
+      (posSessionId == null ? 0 : posSessionId.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CreatePickupPaymentRequest &&
-      other.paymentMethod == paymentMethod &&
-      other.posSessionId == posSessionId;
-
-    @override
-    int get hashCode =>
-        paymentMethod.hashCode +
-        (posSessionId == null ? 0 : posSessionId.hashCode);
-
-  factory CreatePickupPaymentRequest.fromJson(Map<String, dynamic> json) => _$CreatePickupPaymentRequestFromJson(json);
+  factory CreatePickupPaymentRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreatePickupPaymentRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreatePickupPaymentRequestToJson(this);
 
@@ -70,6 +47,4 @@ class CreatePickupPaymentRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

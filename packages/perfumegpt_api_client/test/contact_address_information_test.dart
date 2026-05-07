@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ContactAddressInformation
 void main() {
-  final ContactAddressInformation? instance = /* ContactAddressInformation(...) */ null;
+  final ContactAddressInformation?
+  instance = /* ContactAddressInformation(...) */ null;
   // TODO add properties to the entity
 
   group(ContactAddressInformation, () {
@@ -51,6 +52,5 @@ void main() {
     test('to test the property `fullAddress`', () async {
       // TODO
     });
-
   });
 }

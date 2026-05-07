@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'deliver_in_store_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,34 +17,21 @@ part 'deliver_in_store_request.g.dart';
 )
 class DeliverInStoreRequest {
   /// Returns a new [DeliverInStoreRequest] instance.
-  DeliverInStoreRequest({
+  DeliverInStoreRequest({this.posSessionId});
 
-     this.posSessionId,
-  });
-
-  @JsonKey(
-    
-    name: r'posSessionId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'posSessionId', required: false, includeIfNull: false)
   final String? posSessionId;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is DeliverInStoreRequest && other.posSessionId == posSessionId;
 
+  @override
+  int get hashCode => (posSessionId == null ? 0 : posSessionId.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is DeliverInStoreRequest &&
-      other.posSessionId == posSessionId;
-
-    @override
-    int get hashCode =>
-        (posSessionId == null ? 0 : posSessionId.hashCode);
-
-  factory DeliverInStoreRequest.fromJson(Map<String, dynamic> json) => _$DeliverInStoreRequestFromJson(json);
+  factory DeliverInStoreRequest.fromJson(Map<String, dynamic> json) =>
+      _$DeliverInStoreRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$DeliverInStoreRequestToJson(this);
 
@@ -53,6 +39,4 @@ class DeliverInStoreRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for LoyaltyTransactionHistoryItemResponse
 void main() {
-  final LoyaltyTransactionHistoryItemResponse? instance = /* LoyaltyTransactionHistoryItemResponse(...) */ null;
+  final LoyaltyTransactionHistoryItemResponse?
+  instance = /* LoyaltyTransactionHistoryItemResponse(...) */ null;
   // TODO add properties to the entity
 
   group(LoyaltyTransactionHistoryItemResponse, () {
@@ -51,6 +52,5 @@ void main() {
     test('to test the property `createdAt`', () async {
       // TODO
     });
-
   });
 }

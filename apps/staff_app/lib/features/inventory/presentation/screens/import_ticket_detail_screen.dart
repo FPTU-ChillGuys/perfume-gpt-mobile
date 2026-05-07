@@ -18,7 +18,8 @@ class ImportTicketDetailScreen extends ConsumerStatefulWidget {
       _ImportTicketDetailScreenState();
 }
 
-class _ImportTicketDetailScreenState extends ConsumerState<ImportTicketDetailScreen> {
+class _ImportTicketDetailScreenState
+    extends ConsumerState<ImportTicketDetailScreen> {
   final ScrollController _scrollController = ScrollController();
   final Map<String, GlobalKey> _itemKeys = {};
 
@@ -46,7 +47,9 @@ class _ImportTicketDetailScreenState extends ConsumerState<ImportTicketDetailScr
       try {
         final dio = ref.read(apiClientProvider).dio;
         final api = ProductVariantsApi(dio);
-        final response = await api.apiProductvariantsForPosGet(keyword: barcode);
+        final response = await api.apiProductvariantsForPosGet(
+          keyword: barcode,
+        );
         final variantId = response.data?.payload?.id;
 
         if (variantId != null) {
@@ -54,8 +57,9 @@ class _ImportTicketDetailScreenState extends ConsumerState<ImportTicketDetailScr
           notifier.expandProductByVariantId(variantId);
 
           final state = ref.read(importVerificationProvider);
-          final product =
-              state.products.firstWhereOrNull((p) => p.variantId == variantId);
+          final product = state.products.firstWhereOrNull(
+            (p) => p.variantId == variantId,
+          );
 
           if (product != null) {
             final key = _itemKeys[product.importDetailId];
@@ -159,14 +163,18 @@ class _ImportTicketDetailScreenState extends ConsumerState<ImportTicketDetailScr
             children: [
               Text(
                 state.supplierName ?? 'Đang tải...',
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
               Row(
                 children: [
-                  const Icon(Icons.calendar_today, size: 16, color: Colors.grey),
+                  const Icon(
+                    Icons.calendar_today,
+                    size: 16,
+                    color: Colors.grey,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     state.importDate != null
@@ -183,8 +191,9 @@ class _ImportTicketDetailScreenState extends ConsumerState<ImportTicketDetailScr
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () =>
-                        ref.read(importVerificationProvider.notifier).startChecking(),
+                    onPressed: () => ref
+                        .read(importVerificationProvider.notifier)
+                        .startChecking(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
                       foregroundColor: Colors.white,
@@ -238,21 +247,18 @@ class _ImportTicketDetailScreenState extends ConsumerState<ImportTicketDetailScr
 
   Widget _buildProductList(ImportVerificationState state) {
     return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          final product = state.products[index];
-          final key = _itemKeys.putIfAbsent(
-            product.importDetailId,
-            () => GlobalKey(),
-          );
-          return _ProductVerificationCard(
-            key: key,
-            product: product,
-            isEditable: state.status == ImportStatus.inProgress,
-          );
-        },
-        childCount: state.products.length,
-      ),
+      delegate: SliverChildBuilderDelegate((context, index) {
+        final product = state.products[index];
+        final key = _itemKeys.putIfAbsent(
+          product.importDetailId,
+          () => GlobalKey(),
+        );
+        return _ProductVerificationCard(
+          key: key,
+          product: product,
+          isEditable: state.status == ImportStatus.inProgress,
+        );
+      }, childCount: state.products.length),
     );
   }
 
@@ -282,8 +288,9 @@ class _ImportTicketDetailScreenState extends ConsumerState<ImportTicketDetailScr
                 border: OutlineInputBorder(),
                 hintText: 'Mô tả bất kỳ sự cố nào...',
               ),
-              onChanged: (val) =>
-                  ref.read(importVerificationProvider.notifier).updateStaffNote(val),
+              onChanged: (val) => ref
+                  .read(importVerificationProvider.notifier)
+                  .updateStaffNote(val),
             ),
           ],
         ),
@@ -292,13 +299,18 @@ class _ImportTicketDetailScreenState extends ConsumerState<ImportTicketDetailScr
   }
 
   Widget _buildSummary(ImportVerificationState state) {
-    final totalExpected =
-        state.products.fold(0, (sum, p) => sum + p.expectedQuantity);
+    final totalExpected = state.products.fold(
+      0,
+      (sum, p) => sum + p.expectedQuantity,
+    );
     final totalReceived = state.products.fold(
       0,
       (sum, p) => sum + p.batches.fold(0, (s, b) => s + b.quantity),
     );
-    final damagedCount = (totalExpected - totalReceived).clamp(0, totalExpected);
+    final damagedCount = (totalExpected - totalReceived).clamp(
+      0,
+      totalExpected,
+    );
 
     return SliverToBoxAdapter(
       child: Container(
@@ -319,7 +331,10 @@ class _ImportTicketDetailScreenState extends ConsumerState<ImportTicketDetailScr
             _buildSummaryRow('Tổng SKU', state.products.length.toString()),
             _buildSummaryRow(
               'Đã xác nhận',
-              state.products.where((p) => p.batches.isNotEmpty).length.toString(),
+              state.products
+                  .where((p) => p.batches.isNotEmpty)
+                  .length
+                  .toString(),
               color: Colors.green,
             ),
             _buildSummaryRow(
@@ -452,16 +467,16 @@ class _ProductVerificationCard extends ConsumerWidget {
                     color: isOverReceived
                         ? Colors.red
                         : (totalReceived == product.expectedQuantity
-                            ? Colors.green
-                            : Colors.orange),
+                              ? Colors.green
+                              : Colors.orange),
                   ),
                 ),
               ],
             ),
             onTap: isEditable
                 ? () => ref
-                    .read(importVerificationProvider.notifier)
-                    .toggleExpand(product.importDetailId)
+                      .read(importVerificationProvider.notifier)
+                      .toggleExpand(product.importDetailId)
                 : null,
           ),
           if (product.isExpanded && isEditable) ...[
@@ -516,7 +531,11 @@ class _BatchInputRow extends ConsumerWidget {
                     ),
                   onChanged: (val) => ref
                       .read(importVerificationProvider.notifier)
-                      .updateBatch(productDetailId, batch.tempId, batchCode: val),
+                      .updateBatch(
+                        productDetailId,
+                        batch.tempId,
+                        batchCode: val,
+                      ),
                 ),
               ),
               const SizedBox(width: 8),
@@ -528,10 +547,13 @@ class _BatchInputRow extends ConsumerWidget {
                     isDense: true,
                   ),
                   keyboardType: TextInputType.number,
-                  controller: TextEditingController(text: batch.quantity.toString())
-                    ..selection = TextSelection.fromPosition(
-                      TextPosition(offset: batch.quantity.toString().length),
-                    ),
+                  controller:
+                      TextEditingController(text: batch.quantity.toString())
+                        ..selection = TextSelection.fromPosition(
+                          TextPosition(
+                            offset: batch.quantity.toString().length,
+                          ),
+                        ),
                   onChanged: (val) => ref
                       .read(importVerificationProvider.notifier)
                       .updateBatch(
@@ -564,8 +586,11 @@ class _BatchInputRow extends ConsumerWidget {
                     if (date != null) {
                       ref
                           .read(importVerificationProvider.notifier)
-                          .updateBatch(productDetailId, batch.tempId,
-                              manufactureDate: date);
+                          .updateBatch(
+                            productDetailId,
+                            batch.tempId,
+                            manufactureDate: date,
+                          );
                     }
                   },
                   child: InputDecorator(
@@ -576,7 +601,9 @@ class _BatchInputRow extends ConsumerWidget {
                     ),
                     child: Text(
                       batch.manufactureDate != null
-                          ? DateFormat('dd/MM/yy').format(batch.manufactureDate!)
+                          ? DateFormat(
+                              'dd/MM/yy',
+                            ).format(batch.manufactureDate!)
                           : 'Chọn',
                     ),
                   ),
@@ -588,7 +615,8 @@ class _BatchInputRow extends ConsumerWidget {
                   onTap: () async {
                     final date = await showDatePicker(
                       context: context,
-                      initialDate: batch.expiryDate ??
+                      initialDate:
+                          batch.expiryDate ??
                           DateTime.now().add(const Duration(days: 365 * 5)),
                       firstDate: DateTime(2000),
                       lastDate: DateTime(2100),
@@ -596,8 +624,11 @@ class _BatchInputRow extends ConsumerWidget {
                     if (date != null) {
                       ref
                           .read(importVerificationProvider.notifier)
-                          .updateBatch(productDetailId, batch.tempId,
-                              expiryDate: date);
+                          .updateBatch(
+                            productDetailId,
+                            batch.tempId,
+                            expiryDate: date,
+                          );
                     }
                   },
                   child: InputDecorator(

@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for DepositPolicyPreviewResponse
 void main() {
-  final DepositPolicyPreviewResponse? instance = /* DepositPolicyPreviewResponse(...) */ null;
+  final DepositPolicyPreviewResponse?
+  instance = /* DepositPolicyPreviewResponse(...) */ null;
   // TODO add properties to the entity
 
   group(DepositPolicyPreviewResponse, () {
@@ -26,6 +27,5 @@ void main() {
     test('to test the property `remainingAmount`', () async {
       // TODO
     });
-
   });
 }

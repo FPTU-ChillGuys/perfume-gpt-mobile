@@ -33,9 +33,11 @@ void main() {
     });
 
     // int stockAdjustmentAutoApprovalThreshold
-    test('to test the property `stockAdjustmentAutoApprovalThreshold`', () async {
-      // TODO
-    });
-
+    test(
+      'to test the property `stockAdjustmentAutoApprovalThreshold`',
+      () async {
+        // TODO
+      },
+    );
   });
 }

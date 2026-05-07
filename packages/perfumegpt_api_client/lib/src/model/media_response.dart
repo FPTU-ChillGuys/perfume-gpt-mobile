@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'media_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,129 +18,66 @@ part 'media_response.g.dart';
 class MediaResponse {
   /// Returns a new [MediaResponse] instance.
   MediaResponse({
+    this.id,
 
-     this.id,
+    required this.url,
 
-    required  this.url,
+    this.altText,
 
-     this.altText,
+    this.displayOrder,
 
-     this.displayOrder,
+    this.isPrimary,
 
-     this.isPrimary,
+    this.fileSize,
 
-     this.fileSize,
-
-     this.mimeType,
+    this.mimeType,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'url',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'url', required: true, includeIfNull: false)
   final String url;
 
-
-
-  @JsonKey(
-    
-    name: r'altText',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'altText', required: false, includeIfNull: false)
   final String? altText;
 
-
-
-  @JsonKey(
-    
-    name: r'displayOrder',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'displayOrder', required: false, includeIfNull: false)
   final int? displayOrder;
 
-
-
-  @JsonKey(
-    
-    name: r'isPrimary',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'isPrimary', required: false, includeIfNull: false)
   final bool? isPrimary;
 
-
-
-  @JsonKey(
-    
-    name: r'fileSize',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'fileSize', required: false, includeIfNull: false)
   final int? fileSize;
 
-
-
-  @JsonKey(
-    
-    name: r'mimeType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'mimeType', required: false, includeIfNull: false)
   final String? mimeType;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is MediaResponse &&
+          other.id == id &&
+          other.url == url &&
+          other.altText == altText &&
+          other.displayOrder == displayOrder &&
+          other.isPrimary == isPrimary &&
+          other.fileSize == fileSize &&
+          other.mimeType == mimeType;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      url.hashCode +
+      (altText == null ? 0 : altText.hashCode) +
+      displayOrder.hashCode +
+      isPrimary.hashCode +
+      (fileSize == null ? 0 : fileSize.hashCode) +
+      (mimeType == null ? 0 : mimeType.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is MediaResponse &&
-      other.id == id &&
-      other.url == url &&
-      other.altText == altText &&
-      other.displayOrder == displayOrder &&
-      other.isPrimary == isPrimary &&
-      other.fileSize == fileSize &&
-      other.mimeType == mimeType;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        url.hashCode +
-        (altText == null ? 0 : altText.hashCode) +
-        displayOrder.hashCode +
-        isPrimary.hashCode +
-        (fileSize == null ? 0 : fileSize.hashCode) +
-        (mimeType == null ? 0 : mimeType.hashCode);
-
-  factory MediaResponse.fromJson(Map<String, dynamic> json) => _$MediaResponseFromJson(json);
+  factory MediaResponse.fromJson(Map<String, dynamic> json) =>
+      _$MediaResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$MediaResponseToJson(this);
 
@@ -149,6 +85,4 @@ class MediaResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

@@ -9,12 +9,7 @@ import 'dart:convert';
 import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_check_ready400_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot404_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/dictionary_controller_get_snapshot500_response.dart';
-
 class DictionaryApi {
-
   final Dio _dio;
 
   const DictionaryApi(this._dio);
@@ -32,7 +27,7 @@ class DictionaryApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Object] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Object>> dictionaryControllerCheckReady({ 
+  Future<Response<Object>> dictionaryControllerCheckReady({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -43,13 +38,8 @@ class DictionaryApi {
     final _path = r'/api/v1/dictionary/ready';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
@@ -64,9 +54,10 @@ class DictionaryApi {
     Object? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'Object', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<Object, Object>(rawData, 'Object', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -93,7 +84,7 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
   /// Extract custom entities using winkNLP without canonical normalization.
   ///
   /// Parameters:
-  /// * [body] 
+  /// * [body]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -103,7 +94,7 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
   ///
   /// Returns a [Future] containing a [Response] with a [Object] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Object>> dictionaryControllerExtractEntities({ 
+  Future<Response<Object>> dictionaryControllerExtractEntities({
     Object? body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -115,13 +106,8 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
     final _path = r'/api/v1/dictionary/extract-entities';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -129,13 +115,10 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(body);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(body);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -154,9 +137,10 @@ _bodyData=jsonEncode(body);
     Object? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'Object', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<Object, Object>(rawData, 'Object', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -192,7 +176,7 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
   ///
   /// Returns a [Future] containing a [Response] with a [Object] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Object>> dictionaryControllerGetEntityTypes({ 
+  Future<Response<Object>> dictionaryControllerGetEntityTypes({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -203,13 +187,8 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
     final _path = r'/api/v1/dictionary/entity-types';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
@@ -224,9 +203,10 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
     Object? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'Object', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<Object, Object>(rawData, 'Object', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -262,7 +242,7 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
   ///
   /// Returns a [Future] containing a [Response] with a [Object] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Object>> dictionaryControllerGetSnapshot({ 
+  Future<Response<Object>> dictionaryControllerGetSnapshot({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -273,13 +253,8 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
     final _path = r'/api/v1/dictionary/snapshot';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
@@ -294,9 +269,10 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
     Object? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'Object', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<Object, Object>(rawData, 'Object', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -323,7 +299,7 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
   /// Extract raw entities with winkNLP and normalize them to canonical values.
   ///
   /// Parameters:
-  /// * [body] 
+  /// * [body]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -333,7 +309,7 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
   ///
   /// Returns a [Future] containing a [Response] with a [Object] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Object>> dictionaryControllerParseText({ 
+  Future<Response<Object>> dictionaryControllerParseText({
     Object? body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -345,13 +321,8 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
     final _path = r'/api/v1/dictionary/parse';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       contentType: 'application/json',
       validateStatus: validateStatus,
     );
@@ -359,13 +330,10 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(body);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(body);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -384,9 +352,10 @@ _bodyData=jsonEncode(body);
     Object? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'Object', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<Object, Object>(rawData, 'Object', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -422,7 +391,7 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
   ///
   /// Returns a [Future] containing a [Response] with a [Object] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Object>> dictionaryControllerRebuildDictionary({ 
+  Future<Response<Object>> dictionaryControllerRebuildDictionary({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -433,13 +402,8 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
     final _path = r'/api/v1/dictionary/rebuild';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
@@ -454,9 +418,10 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
     Object? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'Object', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<Object, Object>(rawData, 'Object', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -478,5 +443,4 @@ _responseData = rawData == null ? null : deserialize<Object, Object>(rawData, 'O
       extra: _response.extra,
     );
   }
-
 }

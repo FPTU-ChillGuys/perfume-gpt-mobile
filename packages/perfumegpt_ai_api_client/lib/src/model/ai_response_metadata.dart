@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'ai_response_metadata.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,52 +17,28 @@ part 'ai_response_metadata.g.dart';
 )
 class AIResponseMetadata {
   /// Returns a new [AIResponseMetadata] instance.
-  AIResponseMetadata({
+  AIResponseMetadata({required this.processingTimeMs, this.inputTokenEstimate});
 
-    required  this.processingTimeMs,
-
-     this.inputTokenEstimate,
-  });
-
-      /// Thời gian xử lý (milli giây)
-  @JsonKey(
-    
-    name: r'processingTimeMs',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Thời gian xử lý (milli giây)
+  @JsonKey(name: r'processingTimeMs', required: true, includeIfNull: false)
   final num processingTimeMs;
 
-
-
-      /// Ước tính số token đầu vào
-  @JsonKey(
-    
-    name: r'inputTokenEstimate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Ước tính số token đầu vào
+  @JsonKey(name: r'inputTokenEstimate', required: false, includeIfNull: false)
   final num? inputTokenEstimate;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AIResponseMetadata &&
+          other.processingTimeMs == processingTimeMs &&
+          other.inputTokenEstimate == inputTokenEstimate;
 
+  @override
+  int get hashCode => processingTimeMs.hashCode + inputTokenEstimate.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is AIResponseMetadata &&
-      other.processingTimeMs == processingTimeMs &&
-      other.inputTokenEstimate == inputTokenEstimate;
-
-    @override
-    int get hashCode =>
-        processingTimeMs.hashCode +
-        inputTokenEstimate.hashCode;
-
-  factory AIResponseMetadata.fromJson(Map<String, dynamic> json) => _$AIResponseMetadataFromJson(json);
+  factory AIResponseMetadata.fromJson(Map<String, dynamic> json) =>
+      _$AIResponseMetadataFromJson(json);
 
   Map<String, dynamic> toJson() => _$AIResponseMetadataToJson(this);
 
@@ -71,6 +46,4 @@ class AIResponseMetadata {
   String toString() {
     return toJson().toString();
   }
-
 }
-

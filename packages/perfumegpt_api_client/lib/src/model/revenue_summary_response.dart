@@ -10,7 +10,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'revenue_summary_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -21,177 +20,95 @@ part 'revenue_summary_response.g.dart';
 class RevenueSummaryResponse {
   /// Returns a new [RevenueSummaryResponse] instance.
   RevenueSummaryResponse({
+    this.fromDate,
 
-     this.fromDate,
+    this.toDate,
 
-     this.toDate,
+    this.grossRevenue,
 
-     this.grossRevenue,
+    this.refundedAmount,
 
-     this.refundedAmount,
+    this.netRevenue,
 
-     this.netRevenue,
+    this.successfulTransactionsCount,
 
-     this.successfulTransactionsCount,
+    this.paidOrdersCount,
 
-     this.paidOrdersCount,
+    this.paymentMethodDistribution,
 
-     this.paymentMethodDistribution,
+    this.aov,
 
-     this.aov,
-
-     this.chartData,
+    this.chartData,
   });
 
-  @JsonKey(
-    
-    name: r'fromDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'fromDate', required: false, includeIfNull: false)
   final DateTime? fromDate;
 
-
-
-  @JsonKey(
-    
-    name: r'toDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'toDate', required: false, includeIfNull: false)
   final DateTime? toDate;
 
-
-
-  @JsonKey(
-    
-    name: r'grossRevenue',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'grossRevenue', required: false, includeIfNull: false)
   final num? grossRevenue;
 
-
-
-  @JsonKey(
-    
-    name: r'refundedAmount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'refundedAmount', required: false, includeIfNull: false)
   final num? refundedAmount;
 
-
-
-  @JsonKey(
-    
-    name: r'netRevenue',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'netRevenue', required: false, includeIfNull: false)
   final num? netRevenue;
 
-
-
   @JsonKey(
-    
     name: r'successfulTransactionsCount',
     required: false,
     includeIfNull: false,
   )
-
-
   final int? successfulTransactionsCount;
 
-
-
-  @JsonKey(
-    
-    name: r'paidOrdersCount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'paidOrdersCount', required: false, includeIfNull: false)
   final int? paidOrdersCount;
 
-
-
   @JsonKey(
-    
     name: r'paymentMethodDistribution',
     required: false,
     includeIfNull: false,
   )
-
-
   final List<PaymentMethodDistributionResponse>? paymentMethodDistribution;
 
-
-
-  @JsonKey(
-    
-    name: r'aov',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'aov', required: false, includeIfNull: false)
   final num? aov;
 
-
-
-  @JsonKey(
-    
-    name: r'chartData',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'chartData', required: false, includeIfNull: false)
   final List<DailyRevenueItem>? chartData;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RevenueSummaryResponse &&
+          other.fromDate == fromDate &&
+          other.toDate == toDate &&
+          other.grossRevenue == grossRevenue &&
+          other.refundedAmount == refundedAmount &&
+          other.netRevenue == netRevenue &&
+          other.successfulTransactionsCount == successfulTransactionsCount &&
+          other.paidOrdersCount == paidOrdersCount &&
+          other.paymentMethodDistribution == paymentMethodDistribution &&
+          other.aov == aov &&
+          other.chartData == chartData;
 
+  @override
+  int get hashCode =>
+      fromDate.hashCode +
+      toDate.hashCode +
+      grossRevenue.hashCode +
+      refundedAmount.hashCode +
+      netRevenue.hashCode +
+      successfulTransactionsCount.hashCode +
+      paidOrdersCount.hashCode +
+      paymentMethodDistribution.hashCode +
+      aov.hashCode +
+      chartData.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is RevenueSummaryResponse &&
-      other.fromDate == fromDate &&
-      other.toDate == toDate &&
-      other.grossRevenue == grossRevenue &&
-      other.refundedAmount == refundedAmount &&
-      other.netRevenue == netRevenue &&
-      other.successfulTransactionsCount == successfulTransactionsCount &&
-      other.paidOrdersCount == paidOrdersCount &&
-      other.paymentMethodDistribution == paymentMethodDistribution &&
-      other.aov == aov &&
-      other.chartData == chartData;
-
-    @override
-    int get hashCode =>
-        fromDate.hashCode +
-        toDate.hashCode +
-        grossRevenue.hashCode +
-        refundedAmount.hashCode +
-        netRevenue.hashCode +
-        successfulTransactionsCount.hashCode +
-        paidOrdersCount.hashCode +
-        paymentMethodDistribution.hashCode +
-        aov.hashCode +
-        chartData.hashCode;
-
-  factory RevenueSummaryResponse.fromJson(Map<String, dynamic> json) => _$RevenueSummaryResponseFromJson(json);
+  factory RevenueSummaryResponse.fromJson(Map<String, dynamic> json) =>
+      _$RevenueSummaryResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$RevenueSummaryResponseToJson(this);
 
@@ -199,6 +116,4 @@ class RevenueSummaryResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

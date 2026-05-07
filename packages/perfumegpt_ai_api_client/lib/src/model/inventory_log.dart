@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'inventory_log.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,119 +18,65 @@ part 'inventory_log.g.dart';
 class InventoryLog {
   /// Returns a new [InventoryLog] instance.
   InventoryLog({
+    required this.id,
 
-    required  this.id,
+    required this.createdAt,
 
-    required  this.createdAt,
+    required this.updatedAt,
 
-    required  this.updatedAt,
+    required this.isActive,
 
-    required  this.isActive,
+    required this.inventoryLog,
 
-    required  this.inventoryLog,
-
-    required  this.type,
+    required this.type,
   });
 
-      /// ID duy nhất (UUID)
-  @JsonKey(
-    
-    name: r'id',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// ID duy nhất (UUID)
+  @JsonKey(name: r'id', required: true, includeIfNull: false)
   final String id;
 
-
-
-      /// Ngày tạo bản ghi
-  @JsonKey(
-    
-    name: r'createdAt',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Ngày tạo bản ghi
+  @JsonKey(name: r'createdAt', required: true, includeIfNull: false)
   final DateTime createdAt;
 
-
-
-      /// Ngày cập nhật gần nhất
-  @JsonKey(
-    
-    name: r'updatedAt',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Ngày cập nhật gần nhất
+  @JsonKey(name: r'updatedAt', required: true, includeIfNull: false)
   final DateTime updatedAt;
 
-
-
-      /// Trạng thái hoạt động
-  @JsonKey(
-    
-    name: r'isActive',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Trạng thái hoạt động
+  @JsonKey(name: r'isActive', required: true, includeIfNull: false)
   final bool isActive;
 
-
-
-      /// Nội dung log tồn kho
-  @JsonKey(
-    
-    name: r'inventoryLog',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Nội dung log tồn kho
+  @JsonKey(name: r'inventoryLog', required: true, includeIfNull: false)
   final String inventoryLog;
 
-
-
-      /// Loại log tồn kho
-  @JsonKey(
-    
-    name: r'type',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Loại log tồn kho
+  @JsonKey(name: r'type', required: true, includeIfNull: false)
   final InventoryLogTypeEnum type;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is InventoryLog &&
+          other.id == id &&
+          other.createdAt == createdAt &&
+          other.updatedAt == updatedAt &&
+          other.isActive == isActive &&
+          other.inventoryLog == inventoryLog &&
+          other.type == type;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      createdAt.hashCode +
+      updatedAt.hashCode +
+      isActive.hashCode +
+      inventoryLog.hashCode +
+      type.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is InventoryLog &&
-      other.id == id &&
-      other.createdAt == createdAt &&
-      other.updatedAt == updatedAt &&
-      other.isActive == isActive &&
-      other.inventoryLog == inventoryLog &&
-      other.type == type;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        createdAt.hashCode +
-        updatedAt.hashCode +
-        isActive.hashCode +
-        inventoryLog.hashCode +
-        type.hashCode;
-
-  factory InventoryLog.fromJson(Map<String, dynamic> json) => _$InventoryLogFromJson(json);
+  factory InventoryLog.fromJson(Map<String, dynamic> json) =>
+      _$InventoryLogFromJson(json);
 
   Map<String, dynamic> toJson() => _$InventoryLogToJson(this);
 
@@ -139,27 +84,26 @@ class InventoryLog {
   String toString() {
     return toJson().toString();
   }
-
 }
 
 /// Loại log tồn kho
 enum InventoryLogTypeEnum {
-    /// Loại log tồn kho
-@JsonValue(r'REPORT')
-REPORT(r'REPORT'),
-    /// Loại log tồn kho
-@JsonValue(r'RESTOCK')
-RESTOCK(r'RESTOCK'),
-    /// Loại log tồn kho
-@JsonValue(r'SLOW_STOCK')
-SLOW_STOCK(r'SLOW_STOCK');
+  /// Loại log tồn kho
+  @JsonValue(r'REPORT')
+  REPORT(r'REPORT'),
 
-const InventoryLogTypeEnum(this.value);
+  /// Loại log tồn kho
+  @JsonValue(r'RESTOCK')
+  RESTOCK(r'RESTOCK'),
 
-final String value;
+  /// Loại log tồn kho
+  @JsonValue(r'SLOW_STOCK')
+  SLOW_STOCK(r'SLOW_STOCK');
 
-@override
-String toString() => value;
+  const InventoryLogTypeEnum(this.value);
+
+  final String value;
+
+  @override
+  String toString() => value;
 }
-
-

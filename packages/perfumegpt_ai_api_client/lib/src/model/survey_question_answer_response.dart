@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'survey_question_answer_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,136 +19,73 @@ part 'survey_question_answer_response.g.dart';
 class SurveyQuestionAnswerResponse {
   /// Returns a new [SurveyQuestionAnswerResponse] instance.
   SurveyQuestionAnswerResponse({
+    required this.id,
 
-    required  this.id,
+    required this.createdAt,
 
-    required  this.createdAt,
+    required this.updatedAt,
 
-    required  this.updatedAt,
+    required this.isActive,
 
-    required  this.isActive,
+    required this.userId,
 
-    required  this.userId,
+    this.aiResult,
 
-     this.aiResult,
-
-    required  this.details,
+    required this.details,
   });
 
-      /// ID bản ghi
-  @JsonKey(
-    
-    name: r'id',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// ID bản ghi
+  @JsonKey(name: r'id', required: true, includeIfNull: false)
   final String id;
 
-
-
-      /// Ngày tạo
-  @JsonKey(
-    
-    name: r'createdAt',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Ngày tạo
+  @JsonKey(name: r'createdAt', required: true, includeIfNull: false)
   final DateTime createdAt;
 
-
-
-      /// Ngày cập nhật gần nhất
-  @JsonKey(
-    
-    name: r'updatedAt',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Ngày cập nhật gần nhất
+  @JsonKey(name: r'updatedAt', required: true, includeIfNull: false)
   final DateTime updatedAt;
 
-
-
-      /// Trạng thái hoạt động
-  @JsonKey(
-    
-    name: r'isActive',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Trạng thái hoạt động
+  @JsonKey(name: r'isActive', required: true, includeIfNull: false)
   final bool isActive;
 
-
-
-      /// ID người dùng
-  @JsonKey(
-    
-    name: r'userId',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// ID người dùng
+  @JsonKey(name: r'userId', required: true, includeIfNull: false)
   final String userId;
 
-
-
-      /// Kết quả AI recommendation (JSON string)
-  @JsonKey(
-    
-    name: r'aiResult',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Kết quả AI recommendation (JSON string)
+  @JsonKey(name: r'aiResult', required: false, includeIfNull: false)
   final String? aiResult;
 
-
-
-      /// Danh sách chi tiết câu hỏi - câu trả lời
-  @JsonKey(
-    
-    name: r'details',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Danh sách chi tiết câu hỏi - câu trả lời
+  @JsonKey(name: r'details', required: true, includeIfNull: false)
   final List<GroupedSurveyQuestionAnswerDetailResponse> details;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SurveyQuestionAnswerResponse &&
+          other.id == id &&
+          other.createdAt == createdAt &&
+          other.updatedAt == updatedAt &&
+          other.isActive == isActive &&
+          other.userId == userId &&
+          other.aiResult == aiResult &&
+          other.details == details;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      createdAt.hashCode +
+      updatedAt.hashCode +
+      isActive.hashCode +
+      userId.hashCode +
+      aiResult.hashCode +
+      details.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is SurveyQuestionAnswerResponse &&
-      other.id == id &&
-      other.createdAt == createdAt &&
-      other.updatedAt == updatedAt &&
-      other.isActive == isActive &&
-      other.userId == userId &&
-      other.aiResult == aiResult &&
-      other.details == details;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        createdAt.hashCode +
-        updatedAt.hashCode +
-        isActive.hashCode +
-        userId.hashCode +
-        aiResult.hashCode +
-        details.hashCode;
-
-  factory SurveyQuestionAnswerResponse.fromJson(Map<String, dynamic> json) => _$SurveyQuestionAnswerResponseFromJson(json);
+  factory SurveyQuestionAnswerResponse.fromJson(Map<String, dynamic> json) =>
+      _$SurveyQuestionAnswerResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$SurveyQuestionAnswerResponseToJson(this);
 
@@ -157,6 +93,4 @@ class SurveyQuestionAnswerResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

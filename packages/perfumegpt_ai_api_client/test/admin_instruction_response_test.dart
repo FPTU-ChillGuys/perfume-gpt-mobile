@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for AdminInstructionResponse
 void main() {
-  final AdminInstructionResponse? instance = /* AdminInstructionResponse(...) */ null;
+  final AdminInstructionResponse? instance = /* AdminInstructionResponse(...) */
+      null;
   // TODO add properties to the entity
 
   group(AdminInstructionResponse, () {
@@ -36,6 +37,5 @@ void main() {
     test('to test the property `updatedAt`', () async {
       // TODO
     });
-
   });
 }

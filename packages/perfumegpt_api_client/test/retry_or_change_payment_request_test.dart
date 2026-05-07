@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for RetryOrChangePaymentRequest
 void main() {
-  final RetryOrChangePaymentRequest? instance = /* RetryOrChangePaymentRequest(...) */ null;
+  final RetryOrChangePaymentRequest?
+  instance = /* RetryOrChangePaymentRequest(...) */ null;
   // TODO add properties to the entity
 
   group(RetryOrChangePaymentRequest, () {
@@ -21,6 +22,5 @@ void main() {
     test('to test the property `posSessionId`', () async {
       // TODO
     });
-
   });
 }

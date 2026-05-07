@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductFastLookResponse
 void main() {
-  final ProductFastLookResponse? instance = /* ProductFastLookResponse(...) */ null;
+  final ProductFastLookResponse? instance = /* ProductFastLookResponse(...) */
+      null;
   // TODO add properties to the entity
 
   group(ProductFastLookResponse, () {
@@ -46,6 +47,5 @@ void main() {
     test('to test the property `reviewCount`', () async {
       // TODO
     });
-
   });
 }

@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'preview_pos_order_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,113 +19,63 @@ part 'preview_pos_order_response.g.dart';
 class PreviewPosOrderResponse {
   /// Returns a new [PreviewPosOrderResponse] instance.
   PreviewPosOrderResponse({
+    this.items,
 
-     this.items,
+    this.subTotal,
 
-     this.subTotal,
+    this.shippingFee,
 
-     this.shippingFee,
+    this.discount,
 
-     this.discount,
+    this.totalPrice,
 
-     this.totalPrice,
-
-     this.requiredDepositAmount,
+    this.requiredDepositAmount,
   });
 
-  @JsonKey(
-    
-    name: r'items',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'items', required: false, includeIfNull: false)
   final List<PosOrderDetailListItem>? items;
 
-
-
-  @JsonKey(
-    
-    name: r'subTotal',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'subTotal', required: false, includeIfNull: false)
   final num? subTotal;
 
-
-
-  @JsonKey(
-    
-    name: r'shippingFee',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'shippingFee', required: false, includeIfNull: false)
   final num? shippingFee;
 
-
-
-  @JsonKey(
-    
-    name: r'discount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'discount', required: false, includeIfNull: false)
   final num? discount;
 
-
-
-  @JsonKey(
-    
-    name: r'totalPrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'totalPrice', required: false, includeIfNull: false)
   final num? totalPrice;
 
-
-
   @JsonKey(
-    
     name: r'requiredDepositAmount',
     required: false,
     includeIfNull: false,
   )
-
-
   final num? requiredDepositAmount;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PreviewPosOrderResponse &&
+          other.items == items &&
+          other.subTotal == subTotal &&
+          other.shippingFee == shippingFee &&
+          other.discount == discount &&
+          other.totalPrice == totalPrice &&
+          other.requiredDepositAmount == requiredDepositAmount;
 
+  @override
+  int get hashCode =>
+      items.hashCode +
+      subTotal.hashCode +
+      shippingFee.hashCode +
+      discount.hashCode +
+      totalPrice.hashCode +
+      requiredDepositAmount.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is PreviewPosOrderResponse &&
-      other.items == items &&
-      other.subTotal == subTotal &&
-      other.shippingFee == shippingFee &&
-      other.discount == discount &&
-      other.totalPrice == totalPrice &&
-      other.requiredDepositAmount == requiredDepositAmount;
-
-    @override
-    int get hashCode =>
-        items.hashCode +
-        subTotal.hashCode +
-        shippingFee.hashCode +
-        discount.hashCode +
-        totalPrice.hashCode +
-        requiredDepositAmount.hashCode;
-
-  factory PreviewPosOrderResponse.fromJson(Map<String, dynamic> json) => _$PreviewPosOrderResponseFromJson(json);
+  factory PreviewPosOrderResponse.fromJson(Map<String, dynamic> json) =>
+      _$PreviewPosOrderResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$PreviewPosOrderResponseToJson(this);
 
@@ -134,6 +83,4 @@ class PreviewPosOrderResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

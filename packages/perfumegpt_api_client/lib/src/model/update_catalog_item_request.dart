@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_catalog_item_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,52 +17,32 @@ part 'update_catalog_item_request.g.dart';
 )
 class UpdateCatalogItemRequest {
   /// Returns a new [UpdateCatalogItemRequest] instance.
-  UpdateCatalogItemRequest({
+  UpdateCatalogItemRequest({this.negotiatedPrice, this.estimatedLeadTimeDays});
 
-     this.negotiatedPrice,
-
-     this.estimatedLeadTimeDays,
-  });
-
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'negotiatedPrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  // minimum: 0
+  @JsonKey(name: r'negotiatedPrice', required: false, includeIfNull: false)
   final num? negotiatedPrice;
 
-
-
-          // minimum: 0
+  // minimum: 0
   @JsonKey(
-    
     name: r'estimatedLeadTimeDays',
     required: false,
     includeIfNull: false,
   )
-
-
   final int? estimatedLeadTimeDays;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateCatalogItemRequest &&
+          other.negotiatedPrice == negotiatedPrice &&
+          other.estimatedLeadTimeDays == estimatedLeadTimeDays;
 
+  @override
+  int get hashCode => negotiatedPrice.hashCode + estimatedLeadTimeDays.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateCatalogItemRequest &&
-      other.negotiatedPrice == negotiatedPrice &&
-      other.estimatedLeadTimeDays == estimatedLeadTimeDays;
-
-    @override
-    int get hashCode =>
-        negotiatedPrice.hashCode +
-        estimatedLeadTimeDays.hashCode;
-
-  factory UpdateCatalogItemRequest.fromJson(Map<String, dynamic> json) => _$UpdateCatalogItemRequestFromJson(json);
+  factory UpdateCatalogItemRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateCatalogItemRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateCatalogItemRequestToJson(this);
 
@@ -71,6 +50,4 @@ class UpdateCatalogItemRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

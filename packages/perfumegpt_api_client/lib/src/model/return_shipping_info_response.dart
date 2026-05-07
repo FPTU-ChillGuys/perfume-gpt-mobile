@@ -11,7 +11,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'return_shipping_info_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -22,145 +21,77 @@ part 'return_shipping_info_response.g.dart';
 class ReturnShippingInfoResponse {
   /// Returns a new [ReturnShippingInfoResponse] instance.
   ReturnShippingInfoResponse({
+    this.id,
 
-     this.id,
+    this.carrierName,
 
-     this.carrierName,
+    this.trackingNumber,
 
-     this.trackingNumber,
+    this.type,
 
-     this.type,
+    this.shippingFee,
 
-     this.shippingFee,
+    this.status,
 
-     this.status,
+    this.estimatedDeliveryDate,
 
-     this.estimatedDeliveryDate,
-
-     this.shippedDate,
+    this.shippedDate,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'carrierName',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'carrierName', required: false, includeIfNull: false)
   final CarrierName? carrierName;
 
-
-
-  @JsonKey(
-    
-    name: r'trackingNumber',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'trackingNumber', required: false, includeIfNull: false)
   final String? trackingNumber;
 
-
-
-  @JsonKey(
-    
-    name: r'type',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'type', required: false, includeIfNull: false)
   final ShippingType? type;
 
-
-
-  @JsonKey(
-    
-    name: r'shippingFee',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'shippingFee', required: false, includeIfNull: false)
   final num? shippingFee;
 
-
-
-  @JsonKey(
-    
-    name: r'status',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'status', required: false, includeIfNull: false)
   final ShippingStatus? status;
 
-
-
   @JsonKey(
-    
     name: r'estimatedDeliveryDate',
     required: false,
     includeIfNull: false,
   )
-
-
   final DateTime? estimatedDeliveryDate;
 
-
-
-  @JsonKey(
-    
-    name: r'shippedDate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'shippedDate', required: false, includeIfNull: false)
   final DateTime? shippedDate;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ReturnShippingInfoResponse &&
+          other.id == id &&
+          other.carrierName == carrierName &&
+          other.trackingNumber == trackingNumber &&
+          other.type == type &&
+          other.shippingFee == shippingFee &&
+          other.status == status &&
+          other.estimatedDeliveryDate == estimatedDeliveryDate &&
+          other.shippedDate == shippedDate;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      carrierName.hashCode +
+      (trackingNumber == null ? 0 : trackingNumber.hashCode) +
+      type.hashCode +
+      shippingFee.hashCode +
+      status.hashCode +
+      (estimatedDeliveryDate == null ? 0 : estimatedDeliveryDate.hashCode) +
+      (shippedDate == null ? 0 : shippedDate.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ReturnShippingInfoResponse &&
-      other.id == id &&
-      other.carrierName == carrierName &&
-      other.trackingNumber == trackingNumber &&
-      other.type == type &&
-      other.shippingFee == shippingFee &&
-      other.status == status &&
-      other.estimatedDeliveryDate == estimatedDeliveryDate &&
-      other.shippedDate == shippedDate;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        carrierName.hashCode +
-        (trackingNumber == null ? 0 : trackingNumber.hashCode) +
-        type.hashCode +
-        shippingFee.hashCode +
-        status.hashCode +
-        (estimatedDeliveryDate == null ? 0 : estimatedDeliveryDate.hashCode) +
-        (shippedDate == null ? 0 : shippedDate.hashCode);
-
-  factory ReturnShippingInfoResponse.fromJson(Map<String, dynamic> json) => _$ReturnShippingInfoResponseFromJson(json);
+  factory ReturnShippingInfoResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReturnShippingInfoResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ReturnShippingInfoResponseToJson(this);
 
@@ -168,6 +99,4 @@ class ReturnShippingInfoResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

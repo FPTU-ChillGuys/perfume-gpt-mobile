@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for LogControllerGetPagedEventLogs200ResponsePayload
 void main() {
-  final LogControllerGetPagedEventLogs200ResponsePayload? instance = /* LogControllerGetPagedEventLogs200ResponsePayload(...) */ null;
+  final LogControllerGetPagedEventLogs200ResponsePayload?
+  instance = /* LogControllerGetPagedEventLogs200ResponsePayload(...) */ null;
   // TODO add properties to the entity
 
   group(LogControllerGetPagedEventLogs200ResponsePayload, () {
@@ -35,6 +36,5 @@ void main() {
     test('to test the property `totalPages`', () async {
       // TODO
     });
-
   });
 }

@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'query_fragment_attribute.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,67 +18,37 @@ part 'query_fragment_attribute.g.dart';
 class QueryFragmentAttribute {
   /// Returns a new [QueryFragmentAttribute] instance.
   QueryFragmentAttribute({
+    required this.type,
 
-    required  this.type,
+    required this.attributeName,
 
-    required  this.attributeName,
-
-    required  this.match,
+    required this.match,
   });
 
-  @JsonKey(
-    
-    name: r'type',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'type', required: true, includeIfNull: false)
   final QueryFragmentAttributeTypeEnum type;
 
-
-
-      /// Tên loại thuộc tính (ví dụ: Nồng độ, Độ lưu hương)
-  @JsonKey(
-    
-    name: r'attributeName',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Tên loại thuộc tính (ví dụ: Nồng độ, Độ lưu hương)
+  @JsonKey(name: r'attributeName', required: true, includeIfNull: false)
   final String attributeName;
 
-
-
-      /// Giá trị thuộc tính cần khớp
-  @JsonKey(
-    
-    name: r'match',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Giá trị thuộc tính cần khớp
+  @JsonKey(name: r'match', required: true, includeIfNull: false)
   final String match;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is QueryFragmentAttribute &&
+          other.type == type &&
+          other.attributeName == attributeName &&
+          other.match == match;
 
+  @override
+  int get hashCode => type.hashCode + attributeName.hashCode + match.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is QueryFragmentAttribute &&
-      other.type == type &&
-      other.attributeName == attributeName &&
-      other.match == match;
-
-    @override
-    int get hashCode =>
-        type.hashCode +
-        attributeName.hashCode +
-        match.hashCode;
-
-  factory QueryFragmentAttribute.fromJson(Map<String, dynamic> json) => _$QueryFragmentAttributeFromJson(json);
+  factory QueryFragmentAttribute.fromJson(Map<String, dynamic> json) =>
+      _$QueryFragmentAttributeFromJson(json);
 
   Map<String, dynamic> toJson() => _$QueryFragmentAttributeToJson(this);
 
@@ -87,20 +56,16 @@ class QueryFragmentAttribute {
   String toString() {
     return toJson().toString();
   }
-
 }
-
 
 enum QueryFragmentAttributeTypeEnum {
-@JsonValue(r'attribute')
-attribute(r'attribute');
+  @JsonValue(r'attribute')
+  attribute(r'attribute');
 
-const QueryFragmentAttributeTypeEnum(this.value);
+  const QueryFragmentAttributeTypeEnum(this.value);
 
-final String value;
+  final String value;
 
-@override
-String toString() => value;
+  @override
+  String toString() => value;
 }
-
-

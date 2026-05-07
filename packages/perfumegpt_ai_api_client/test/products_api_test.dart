@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
-
 /// tests for ProductsApi
 void main() {
   final instance = PerfumegptAiApiClient().getProductsApi();
@@ -41,6 +40,5 @@ void main() {
     test('test productControllerLogSearchText', () async {
       // TODO
     });
-
   });
 }

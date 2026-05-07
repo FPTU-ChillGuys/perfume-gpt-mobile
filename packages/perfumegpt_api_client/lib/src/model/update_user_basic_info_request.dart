@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_user_basic_info_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,49 +18,29 @@ part 'update_user_basic_info_request.g.dart';
 class UpdateUserBasicInfoRequest {
   /// Returns a new [UpdateUserBasicInfoRequest] instance.
   UpdateUserBasicInfoRequest({
+    required this.fullName,
 
-    required  this.fullName,
-
-    required  this.phoneNumber,
+    required this.phoneNumber,
   });
 
-  @JsonKey(
-    
-    name: r'fullName',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'fullName', required: true, includeIfNull: false)
   final String fullName;
 
-
-
-  @JsonKey(
-    
-    name: r'phoneNumber',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'phoneNumber', required: true, includeIfNull: false)
   final String phoneNumber;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateUserBasicInfoRequest &&
+          other.fullName == fullName &&
+          other.phoneNumber == phoneNumber;
 
+  @override
+  int get hashCode => fullName.hashCode + phoneNumber.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateUserBasicInfoRequest &&
-      other.fullName == fullName &&
-      other.phoneNumber == phoneNumber;
-
-    @override
-    int get hashCode =>
-        fullName.hashCode +
-        phoneNumber.hashCode;
-
-  factory UpdateUserBasicInfoRequest.fromJson(Map<String, dynamic> json) => _$UpdateUserBasicInfoRequestFromJson(json);
+  factory UpdateUserBasicInfoRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateUserBasicInfoRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateUserBasicInfoRequestToJson(this);
 
@@ -69,6 +48,4 @@ class UpdateUserBasicInfoRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

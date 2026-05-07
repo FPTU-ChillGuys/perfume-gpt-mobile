@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for DictionaryControllerGetSnapshot500Response
 void main() {
-  final DictionaryControllerGetSnapshot500Response? instance = /* DictionaryControllerGetSnapshot500Response(...) */ null;
+  final DictionaryControllerGetSnapshot500Response?
+  instance = /* DictionaryControllerGetSnapshot500Response(...) */ null;
   // TODO add properties to the entity
 
   group(DictionaryControllerGetSnapshot500Response, () {
@@ -29,6 +30,5 @@ void main() {
     test('to test the property `statusCode`', () async {
       // TODO
     });
-
   });
 }

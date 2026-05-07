@@ -9,22 +9,16 @@ import 'dart:convert';
 import 'package:perfumegpt_ai_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products400_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products404_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products500_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_create_survey_ques200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions401_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions403_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/survey_controller_reorder_questions200_response.dart';
 
 class RecommendationApi {
-
   final Dio _dio;
 
   const RecommendationApi(this._dio);
 
   /// Recommend đơn giản và ổn định dựa trên Order và Best Sellers (không fallback mảng rỗng)
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [userId] - ID của user cần recommend
@@ -38,7 +32,8 @@ class RecommendationApi {
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerReorderQuestions200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerReorderQuestions200Response>> recommendationControllerGetRecommendationsV3Simple({ 
+  Future<Response<SurveyControllerReorderQuestions200Response>>
+  recommendationControllerGetRecommendationsV3Simple({
     required String userId,
     num? size,
     CancelToken? cancelToken,
@@ -51,13 +46,8 @@ class RecommendationApi {
     final _path = r'/recommendation/v3/simple';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
@@ -78,9 +68,17 @@ class RecommendationApi {
     SurveyControllerReorderQuestions200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerReorderQuestions200Response, SurveyControllerReorderQuestions200Response>(rawData, 'SurveyControllerReorderQuestions200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerReorderQuestions200Response,
+              SurveyControllerReorderQuestions200Response
+            >(
+              rawData,
+              'SurveyControllerReorderQuestions200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -104,7 +102,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
   }
 
   /// Manual trigger gửi daily recommendation cho user active (sync)
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -116,7 +114,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerReorderQuestions200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerReorderQuestions200Response>> recommendationControllerSendDailyRecommendationManual({ 
+  Future<Response<SurveyControllerReorderQuestions200Response>>
+  recommendationControllerSendDailyRecommendationManual({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -127,16 +126,10 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     final _path = r'/recommendation/daily/send';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -154,9 +147,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     SurveyControllerReorderQuestions200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerReorderQuestions200Response, SurveyControllerReorderQuestions200Response>(rawData, 'SurveyControllerReorderQuestions200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerReorderQuestions200Response,
+              SurveyControllerReorderQuestions200Response
+            >(
+              rawData,
+              'SurveyControllerReorderQuestions200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -180,7 +181,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
   }
 
   /// Test sinh recommendation cho user và gửi email
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [userId] - ID của user để test recommendation
@@ -193,7 +194,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerCreateSurveyQues200Response>> recommendationControllerTestRecommendation({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>>
+  recommendationControllerTestRecommendation({
     required String userId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -205,19 +207,12 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     final _path = r'/recommendation/test-recommendation';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-      r'userId': userId,
-    };
+    final _queryParameters = <String, dynamic>{r'userId': userId};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -231,9 +226,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerReorderQues
     SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerCreateSurveyQues200Response,
+              SurveyControllerCreateSurveyQues200Response
+            >(
+              rawData,
+              'SurveyControllerCreateSurveyQues200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -257,7 +260,7 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   }
 
   /// Test sinh repurchase recommendation cho user và gửi email
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [userId] - ID của user để test repurchase recommendation
@@ -271,7 +274,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
   ///
   /// Returns a [Future] containing a [Response] with a [SurveyControllerCreateSurveyQues200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SurveyControllerCreateSurveyQues200Response>> recommendationControllerTestRepurchase({ 
+  Future<Response<SurveyControllerCreateSurveyQues200Response>>
+  recommendationControllerTestRepurchase({
     required String userId,
     required String orderId,
     CancelToken? cancelToken,
@@ -284,13 +288,8 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     final _path = r'/recommendation/test-repurchase';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
@@ -311,9 +310,17 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
     SurveyControllerCreateSurveyQues200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurveyQues200Response, SurveyControllerCreateSurveyQues200Response>(rawData, 'SurveyControllerCreateSurveyQues200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              SurveyControllerCreateSurveyQues200Response,
+              SurveyControllerCreateSurveyQues200Response
+            >(
+              rawData,
+              'SurveyControllerCreateSurveyQues200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -335,5 +342,4 @@ _responseData = rawData == null ? null : deserialize<SurveyControllerCreateSurve
       extra: _response.extra,
     );
   }
-
 }

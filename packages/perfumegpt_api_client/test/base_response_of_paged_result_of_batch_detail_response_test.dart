@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for BaseResponseOfPagedResultOfBatchDetailResponse
 void main() {
-  final BaseResponseOfPagedResultOfBatchDetailResponse? instance = /* BaseResponseOfPagedResultOfBatchDetailResponse(...) */ null;
+  final BaseResponseOfPagedResultOfBatchDetailResponse?
+  instance = /* BaseResponseOfPagedResultOfBatchDetailResponse(...) */ null;
   // TODO add properties to the entity
 
   group(BaseResponseOfPagedResultOfBatchDetailResponse, () {
@@ -31,6 +32,5 @@ void main() {
     test('to test the property `errorType`', () async {
       // TODO
     });
-
   });
 }

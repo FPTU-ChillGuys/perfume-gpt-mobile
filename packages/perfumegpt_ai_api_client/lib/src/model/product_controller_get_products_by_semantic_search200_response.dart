@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_controller_get_products_by_semantic_search200_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,74 +19,47 @@ part 'product_controller_get_products_by_semantic_search200_response.g.dart';
 class ProductControllerGetProductsBySemanticSearch200Response {
   /// Returns a new [ProductControllerGetProductsBySemanticSearch200Response] instance.
   ProductControllerGetProductsBySemanticSearch200Response({
+    this.success,
 
-     this.success,
+    this.error,
 
-     this.error,
-
-     this.payload,
+    this.payload,
   });
 
-      /// Kết quả xử lý
-  @JsonKey(
-    
-    name: r'success',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Kết quả xử lý
+  @JsonKey(name: r'success', required: false, includeIfNull: false)
   final bool? success;
 
-
-
-      /// Thông báo lỗi
-  @JsonKey(
-    
-    name: r'error',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Thông báo lỗi
+  @JsonKey(name: r'error', required: false, includeIfNull: false)
   final String? error;
 
-
-
-  @JsonKey(
-    
-    name: r'payload',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'payload', required: false, includeIfNull: false)
   final ProductControllerGetProductsBySemanticSearch200ResponsePayload? payload;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductControllerGetProductsBySemanticSearch200Response &&
+          other.success == success &&
+          other.error == error &&
+          other.payload == payload;
 
+  @override
+  int get hashCode =>
+      success.hashCode +
+      (error == null ? 0 : error.hashCode) +
+      payload.hashCode;
 
+  factory ProductControllerGetProductsBySemanticSearch200Response.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ProductControllerGetProductsBySemanticSearch200ResponseFromJson(json);
 
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductControllerGetProductsBySemanticSearch200Response &&
-      other.success == success &&
-      other.error == error &&
-      other.payload == payload;
-
-    @override
-    int get hashCode =>
-        success.hashCode +
-        (error == null ? 0 : error.hashCode) +
-        payload.hashCode;
-
-  factory ProductControllerGetProductsBySemanticSearch200Response.fromJson(Map<String, dynamic> json) => _$ProductControllerGetProductsBySemanticSearch200ResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ProductControllerGetProductsBySemanticSearch200ResponseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$ProductControllerGetProductsBySemanticSearch200ResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
-
 }
-

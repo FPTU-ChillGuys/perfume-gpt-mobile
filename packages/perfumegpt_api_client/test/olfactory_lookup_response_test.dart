@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for OlfactoryLookupResponse
 void main() {
-  final OlfactoryLookupResponse? instance = /* OlfactoryLookupResponse(...) */ null;
+  final OlfactoryLookupResponse? instance = /* OlfactoryLookupResponse(...) */
+      null;
   // TODO add properties to the entity
 
   group(OlfactoryLookupResponse, () {
@@ -16,6 +17,5 @@ void main() {
     test('to test the property `name`', () async {
       // TODO
     });
-
   });
 }

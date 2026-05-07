@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ProductTempItemDtoVariantsInner
 void main() {
-  final ProductTempItemDtoVariantsInner? instance = /* ProductTempItemDtoVariantsInner(...) */ null;
+  final ProductTempItemDtoVariantsInner?
+  instance = /* ProductTempItemDtoVariantsInner(...) */ null;
   // TODO add properties to the entity
 
   group(ProductTempItemDtoVariantsInner, () {
@@ -16,6 +17,5 @@ void main() {
     test('to test the property `price`', () async {
       // TODO
     });
-
   });
 }

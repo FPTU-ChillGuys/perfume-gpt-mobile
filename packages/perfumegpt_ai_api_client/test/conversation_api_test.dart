@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
-
 /// tests for ConversationApi
 void main() {
   final instance = PerfumegptAiApiClient().getConversationApi();
@@ -62,6 +61,5 @@ void main() {
     test('test conversationControllerGetMyConversationHistory', () async {
       // TODO
     });
-
   });
 }

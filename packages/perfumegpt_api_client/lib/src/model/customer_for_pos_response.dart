@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'customer_for_pos_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,97 +18,52 @@ part 'customer_for_pos_response.g.dart';
 class CustomerForPosResponse {
   /// Returns a new [CustomerForPosResponse] instance.
   CustomerForPosResponse({
+    this.id,
 
-     this.id,
+    required this.fullName,
 
-    required  this.fullName,
+    required this.phoneNumber,
 
-    required  this.phoneNumber,
+    required this.email,
 
-    required  this.email,
-
-     this.loyaltyPoint,
+    this.loyaltyPoint,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'fullName',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'fullName', required: true, includeIfNull: false)
   final String fullName;
 
-
-
-  @JsonKey(
-    
-    name: r'phoneNumber',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'phoneNumber', required: true, includeIfNull: false)
   final String phoneNumber;
 
-
-
-  @JsonKey(
-    
-    name: r'email',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'email', required: true, includeIfNull: false)
   final String email;
 
-
-
-  @JsonKey(
-    
-    name: r'loyaltyPoint',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'loyaltyPoint', required: false, includeIfNull: false)
   final int? loyaltyPoint;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CustomerForPosResponse &&
+          other.id == id &&
+          other.fullName == fullName &&
+          other.phoneNumber == phoneNumber &&
+          other.email == email &&
+          other.loyaltyPoint == loyaltyPoint;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      fullName.hashCode +
+      phoneNumber.hashCode +
+      email.hashCode +
+      loyaltyPoint.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is CustomerForPosResponse &&
-      other.id == id &&
-      other.fullName == fullName &&
-      other.phoneNumber == phoneNumber &&
-      other.email == email &&
-      other.loyaltyPoint == loyaltyPoint;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        fullName.hashCode +
-        phoneNumber.hashCode +
-        email.hashCode +
-        loyaltyPoint.hashCode;
-
-  factory CustomerForPosResponse.fromJson(Map<String, dynamic> json) => _$CustomerForPosResponseFromJson(json);
+  factory CustomerForPosResponse.fromJson(Map<String, dynamic> json) =>
+      _$CustomerForPosResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$CustomerForPosResponseToJson(this);
 
@@ -117,6 +71,4 @@ class CustomerForPosResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

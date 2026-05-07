@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'reject_inspection_dto.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,34 +17,21 @@ part 'reject_inspection_dto.g.dart';
 )
 class RejectInspectionDto {
   /// Returns a new [RejectInspectionDto] instance.
-  RejectInspectionDto({
+  RejectInspectionDto({required this.note});
 
-    required  this.note,
-  });
-
-  @JsonKey(
-    
-    name: r'note',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'note', required: true, includeIfNull: false)
   final String note;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RejectInspectionDto && other.note == note;
 
+  @override
+  int get hashCode => note.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is RejectInspectionDto &&
-      other.note == note;
-
-    @override
-    int get hashCode =>
-        note.hashCode;
-
-  factory RejectInspectionDto.fromJson(Map<String, dynamic> json) => _$RejectInspectionDtoFromJson(json);
+  factory RejectInspectionDto.fromJson(Map<String, dynamic> json) =>
+      _$RejectInspectionDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$RejectInspectionDtoToJson(this);
 
@@ -53,6 +39,4 @@ class RejectInspectionDto {
   String toString() {
     return toJson().toString();
   }
-
 }
-

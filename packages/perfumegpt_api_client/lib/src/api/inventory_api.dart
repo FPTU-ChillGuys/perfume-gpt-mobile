@@ -9,7 +9,6 @@ import 'dart:convert';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_inventory_summary_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_paged_result_of_stock_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_ofstring.dart';
@@ -17,25 +16,24 @@ import 'package:perfumegpt_api_client/src/model/stock_status.dart';
 import 'package:perfumegpt_api_client/src/model/update_stock_request.dart';
 
 class InventoryApi {
-
   final Dio _dio;
 
   const InventoryApi(this._dio);
 
   /// apiInventoryStockGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [categoryId] 
-  /// * [batchCode] 
-  /// * [SKU] 
-  /// * [daysUntilExpiry] 
-  /// * [stockStatus] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [categoryId]
+  /// * [batchCode]
+  /// * [SKU]
+  /// * [daysUntilExpiry]
+  /// * [stockStatus]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -45,7 +43,8 @@ class InventoryApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfStockResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfStockResponse>> apiInventoryStockGet({ 
+  Future<Response<BaseResponseOfPagedResultOfStockResponse>>
+  apiInventoryStockGet({
     int? categoryId,
     String? batchCode,
     String? SKU,
@@ -66,16 +65,10 @@ class InventoryApi {
     final _path = r'/api/inventory/stock';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -107,9 +100,17 @@ class InventoryApi {
     BaseResponseOfPagedResultOfStockResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfStockResponse, BaseResponseOfPagedResultOfStockResponse>(rawData, 'BaseResponseOfPagedResultOfStockResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfStockResponse,
+              BaseResponseOfPagedResultOfStockResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfStockResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -133,11 +134,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   }
 
   /// apiInventoryStockStockIdPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [stockId] 
-  /// * [updateStockRequest] 
+  /// * [stockId]
+  /// * [updateStockRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -147,7 +148,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiInventoryStockStockIdPut({ 
+  Future<Response<BaseResponseOfstring>> apiInventoryStockStockIdPut({
     required String stockId,
     required UpdateStockRequest updateStockRequest,
     CancelToken? cancelToken,
@@ -157,19 +158,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/inventory/stock/{stockId}'.replaceAll('{' r'stockId' '}', stockId.toString());
+    final _path = r'/api/inventory/stock/{stockId}'.replaceAll(
+      '{'
+      r'stockId'
+      '}',
+      stockId.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -180,13 +180,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateStockRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateStockRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -205,9 +202,14 @@ _bodyData=jsonEncode(updateStockRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -231,7 +233,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiInventorySummaryGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -243,7 +245,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfInventorySummaryResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfInventorySummaryResponse>> apiInventorySummaryGet({ 
+  Future<Response<BaseResponseOfInventorySummaryResponse>>
+  apiInventorySummaryGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -254,16 +257,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     final _path = r'/api/inventory/summary';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -281,9 +278,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfInventorySummaryResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfInventorySummaryResponse, BaseResponseOfInventorySummaryResponse>(rawData, 'BaseResponseOfInventorySummaryResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfInventorySummaryResponse,
+              BaseResponseOfInventorySummaryResponse
+            >(
+              rawData,
+              'BaseResponseOfInventorySummaryResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -305,5 +310,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfInventorySumm
       extra: _response.extra,
     );
   }
-
 }

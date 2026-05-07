@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'deposit_policy_preview_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,81 +18,45 @@ part 'deposit_policy_preview_response.g.dart';
 class DepositPolicyPreviewResponse {
   /// Returns a new [DepositPolicyPreviewResponse] instance.
   DepositPolicyPreviewResponse({
+    this.isDepositRequired,
 
-     this.isDepositRequired,
+    this.depositRate,
 
-     this.depositRate,
+    this.depositAmount,
 
-     this.depositAmount,
-
-     this.remainingAmount,
+    this.remainingAmount,
   });
 
-  @JsonKey(
-    
-    name: r'isDepositRequired',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'isDepositRequired', required: false, includeIfNull: false)
   final bool? isDepositRequired;
 
-
-
-  @JsonKey(
-    
-    name: r'depositRate',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'depositRate', required: false, includeIfNull: false)
   final num? depositRate;
 
-
-
-  @JsonKey(
-    
-    name: r'depositAmount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'depositAmount', required: false, includeIfNull: false)
   final num? depositAmount;
 
-
-
-  @JsonKey(
-    
-    name: r'remainingAmount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'remainingAmount', required: false, includeIfNull: false)
   final num? remainingAmount;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is DepositPolicyPreviewResponse &&
+          other.isDepositRequired == isDepositRequired &&
+          other.depositRate == depositRate &&
+          other.depositAmount == depositAmount &&
+          other.remainingAmount == remainingAmount;
 
+  @override
+  int get hashCode =>
+      isDepositRequired.hashCode +
+      depositRate.hashCode +
+      depositAmount.hashCode +
+      remainingAmount.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is DepositPolicyPreviewResponse &&
-      other.isDepositRequired == isDepositRequired &&
-      other.depositRate == depositRate &&
-      other.depositAmount == depositAmount &&
-      other.remainingAmount == remainingAmount;
-
-    @override
-    int get hashCode =>
-        isDepositRequired.hashCode +
-        depositRate.hashCode +
-        depositAmount.hashCode +
-        remainingAmount.hashCode;
-
-  factory DepositPolicyPreviewResponse.fromJson(Map<String, dynamic> json) => _$DepositPolicyPreviewResponseFromJson(json);
+  factory DepositPolicyPreviewResponse.fromJson(Map<String, dynamic> json) =>
+      _$DepositPolicyPreviewResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$DepositPolicyPreviewResponseToJson(this);
 
@@ -101,6 +64,4 @@ class DepositPolicyPreviewResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

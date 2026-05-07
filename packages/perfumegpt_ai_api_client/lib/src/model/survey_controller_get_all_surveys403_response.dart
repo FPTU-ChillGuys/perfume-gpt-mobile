@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'survey_controller_get_all_surveys403_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,91 +18,55 @@ part 'survey_controller_get_all_surveys403_response.g.dart';
 class SurveyControllerGetAllSurveys403Response {
   /// Returns a new [SurveyControllerGetAllSurveys403Response] instance.
   SurveyControllerGetAllSurveys403Response({
+    this.success,
 
-     this.success,
+    this.error,
 
-     this.error,
+    this.detail,
 
-     this.detail,
-
-     this.statusCode,
+    this.statusCode,
   });
 
-  @JsonKey(
-    
-    name: r'success',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'success', required: false, includeIfNull: false)
   final bool? success;
 
-
-
-      /// Thông báo lỗi
-  @JsonKey(
-    
-    name: r'error',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Thông báo lỗi
+  @JsonKey(name: r'error', required: false, includeIfNull: false)
   final String? error;
 
-
-
-      /// Chi tiết lỗi
-  @JsonKey(
-    
-    name: r'detail',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Chi tiết lỗi
+  @JsonKey(name: r'detail', required: false, includeIfNull: false)
   final Object? detail;
 
-
-
-      /// HTTP status code
-  @JsonKey(
-    
-    name: r'statusCode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// HTTP status code
+  @JsonKey(name: r'statusCode', required: false, includeIfNull: false)
   final num? statusCode;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SurveyControllerGetAllSurveys403Response &&
+          other.success == success &&
+          other.error == error &&
+          other.detail == detail &&
+          other.statusCode == statusCode;
 
+  @override
+  int get hashCode =>
+      success.hashCode +
+      error.hashCode +
+      (detail == null ? 0 : detail.hashCode) +
+      statusCode.hashCode;
 
+  factory SurveyControllerGetAllSurveys403Response.fromJson(
+    Map<String, dynamic> json,
+  ) => _$SurveyControllerGetAllSurveys403ResponseFromJson(json);
 
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is SurveyControllerGetAllSurveys403Response &&
-      other.success == success &&
-      other.error == error &&
-      other.detail == detail &&
-      other.statusCode == statusCode;
-
-    @override
-    int get hashCode =>
-        success.hashCode +
-        error.hashCode +
-        (detail == null ? 0 : detail.hashCode) +
-        statusCode.hashCode;
-
-  factory SurveyControllerGetAllSurveys403Response.fromJson(Map<String, dynamic> json) => _$SurveyControllerGetAllSurveys403ResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$SurveyControllerGetAllSurveys403ResponseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$SurveyControllerGetAllSurveys403ResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
-
 }
-

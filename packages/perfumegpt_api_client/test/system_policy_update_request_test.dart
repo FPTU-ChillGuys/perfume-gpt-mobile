@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for SystemPolicyUpdateRequest
 void main() {
-  final SystemPolicyUpdateRequest? instance = /* SystemPolicyUpdateRequest(...) */ null;
+  final SystemPolicyUpdateRequest?
+  instance = /* SystemPolicyUpdateRequest(...) */ null;
   // TODO add properties to the entity
 
   group(SystemPolicyUpdateRequest, () {
@@ -16,6 +17,5 @@ void main() {
     test('to test the property `htmlContent`', () async {
       // TODO
     });
-
   });
 }

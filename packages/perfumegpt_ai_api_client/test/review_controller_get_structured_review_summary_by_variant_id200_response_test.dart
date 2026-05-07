@@ -3,7 +3,9 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ReviewControllerGetStructuredReviewSummaryByVariantId200Response
 void main() {
-  final ReviewControllerGetStructuredReviewSummaryByVariantId200Response? instance = /* ReviewControllerGetStructuredReviewSummaryByVariantId200Response(...) */ null;
+  final ReviewControllerGetStructuredReviewSummaryByVariantId200Response?
+  instance = /* ReviewControllerGetStructuredReviewSummaryByVariantId200Response(...) */
+      null;
   // TODO add properties to the entity
 
   group(ReviewControllerGetStructuredReviewSummaryByVariantId200Response, () {
@@ -29,6 +31,5 @@ void main() {
     test('to test the property `data`', () async {
       // TODO
     });
-
   });
 }

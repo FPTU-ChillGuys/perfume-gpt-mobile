@@ -13,23 +13,17 @@ import 'package:perfumegpt_ai_api_client/src/model/chat_request.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_chat_v11200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_all_conversations200_response.dart';
 import 'package:perfumegpt_ai_api_client/src/model/conversation_controller_get_my_conversation_history200_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products400_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products404_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/product_controller_get_all_products500_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions401_response.dart';
-import 'package:perfumegpt_ai_api_client/src/model/survey_controller_get_mobile_survey_questions403_response.dart';
 
 class ConversationApi {
-
   final Dio _dio;
 
   const ConversationApi(this._dio);
 
   /// Chat với AI (Advanced V10 logic)
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [chatRequest] 
+  /// * [chatRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -39,7 +33,8 @@ class ConversationApi {
   ///
   /// Returns a [Future] containing a [Response] with a [ConversationControllerGetAllConversations200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ConversationControllerGetAllConversations200Response>> conversationControllerChat({ 
+  Future<Response<ConversationControllerGetAllConversations200Response>>
+  conversationControllerChat({
     required ChatRequest chatRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -51,16 +46,10 @@ class ConversationApi {
     final _path = r'/conversation/chat/v10';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -71,13 +60,10 @@ class ConversationApi {
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(chatRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(chatRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -96,9 +82,17 @@ _bodyData=jsonEncode(chatRequest);
     ConversationControllerGetAllConversations200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ConversationControllerGetAllConversations200Response, ConversationControllerGetAllConversations200Response>(rawData, 'ConversationControllerGetAllConversations200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ConversationControllerGetAllConversations200Response,
+              ConversationControllerGetAllConversations200Response
+            >(
+              rawData,
+              'ConversationControllerGetAllConversations200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -122,10 +116,10 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
   }
 
   /// Chat V10 Staff (Quick Counter Consultation Mode)
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [chatRequest] 
+  /// * [chatRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -135,7 +129,8 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
   ///
   /// Returns a [Future] containing a [Response] with a [ConversationControllerGetAllConversations200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ConversationControllerGetAllConversations200Response>> conversationControllerChatStaff({ 
+  Future<Response<ConversationControllerGetAllConversations200Response>>
+  conversationControllerChatStaff({
     required ChatRequest chatRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -147,16 +142,10 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
     final _path = r'/conversation/chat/v10-staff';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -167,13 +156,10 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(chatRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(chatRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -192,9 +178,17 @@ _bodyData=jsonEncode(chatRequest);
     ConversationControllerGetAllConversations200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ConversationControllerGetAllConversations200Response, ConversationControllerGetAllConversations200Response>(rawData, 'ConversationControllerGetAllConversations200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ConversationControllerGetAllConversations200Response,
+              ConversationControllerGetAllConversations200Response
+            >(
+              rawData,
+              'ConversationControllerGetAllConversations200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -218,10 +212,10 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
   }
 
   /// Chat với AI (V11 — individual message persistence)
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [chatRequest] 
+  /// * [chatRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -231,7 +225,8 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
   ///
   /// Returns a [Future] containing a [Response] with a [ConversationControllerChatV11200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ConversationControllerChatV11200Response>> conversationControllerChatV11({ 
+  Future<Response<ConversationControllerChatV11200Response>>
+  conversationControllerChatV11({
     required ChatRequest chatRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -243,16 +238,10 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
     final _path = r'/conversation/chat/v11';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -263,13 +252,10 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(chatRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(chatRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -288,9 +274,17 @@ _bodyData=jsonEncode(chatRequest);
     ConversationControllerChatV11200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ConversationControllerChatV11200Response, ConversationControllerChatV11200Response>(rawData, 'ConversationControllerChatV11200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ConversationControllerChatV11200Response,
+              ConversationControllerChatV11200Response
+            >(
+              rawData,
+              'ConversationControllerChatV11200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -314,10 +308,10 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerChatV
   }
 
   /// Chat V11 Staff (Quick Counter Consultation Mode)
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [chatRequest] 
+  /// * [chatRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -327,7 +321,8 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerChatV
   ///
   /// Returns a [Future] containing a [Response] with a [ConversationControllerChatV11200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ConversationControllerChatV11200Response>> conversationControllerChatV11Staff({ 
+  Future<Response<ConversationControllerChatV11200Response>>
+  conversationControllerChatV11Staff({
     required ChatRequest chatRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -339,16 +334,10 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerChatV
     final _path = r'/conversation/chat/v11-staff';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -359,13 +348,10 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerChatV
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(chatRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(chatRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -384,9 +370,17 @@ _bodyData=jsonEncode(chatRequest);
     ConversationControllerChatV11200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ConversationControllerChatV11200Response, ConversationControllerChatV11200Response>(rawData, 'ConversationControllerChatV11200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ConversationControllerChatV11200Response,
+              ConversationControllerChatV11200Response
+            >(
+              rawData,
+              'ConversationControllerChatV11200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -410,7 +404,7 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerChatV
   }
 
   /// Lấy tất cả cuộc hội thoại
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -422,7 +416,8 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerChatV
   ///
   /// Returns a [Future] containing a [Response] with a [ConversationControllerGetAllConversations200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ConversationControllerGetAllConversations200Response>> conversationControllerGetAllConversations({ 
+  Future<Response<ConversationControllerGetAllConversations200Response>>
+  conversationControllerGetAllConversations({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -433,13 +428,8 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerChatV
     final _path = r'/conversation';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
@@ -454,9 +444,17 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerChatV
     ConversationControllerGetAllConversations200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ConversationControllerGetAllConversations200Response, ConversationControllerGetAllConversations200Response>(rawData, 'ConversationControllerGetAllConversations200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ConversationControllerGetAllConversations200Response,
+              ConversationControllerGetAllConversations200Response
+            >(
+              rawData,
+              'ConversationControllerGetAllConversations200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -480,7 +478,7 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
   }
 
   /// Lấy danh sách hội thoại có phân trang
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [pageNumber] - Số trang
@@ -497,7 +495,8 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
   ///
   /// Returns a [Future] containing a [Response] with a [ConversationControllerGetMyConversationHistory200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ConversationControllerGetMyConversationHistory200Response>> conversationControllerGetAllConversationsPaginated({ 
+  Future<Response<ConversationControllerGetMyConversationHistory200Response>>
+  conversationControllerGetAllConversationsPaginated({
     num pageNumber = 1,
     num pageSize = 10,
     String sortOrder = 'asc',
@@ -513,13 +512,8 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
     final _path = r'/conversation/list/paged';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
@@ -543,9 +537,17 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetAl
     ConversationControllerGetMyConversationHistory200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ConversationControllerGetMyConversationHistory200Response, ConversationControllerGetMyConversationHistory200Response>(rawData, 'ConversationControllerGetMyConversationHistory200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ConversationControllerGetMyConversationHistory200Response,
+              ConversationControllerGetMyConversationHistory200Response
+            >(
+              rawData,
+              'ConversationControllerGetMyConversationHistory200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -569,10 +571,10 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetMy
   }
 
   /// Lấy cuộc hội thoại theo ID
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -582,7 +584,7 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetMy
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> conversationControllerGetConversationById({ 
+  Future<Response<void>> conversationControllerGetConversationById({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -594,19 +596,12 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetMy
     final _path = r'/conversation/{id}';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
+      headers: <String, dynamic>{...?headers},
+      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-      r'id': id,
-    };
+    final _queryParameters = <String, dynamic>{r'id': id};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -621,7 +616,7 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetMy
   }
 
   /// Lấy lịch sử chat của user hiện tại
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [pageNumber] - Số trang
@@ -638,7 +633,8 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetMy
   ///
   /// Returns a [Future] containing a [Response] with a [ConversationControllerGetMyConversationHistory200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ConversationControllerGetMyConversationHistory200Response>> conversationControllerGetMyConversationHistory({ 
+  Future<Response<ConversationControllerGetMyConversationHistory200Response>>
+  conversationControllerGetMyConversationHistory({
     num pageNumber = 1,
     num pageSize = 10,
     String sortOrder = 'asc',
@@ -654,16 +650,10 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetMy
     final _path = r'/conversation/my/history';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'jwt',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'jwt'},
         ],
         ...?extra,
       },
@@ -690,9 +680,17 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetMy
     ConversationControllerGetMyConversationHistory200Response? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<ConversationControllerGetMyConversationHistory200Response, ConversationControllerGetMyConversationHistory200Response>(rawData, 'ConversationControllerGetMyConversationHistory200Response', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              ConversationControllerGetMyConversationHistory200Response,
+              ConversationControllerGetMyConversationHistory200Response
+            >(
+              rawData,
+              'ConversationControllerGetMyConversationHistory200Response',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -714,5 +712,4 @@ _responseData = rawData == null ? null : deserialize<ConversationControllerGetMy
       extra: _response.extra,
     );
   }
-
 }

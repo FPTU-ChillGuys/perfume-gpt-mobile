@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ReviewListItemResponse
 void main() {
-  final ReviewListItemResponse? instance = /* ReviewListItemResponse(...) */ null;
+  final ReviewListItemResponse? instance = /* ReviewListItemResponse(...) */
+      null;
   // TODO add properties to the entity
 
   group(ReviewListItemResponse, () {
@@ -72,6 +73,5 @@ void main() {
     test('to test the property `variantName`', () async {
       // TODO
     });
-
   });
 }

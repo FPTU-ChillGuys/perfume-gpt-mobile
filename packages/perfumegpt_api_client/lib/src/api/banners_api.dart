@@ -10,7 +10,6 @@ import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
 import 'package:perfumegpt_api_client/src/model/banner_position.dart';
-import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_banner_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_bulk_action_result_of_list_of_temporary_media_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_banner_response.dart';
@@ -20,16 +19,15 @@ import 'package:perfumegpt_api_client/src/model/create_banner_request.dart';
 import 'package:perfumegpt_api_client/src/model/update_banner_request.dart';
 
 class BannersApi {
-
   final Dio _dio;
 
   const BannersApi(this._dio);
 
   /// apiBannersBannerIdDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [bannerId] 
+  /// * [bannerId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -39,7 +37,7 @@ class BannersApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiBannersBannerIdDelete({ 
+  Future<Response<BaseResponseOfstring>> apiBannersBannerIdDelete({
     required String bannerId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -48,19 +46,18 @@ class BannersApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/banners/{bannerId}'.replaceAll('{' r'bannerId' '}', bannerId.toString());
+    final _path = r'/api/banners/{bannerId}'.replaceAll(
+      '{'
+      r'bannerId'
+      '}',
+      bannerId.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -78,9 +75,14 @@ class BannersApi {
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -104,10 +106,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiBannersBannerIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [bannerId] 
+  /// * [bannerId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -117,7 +119,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBannerResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfBannerResponse>> apiBannersBannerIdGet({ 
+  Future<Response<BaseResponseOfBannerResponse>> apiBannersBannerIdGet({
     required String bannerId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -126,19 +128,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/banners/{bannerId}'.replaceAll('{' r'bannerId' '}', bannerId.toString());
+    final _path = r'/api/banners/{bannerId}'.replaceAll(
+      '{'
+      r'bannerId'
+      '}',
+      bannerId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -156,9 +157,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfBannerResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBannerResponse, BaseResponseOfBannerResponse>(rawData, 'BaseResponseOfBannerResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfBannerResponse,
+              BaseResponseOfBannerResponse
+            >(rawData, 'BaseResponseOfBannerResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -182,11 +187,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBannerRespons
   }
 
   /// apiBannersBannerIdPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [bannerId] 
-  /// * [updateBannerRequest] 
+  /// * [bannerId]
+  /// * [updateBannerRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -196,7 +201,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBannerRespons
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiBannersBannerIdPut({ 
+  Future<Response<BaseResponseOfstring>> apiBannersBannerIdPut({
     required String bannerId,
     required UpdateBannerRequest updateBannerRequest,
     CancelToken? cancelToken,
@@ -206,19 +211,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBannerRespons
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/banners/{bannerId}'.replaceAll('{' r'bannerId' '}', bannerId.toString());
+    final _path = r'/api/banners/{bannerId}'.replaceAll(
+      '{'
+      r'bannerId'
+      '}',
+      bannerId.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -229,13 +233,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBannerRespons
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateBannerRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateBannerRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -254,9 +255,14 @@ _bodyData=jsonEncode(updateBannerRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -280,17 +286,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiBannersGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [searchTerm] 
-  /// * [position] 
-  /// * [isActive] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [searchTerm]
+  /// * [position]
+  /// * [isActive]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -300,7 +306,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfBannerResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfBannerResponse>> apiBannersGet({ 
+  Future<Response<BaseResponseOfPagedResultOfBannerResponse>> apiBannersGet({
     String? searchTerm,
     BannerPosition? position,
     bool? isActive,
@@ -319,16 +325,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     final _path = r'/api/banners';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -358,9 +358,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfPagedResultOfBannerResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfBannerResponse, BaseResponseOfPagedResultOfBannerResponse>(rawData, 'BaseResponseOfPagedResultOfBannerResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfBannerResponse,
+              BaseResponseOfPagedResultOfBannerResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfBannerResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -384,10 +392,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   }
 
   /// apiBannersHomeGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [position] 
+  /// * [position]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -397,7 +405,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfBannerResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfBannerResponse>> apiBannersHomeGet({ 
+  Future<Response<BaseResponseOfListOfBannerResponse>> apiBannersHomeGet({
     BannerPosition? position,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -409,16 +417,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     final _path = r'/api/banners/home';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -441,9 +443,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfListOfBannerResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBannerResponse, BaseResponseOfListOfBannerResponse>(rawData, 'BaseResponseOfListOfBannerResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfBannerResponse,
+              BaseResponseOfListOfBannerResponse
+            >(rawData, 'BaseResponseOfListOfBannerResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -467,10 +473,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBannerR
   }
 
   /// apiBannersImagesTemporaryPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [images] 
+  /// * [images]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -480,7 +486,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBannerR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>> apiBannersImagesTemporaryPost({ 
+  Future<Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>>
+  apiBannersImagesTemporaryPost({
     List<MultipartFile>? images,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -492,16 +499,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBannerR
     final _path = r'/api/banners/images/temporary';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -511,14 +512,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBannerR
 
     dynamic _bodyData;
 
-    try {
-
-    } catch(error, stackTrace) {
+    try {} catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -537,9 +533,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfBannerR
     BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse, BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>(rawData, 'BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse,
+              BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse
+            >(
+              rawData,
+              'BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -550,7 +554,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
       );
     }
 
-    return Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>(
+    return Response<
+      BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse
+    >(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -563,10 +569,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
   }
 
   /// apiBannersPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createBannerRequest] 
+  /// * [createBannerRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -576,7 +582,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiBannersPost({ 
+  Future<Response<BaseResponseOfstring>> apiBannersPost({
     required CreateBannerRequest createBannerRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -588,16 +594,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     final _path = r'/api/banners';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -608,13 +608,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createBannerRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createBannerRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -633,9 +630,14 @@ _bodyData=jsonEncode(createBannerRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -657,5 +659,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
       extra: _response.extra,
     );
   }
-
 }

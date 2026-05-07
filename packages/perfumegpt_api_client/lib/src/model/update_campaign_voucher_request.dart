@@ -11,7 +11,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_campaign_voucher_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -22,195 +21,96 @@ part 'update_campaign_voucher_request.g.dart';
 class UpdateCampaignVoucherRequest {
   /// Returns a new [UpdateCampaignVoucherRequest] instance.
   UpdateCampaignVoucherRequest({
+    this.id,
 
-     this.id,
+    required this.code,
 
-    required  this.code,
+    this.discountValue,
 
-     this.discountValue,
+    this.targetItemType,
 
-     this.targetItemType,
+    this.discountType,
 
-     this.discountType,
+    this.applyType,
 
-     this.applyType,
+    this.maxDiscountAmount,
 
-     this.maxDiscountAmount,
+    required this.minOrderValue,
 
-    required  this.minOrderValue,
+    this.totalQuantity,
 
-     this.totalQuantity,
+    this.maxUsagePerUser,
 
-     this.maxUsagePerUser,
-
-     this.isMemberOnly,
+    this.isMemberOnly,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'code',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'code', required: true, includeIfNull: false)
   final String code;
 
-
-
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'discountValue',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  // minimum: 0
+  @JsonKey(name: r'discountValue', required: false, includeIfNull: false)
   final num? discountValue;
 
-
-
-  @JsonKey(
-    
-    name: r'targetItemType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'targetItemType', required: false, includeIfNull: false)
   final PromotionType? targetItemType;
 
-
-
-  @JsonKey(
-    
-    name: r'discountType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'discountType', required: false, includeIfNull: false)
   final DiscountType? discountType;
 
-
-
-  @JsonKey(
-    
-    name: r'applyType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'applyType', required: false, includeIfNull: false)
   final VoucherType? applyType;
 
-
-
-  @JsonKey(
-    
-    name: r'maxDiscountAmount',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'maxDiscountAmount', required: false, includeIfNull: false)
   final num? maxDiscountAmount;
 
-
-
-          // minimum: 0
-  @JsonKey(
-    
-    name: r'minOrderValue',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  // minimum: 0
+  @JsonKey(name: r'minOrderValue', required: true, includeIfNull: false)
   final num minOrderValue;
 
-
-
-  @JsonKey(
-    
-    name: r'totalQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'totalQuantity', required: false, includeIfNull: false)
   final int? totalQuantity;
 
-
-
-  @JsonKey(
-    
-    name: r'maxUsagePerUser',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'maxUsagePerUser', required: false, includeIfNull: false)
   final int? maxUsagePerUser;
 
-
-
-  @JsonKey(
-    
-    name: r'isMemberOnly',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'isMemberOnly', required: false, includeIfNull: false)
   final bool? isMemberOnly;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateCampaignVoucherRequest &&
+          other.id == id &&
+          other.code == code &&
+          other.discountValue == discountValue &&
+          other.targetItemType == targetItemType &&
+          other.discountType == discountType &&
+          other.applyType == applyType &&
+          other.maxDiscountAmount == maxDiscountAmount &&
+          other.minOrderValue == minOrderValue &&
+          other.totalQuantity == totalQuantity &&
+          other.maxUsagePerUser == maxUsagePerUser &&
+          other.isMemberOnly == isMemberOnly;
 
+  @override
+  int get hashCode =>
+      (id == null ? 0 : id.hashCode) +
+      code.hashCode +
+      discountValue.hashCode +
+      (targetItemType == null ? 0 : targetItemType.hashCode) +
+      discountType.hashCode +
+      applyType.hashCode +
+      (maxDiscountAmount == null ? 0 : maxDiscountAmount.hashCode) +
+      minOrderValue.hashCode +
+      (totalQuantity == null ? 0 : totalQuantity.hashCode) +
+      (maxUsagePerUser == null ? 0 : maxUsagePerUser.hashCode) +
+      isMemberOnly.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateCampaignVoucherRequest &&
-      other.id == id &&
-      other.code == code &&
-      other.discountValue == discountValue &&
-      other.targetItemType == targetItemType &&
-      other.discountType == discountType &&
-      other.applyType == applyType &&
-      other.maxDiscountAmount == maxDiscountAmount &&
-      other.minOrderValue == minOrderValue &&
-      other.totalQuantity == totalQuantity &&
-      other.maxUsagePerUser == maxUsagePerUser &&
-      other.isMemberOnly == isMemberOnly;
-
-    @override
-    int get hashCode =>
-        (id == null ? 0 : id.hashCode) +
-        code.hashCode +
-        discountValue.hashCode +
-        (targetItemType == null ? 0 : targetItemType.hashCode) +
-        discountType.hashCode +
-        applyType.hashCode +
-        (maxDiscountAmount == null ? 0 : maxDiscountAmount.hashCode) +
-        minOrderValue.hashCode +
-        (totalQuantity == null ? 0 : totalQuantity.hashCode) +
-        (maxUsagePerUser == null ? 0 : maxUsagePerUser.hashCode) +
-        isMemberOnly.hashCode;
-
-  factory UpdateCampaignVoucherRequest.fromJson(Map<String, dynamic> json) => _$UpdateCampaignVoucherRequestFromJson(json);
+  factory UpdateCampaignVoucherRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateCampaignVoucherRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateCampaignVoucherRequestToJson(this);
 
@@ -218,6 +118,4 @@ class UpdateCampaignVoucherRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

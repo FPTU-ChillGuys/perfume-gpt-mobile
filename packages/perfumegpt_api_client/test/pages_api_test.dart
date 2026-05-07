@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
-
 /// tests for PagesApi
 void main() {
   final instance = PerfumegptApiClient().getPagesApi();
@@ -41,6 +40,5 @@ void main() {
     test('test apiPagesSlugPut', () async {
       // TODO
     });
-
   });
 }

@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'gender_normalizer_output.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,35 +17,22 @@ part 'gender_normalizer_output.g.dart';
 )
 class GenderNormalizerOutput {
   /// Returns a new [GenderNormalizerOutput] instance.
-  GenderNormalizerOutput({
+  GenderNormalizerOutput({this.value});
 
-     this.value,
-  });
-
-      /// Giới tính nước hoa
-  @JsonKey(
-    
-    name: r'value',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Giới tính nước hoa
+  @JsonKey(name: r'value', required: false, includeIfNull: false)
   final GenderNormalizerOutputValueEnum? value;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GenderNormalizerOutput && other.value == value;
 
+  @override
+  int get hashCode => value.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is GenderNormalizerOutput &&
-      other.value == value;
-
-    @override
-    int get hashCode =>
-        value.hashCode;
-
-  factory GenderNormalizerOutput.fromJson(Map<String, dynamic> json) => _$GenderNormalizerOutputFromJson(json);
+  factory GenderNormalizerOutput.fromJson(Map<String, dynamic> json) =>
+      _$GenderNormalizerOutputFromJson(json);
 
   Map<String, dynamic> toJson() => _$GenderNormalizerOutputToJson(this);
 
@@ -54,27 +40,26 @@ class GenderNormalizerOutput {
   String toString() {
     return toJson().toString();
   }
-
 }
 
 /// Giới tính nước hoa
 enum GenderNormalizerOutputValueEnum {
-    /// Giới tính nước hoa
-@JsonValue(r'Nam')
-nam(r'Nam'),
-    /// Giới tính nước hoa
-@JsonValue(r'Nữ')
-n(r'Nữ'),
-    /// Giới tính nước hoa
-@JsonValue(r'Unisex')
-unisex(r'Unisex');
+  /// Giới tính nước hoa
+  @JsonValue(r'Nam')
+  nam(r'Nam'),
 
-const GenderNormalizerOutputValueEnum(this.value);
+  /// Giới tính nước hoa
+  @JsonValue(r'Nữ')
+  n(r'Nữ'),
 
-final String value;
+  /// Giới tính nước hoa
+  @JsonValue(r'Unisex')
+  unisex(r'Unisex');
 
-@override
-String toString() => value;
+  const GenderNormalizerOutputValueEnum(this.value);
+
+  final String value;
+
+  @override
+  String toString() => value;
 }
-
-

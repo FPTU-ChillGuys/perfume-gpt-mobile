@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
-
 /// tests for OrderCancelRequestsApi
 void main() {
   final instance = PerfumegptApiClient().getOrderCancelRequestsApi();
@@ -26,6 +25,5 @@ void main() {
     test('test apiOrdercancelrequestsMyRequestsGet', () async {
       // TODO
     });
-
   });
 }

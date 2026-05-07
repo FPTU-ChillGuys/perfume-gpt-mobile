@@ -26,9 +26,7 @@ class ChatSession extends _$ChatSession {
     final currentUserId = currentUser?.id;
 
     final userConvs = localConvs
-        .where(
-          (c) => c.userId == currentUserId,
-        )
+        .where((c) => c.userId == currentUserId)
         .toList();
 
     if (userConvs.isNotEmpty) {
@@ -133,12 +131,12 @@ class ChatSession extends _$ChatSession {
             message: msgText,
             products: storedProducts != null
                 ? (storedProducts as List<dynamic>)
-                    .map(
-                      (p) => ProductCardOutputItemDto.fromJson(
-                        p as Map<String, dynamic>,
-                      ),
-                    )
-                    .toList()
+                      .map(
+                        (p) => ProductCardOutputItemDto.fromJson(
+                          p as Map<String, dynamic>,
+                        ),
+                      )
+                      .toList()
                 : null,
             suggestedQuestions: storedSuggestions?.cast<String>().toList(),
           );
@@ -185,8 +183,9 @@ class ChatSession extends _$ChatSession {
             id: const Uuid().v4(),
             metadata: {
               'text': aiLastMessage.message,
-              'products':
-                  aiLastMessage.products?.map((p) => p.toJson()).toList(),
+              'products': aiLastMessage.products
+                  ?.map((p) => p.toJson())
+                  .toList(),
               'suggestedQuestions': aiLastMessage.suggestedQuestions,
             },
           );
@@ -383,8 +382,9 @@ class ChatSession extends _$ChatSession {
         lastMessage.metadata?['text'] != null) {
       preview = lastMessage.metadata!['text'] as String;
     }
-    final previewTrimmed =
-        preview.length > 60 ? preview.substring(0, 60) : preview;
+    final previewTrimmed = preview.length > 60
+        ? preview.substring(0, 60)
+        : preview;
 
     final dao = ref.read(conversationDaoProvider);
     await dao.upsertConversation(
@@ -422,7 +422,7 @@ class ChatSession extends _$ChatSession {
         metadataJson: Value(metadataJson),
         createdAt:
             m.createdAt?.millisecondsSinceEpoch ??
-                DateTime.now().millisecondsSinceEpoch,
+            DateTime.now().millisecondsSinceEpoch,
         messageIndex: index,
       );
     }).toList();

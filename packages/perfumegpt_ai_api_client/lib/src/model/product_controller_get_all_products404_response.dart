@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_controller_get_all_products404_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,91 +18,55 @@ part 'product_controller_get_all_products404_response.g.dart';
 class ProductControllerGetAllProducts404Response {
   /// Returns a new [ProductControllerGetAllProducts404Response] instance.
   ProductControllerGetAllProducts404Response({
+    this.success,
 
-     this.success,
+    this.error,
 
-     this.error,
+    this.detail,
 
-     this.detail,
-
-     this.statusCode,
+    this.statusCode,
   });
 
-  @JsonKey(
-    
-    name: r'success',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'success', required: false, includeIfNull: false)
   final bool? success;
 
-
-
-      /// Thông báo lỗi
-  @JsonKey(
-    
-    name: r'error',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Thông báo lỗi
+  @JsonKey(name: r'error', required: false, includeIfNull: false)
   final String? error;
 
-
-
-      /// Chi tiết lỗi
-  @JsonKey(
-    
-    name: r'detail',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Chi tiết lỗi
+  @JsonKey(name: r'detail', required: false, includeIfNull: false)
   final Object? detail;
 
-
-
-      /// HTTP status code
-  @JsonKey(
-    
-    name: r'statusCode',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// HTTP status code
+  @JsonKey(name: r'statusCode', required: false, includeIfNull: false)
   final num? statusCode;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductControllerGetAllProducts404Response &&
+          other.success == success &&
+          other.error == error &&
+          other.detail == detail &&
+          other.statusCode == statusCode;
 
+  @override
+  int get hashCode =>
+      success.hashCode +
+      error.hashCode +
+      (detail == null ? 0 : detail.hashCode) +
+      statusCode.hashCode;
 
+  factory ProductControllerGetAllProducts404Response.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ProductControllerGetAllProducts404ResponseFromJson(json);
 
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ProductControllerGetAllProducts404Response &&
-      other.success == success &&
-      other.error == error &&
-      other.detail == detail &&
-      other.statusCode == statusCode;
-
-    @override
-    int get hashCode =>
-        success.hashCode +
-        error.hashCode +
-        (detail == null ? 0 : detail.hashCode) +
-        statusCode.hashCode;
-
-  factory ProductControllerGetAllProducts404Response.fromJson(Map<String, dynamic> json) => _$ProductControllerGetAllProducts404ResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ProductControllerGetAllProducts404ResponseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$ProductControllerGetAllProducts404ResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
-
 }
-

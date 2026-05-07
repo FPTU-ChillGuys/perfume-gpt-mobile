@@ -9,7 +9,6 @@ import 'dart:convert';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_campaign_promotion_item_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_campaign_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_campaign_lookup_item.dart';
@@ -30,16 +29,15 @@ import 'package:perfumegpt_api_client/src/model/update_campaign_status_request.d
 import 'package:perfumegpt_api_client/src/model/update_campaign_voucher_request.dart';
 
 class CampaignsApi {
-
   final Dio _dio;
 
   const CampaignsApi(this._dio);
 
   /// apiCampaignsCampaignIdDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [campaignId] 
+  /// * [campaignId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -49,7 +47,7 @@ class CampaignsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiCampaignsCampaignIdDelete({ 
+  Future<Response<BaseResponseOfstring>> apiCampaignsCampaignIdDelete({
     required String campaignId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -58,19 +56,18 @@ class CampaignsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{campaignId}'.replaceAll('{' r'campaignId' '}', campaignId.toString());
+    final _path = r'/api/campaigns/{campaignId}'.replaceAll(
+      '{'
+      r'campaignId'
+      '}',
+      campaignId.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -88,9 +85,14 @@ class CampaignsApi {
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -114,10 +116,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiCampaignsCampaignIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [campaignId] 
+  /// * [campaignId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -127,7 +129,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfCampaignResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfCampaignResponse>> apiCampaignsCampaignIdGet({ 
+  Future<Response<BaseResponseOfCampaignResponse>> apiCampaignsCampaignIdGet({
     required String campaignId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -136,19 +138,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{campaignId}'.replaceAll('{' r'campaignId' '}', campaignId.toString());
+    final _path = r'/api/campaigns/{campaignId}'.replaceAll(
+      '{'
+      r'campaignId'
+      '}',
+      campaignId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -166,9 +167,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfCampaignResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfCampaignResponse, BaseResponseOfCampaignResponse>(rawData, 'BaseResponseOfCampaignResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfCampaignResponse,
+              BaseResponseOfCampaignResponse
+            >(rawData, 'BaseResponseOfCampaignResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -192,10 +197,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCampaignRespo
   }
 
   /// apiCampaignsCampaignIdItemsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [campaignId] 
+  /// * [campaignId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -205,7 +210,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCampaignRespo
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfCampaignPromotionItemResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfCampaignPromotionItemResponse>> apiCampaignsCampaignIdItemsGet({ 
+  Future<Response<BaseResponseOfListOfCampaignPromotionItemResponse>>
+  apiCampaignsCampaignIdItemsGet({
     required String campaignId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -214,19 +220,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCampaignRespo
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{campaignId}/items'.replaceAll('{' r'campaignId' '}', campaignId.toString());
+    final _path = r'/api/campaigns/{campaignId}/items'.replaceAll(
+      '{'
+      r'campaignId'
+      '}',
+      campaignId.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -244,9 +249,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCampaignRespo
     BaseResponseOfListOfCampaignPromotionItemResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaignPromotionItemResponse, BaseResponseOfListOfCampaignPromotionItemResponse>(rawData, 'BaseResponseOfListOfCampaignPromotionItemResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfCampaignPromotionItemResponse,
+              BaseResponseOfListOfCampaignPromotionItemResponse
+            >(
+              rawData,
+              'BaseResponseOfListOfCampaignPromotionItemResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -270,11 +283,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaig
   }
 
   /// apiCampaignsCampaignIdItemsItemIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [campaignId] 
-  /// * [itemId] 
+  /// * [campaignId]
+  /// * [itemId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -284,7 +297,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaig
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfCampaignPromotionItemResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfCampaignPromotionItemResponse>> apiCampaignsCampaignIdItemsItemIdGet({ 
+  Future<Response<BaseResponseOfCampaignPromotionItemResponse>>
+  apiCampaignsCampaignIdItemsItemIdGet({
     required String campaignId,
     required String itemId,
     CancelToken? cancelToken,
@@ -294,19 +308,25 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaig
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{campaignId}/items/{itemId}'.replaceAll('{' r'campaignId' '}', campaignId.toString()).replaceAll('{' r'itemId' '}', itemId.toString());
+    final _path = r'/api/campaigns/{campaignId}/items/{itemId}'
+        .replaceAll(
+          '{'
+          r'campaignId'
+          '}',
+          campaignId.toString(),
+        )
+        .replaceAll(
+          '{'
+          r'itemId'
+          '}',
+          itemId.toString(),
+        );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -324,9 +344,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaig
     BaseResponseOfCampaignPromotionItemResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfCampaignPromotionItemResponse, BaseResponseOfCampaignPromotionItemResponse>(rawData, 'BaseResponseOfCampaignPromotionItemResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfCampaignPromotionItemResponse,
+              BaseResponseOfCampaignPromotionItemResponse
+            >(
+              rawData,
+              'BaseResponseOfCampaignPromotionItemResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -350,11 +378,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCampaignPromo
   }
 
   /// apiCampaignsCampaignIdPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [campaignId] 
-  /// * [updateCampaignRequest] 
+  /// * [campaignId]
+  /// * [updateCampaignRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -364,7 +392,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCampaignPromo
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiCampaignsCampaignIdPut({ 
+  Future<Response<BaseResponseOfstring>> apiCampaignsCampaignIdPut({
     required String campaignId,
     required UpdateCampaignRequest updateCampaignRequest,
     CancelToken? cancelToken,
@@ -374,19 +402,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCampaignPromo
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{campaignId}'.replaceAll('{' r'campaignId' '}', campaignId.toString());
+    final _path = r'/api/campaigns/{campaignId}'.replaceAll(
+      '{'
+      r'campaignId'
+      '}',
+      campaignId.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -397,13 +424,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfCampaignPromo
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateCampaignRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateCampaignRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -422,9 +446,14 @@ _bodyData=jsonEncode(updateCampaignRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -448,11 +477,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiCampaignsCampaignIdStatusPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [campaignId] 
-  /// * [updateCampaignStatusRequest] 
+  /// * [campaignId]
+  /// * [updateCampaignStatusRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -462,7 +491,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiCampaignsCampaignIdStatusPut({ 
+  Future<Response<BaseResponseOfstring>> apiCampaignsCampaignIdStatusPut({
     required String campaignId,
     required UpdateCampaignStatusRequest updateCampaignStatusRequest,
     CancelToken? cancelToken,
@@ -472,19 +501,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{campaignId}/status'.replaceAll('{' r'campaignId' '}', campaignId.toString());
+    final _path = r'/api/campaigns/{campaignId}/status'.replaceAll(
+      '{'
+      r'campaignId'
+      '}',
+      campaignId.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -495,13 +523,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateCampaignStatusRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateCampaignStatusRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -520,9 +545,14 @@ _bodyData=jsonEncode(updateCampaignStatusRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -546,17 +576,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiCampaignsGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [searchTerm] 
-  /// * [status] 
-  /// * [type] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [searchTerm]
+  /// * [status]
+  /// * [type]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -566,7 +596,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfCampaignResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfCampaignResponse>> apiCampaignsGet({ 
+  Future<Response<BaseResponseOfPagedResultOfCampaignResponse>>
+  apiCampaignsGet({
     String? searchTerm,
     CampaignStatus? status,
     CampaignType? type,
@@ -585,16 +616,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     final _path = r'/api/campaigns';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -624,9 +649,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfPagedResultOfCampaignResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfCampaignResponse, BaseResponseOfPagedResultOfCampaignResponse>(rawData, 'BaseResponseOfPagedResultOfCampaignResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfCampaignResponse,
+              BaseResponseOfPagedResultOfCampaignResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfCampaignResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -650,7 +683,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   }
 
   /// apiCampaignsHomeGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -662,7 +695,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfCampaignResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfCampaignResponse>> apiCampaignsHomeGet({ 
+  Future<Response<BaseResponseOfListOfCampaignResponse>> apiCampaignsHomeGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -673,16 +706,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     final _path = r'/api/campaigns/home';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -700,9 +727,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfListOfCampaignResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaignResponse, BaseResponseOfListOfCampaignResponse>(rawData, 'BaseResponseOfListOfCampaignResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfCampaignResponse,
+              BaseResponseOfListOfCampaignResponse
+            >(rawData, 'BaseResponseOfListOfCampaignResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -726,11 +757,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaig
   }
 
   /// apiCampaignsIdItemsItemIdDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [itemId] 
+  /// * [id]
+  /// * [itemId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -740,7 +771,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaig
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiCampaignsIdItemsItemIdDelete({ 
+  Future<Response<BaseResponseOfstring>> apiCampaignsIdItemsItemIdDelete({
     required String id,
     required String itemId,
     CancelToken? cancelToken,
@@ -750,19 +781,25 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaig
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/items/{itemId}'.replaceAll('{' r'id' '}', id.toString()).replaceAll('{' r'itemId' '}', itemId.toString());
+    final _path = r'/api/campaigns/{id}/items/{itemId}'
+        .replaceAll(
+          '{'
+          r'id'
+          '}',
+          id.toString(),
+        )
+        .replaceAll(
+          '{'
+          r'itemId'
+          '}',
+          itemId.toString(),
+        );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -780,9 +817,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaig
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -806,12 +848,12 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiCampaignsIdItemsItemIdPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [itemId] 
-  /// * [updateCampaignPromotionItemRequest] 
+  /// * [id]
+  /// * [itemId]
+  /// * [updateCampaignPromotionItemRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -821,10 +863,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiCampaignsIdItemsItemIdPut({ 
+  Future<Response<BaseResponseOfstring>> apiCampaignsIdItemsItemIdPut({
     required String id,
     required String itemId,
-    required UpdateCampaignPromotionItemRequest updateCampaignPromotionItemRequest,
+    required UpdateCampaignPromotionItemRequest
+    updateCampaignPromotionItemRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -832,19 +875,25 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/items/{itemId}'.replaceAll('{' r'id' '}', id.toString()).replaceAll('{' r'itemId' '}', itemId.toString());
+    final _path = r'/api/campaigns/{id}/items/{itemId}'
+        .replaceAll(
+          '{'
+          r'id'
+          '}',
+          id.toString(),
+        )
+        .replaceAll(
+          '{'
+          r'itemId'
+          '}',
+          itemId.toString(),
+        );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -855,13 +904,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateCampaignPromotionItemRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateCampaignPromotionItemRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -880,9 +926,14 @@ _bodyData=jsonEncode(updateCampaignPromotionItemRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -906,11 +957,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiCampaignsIdItemsPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [createCampaignPromotionItemRequest] 
+  /// * [id]
+  /// * [createCampaignPromotionItemRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -920,9 +971,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiCampaignsIdItemsPost({ 
+  Future<Response<BaseResponseOfstring>> apiCampaignsIdItemsPost({
     required String id,
-    required CreateCampaignPromotionItemRequest createCampaignPromotionItemRequest,
+    required CreateCampaignPromotionItemRequest
+    createCampaignPromotionItemRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -930,19 +982,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/items'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/campaigns/{id}/items'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -953,13 +1004,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createCampaignPromotionItemRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createCampaignPromotionItemRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -978,9 +1026,14 @@ _bodyData=jsonEncode(createCampaignPromotionItemRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1004,10 +1057,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiCampaignsIdVouchersGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1017,7 +1070,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfVoucherResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfVoucherResponse>> apiCampaignsIdVouchersGet({ 
+  Future<Response<BaseResponseOfListOfVoucherResponse>>
+  apiCampaignsIdVouchersGet({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1026,19 +1080,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/vouchers'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/campaigns/{id}/vouchers'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1056,9 +1109,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfListOfVoucherResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfVoucherResponse, BaseResponseOfListOfVoucherResponse>(rawData, 'BaseResponseOfListOfVoucherResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfVoucherResponse,
+              BaseResponseOfListOfVoucherResponse
+            >(rawData, 'BaseResponseOfListOfVoucherResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1082,11 +1139,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfVoucher
   }
 
   /// apiCampaignsIdVouchersPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [createCampaignVoucherRequest] 
+  /// * [id]
+  /// * [createCampaignVoucherRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1096,7 +1153,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfVoucher
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiCampaignsIdVouchersPost({ 
+  Future<Response<BaseResponseOfstring>> apiCampaignsIdVouchersPost({
     required String id,
     required CreateCampaignVoucherRequest createCampaignVoucherRequest,
     CancelToken? cancelToken,
@@ -1106,19 +1163,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfVoucher
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/vouchers'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/campaigns/{id}/vouchers'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1129,13 +1185,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfVoucher
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createCampaignVoucherRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createCampaignVoucherRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -1154,9 +1207,14 @@ _bodyData=jsonEncode(createCampaignVoucherRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1180,11 +1238,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiCampaignsIdVouchersVoucherIdDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [voucherId] 
+  /// * [id]
+  /// * [voucherId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1194,7 +1252,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiCampaignsIdVouchersVoucherIdDelete({ 
+  Future<Response<BaseResponseOfstring>> apiCampaignsIdVouchersVoucherIdDelete({
     required String id,
     required String voucherId,
     CancelToken? cancelToken,
@@ -1204,19 +1262,25 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/vouchers/{voucherId}'.replaceAll('{' r'id' '}', id.toString()).replaceAll('{' r'voucherId' '}', voucherId.toString());
+    final _path = r'/api/campaigns/{id}/vouchers/{voucherId}'
+        .replaceAll(
+          '{'
+          r'id'
+          '}',
+          id.toString(),
+        )
+        .replaceAll(
+          '{'
+          r'voucherId'
+          '}',
+          voucherId.toString(),
+        );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1234,9 +1298,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1260,11 +1329,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiCampaignsIdVouchersVoucherIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [voucherId] 
+  /// * [id]
+  /// * [voucherId]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1274,7 +1343,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfVoucherResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfVoucherResponse>> apiCampaignsIdVouchersVoucherIdGet({ 
+  Future<Response<BaseResponseOfVoucherResponse>>
+  apiCampaignsIdVouchersVoucherIdGet({
     required String id,
     required String voucherId,
     CancelToken? cancelToken,
@@ -1284,19 +1354,25 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/vouchers/{voucherId}'.replaceAll('{' r'id' '}', id.toString()).replaceAll('{' r'voucherId' '}', voucherId.toString());
+    final _path = r'/api/campaigns/{id}/vouchers/{voucherId}'
+        .replaceAll(
+          '{'
+          r'id'
+          '}',
+          id.toString(),
+        )
+        .replaceAll(
+          '{'
+          r'voucherId'
+          '}',
+          voucherId.toString(),
+        );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1314,9 +1390,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfVoucherResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfVoucherResponse, BaseResponseOfVoucherResponse>(rawData, 'BaseResponseOfVoucherResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfVoucherResponse,
+              BaseResponseOfVoucherResponse
+            >(rawData, 'BaseResponseOfVoucherResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1340,12 +1420,12 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfVoucherRespon
   }
 
   /// apiCampaignsIdVouchersVoucherIdPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [voucherId] 
-  /// * [updateCampaignVoucherRequest] 
+  /// * [id]
+  /// * [voucherId]
+  /// * [updateCampaignVoucherRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1355,7 +1435,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfVoucherRespon
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiCampaignsIdVouchersVoucherIdPut({ 
+  Future<Response<BaseResponseOfstring>> apiCampaignsIdVouchersVoucherIdPut({
     required String id,
     required String voucherId,
     required UpdateCampaignVoucherRequest updateCampaignVoucherRequest,
@@ -1366,19 +1446,25 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfVoucherRespon
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/campaigns/{id}/vouchers/{voucherId}'.replaceAll('{' r'id' '}', id.toString()).replaceAll('{' r'voucherId' '}', voucherId.toString());
+    final _path = r'/api/campaigns/{id}/vouchers/{voucherId}'
+        .replaceAll(
+          '{'
+          r'id'
+          '}',
+          id.toString(),
+        )
+        .replaceAll(
+          '{'
+          r'voucherId'
+          '}',
+          voucherId.toString(),
+        );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1389,13 +1475,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfVoucherRespon
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateCampaignVoucherRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateCampaignVoucherRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -1414,9 +1497,14 @@ _bodyData=jsonEncode(updateCampaignVoucherRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1440,7 +1528,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   }
 
   /// apiCampaignsLookupActiveGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -1452,7 +1540,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfCampaignLookupItem] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfCampaignLookupItem>> apiCampaignsLookupActiveGet({ 
+  Future<Response<BaseResponseOfListOfCampaignLookupItem>>
+  apiCampaignsLookupActiveGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -1463,16 +1552,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     final _path = r'/api/campaigns/lookup/active';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1490,9 +1573,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
     BaseResponseOfListOfCampaignLookupItem? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaignLookupItem, BaseResponseOfListOfCampaignLookupItem>(rawData, 'BaseResponseOfListOfCampaignLookupItem', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfCampaignLookupItem,
+              BaseResponseOfListOfCampaignLookupItem
+            >(
+              rawData,
+              'BaseResponseOfListOfCampaignLookupItem',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1516,10 +1607,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaig
   }
 
   /// apiCampaignsPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createCampaignRequest] 
+  /// * [createCampaignRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -1529,7 +1620,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaig
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfstring] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfstring>> apiCampaignsPost({ 
+  Future<Response<BaseResponseOfstring>> apiCampaignsPost({
     required CreateCampaignRequest createCampaignRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -1541,16 +1632,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaig
     final _path = r'/api/campaigns';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -1561,13 +1646,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfCampaig
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createCampaignRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createCampaignRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -1586,9 +1668,14 @@ _bodyData=jsonEncode(createCampaignRequest);
     BaseResponseOfstring? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseResponseOfstring>(rawData, 'BaseResponseOfstring', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfstring, BaseResponseOfstring>(
+              rawData,
+              'BaseResponseOfstring',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -1610,5 +1697,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfstring, BaseR
       extra: _response.extra,
     );
   }
-
 }

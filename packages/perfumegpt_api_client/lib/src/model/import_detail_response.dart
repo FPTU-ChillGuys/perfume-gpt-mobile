@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'import_detail_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,177 +19,87 @@ part 'import_detail_response.g.dart';
 class ImportDetailResponse {
   /// Returns a new [ImportDetailResponse] instance.
   ImportDetailResponse({
+    this.id,
 
-     this.id,
+    this.variantId,
 
-     this.variantId,
+    required this.variantName,
 
-    required  this.variantName,
+    required this.variantSku,
 
-    required  this.variantSku,
+    this.expectedQuantity,
 
-     this.expectedQuantity,
+    this.unitPrice,
 
-     this.unitPrice,
+    this.totalPrice,
 
-     this.totalPrice,
+    this.rejectedQuantity,
 
-     this.rejectedQuantity,
+    this.note,
 
-     this.note,
-
-    required  this.batches,
+    required this.batches,
   });
 
-  @JsonKey(
-    
-    name: r'id',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'id', required: false, includeIfNull: false)
   final String? id;
 
-
-
-  @JsonKey(
-    
-    name: r'variantId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'variantId', required: false, includeIfNull: false)
   final String? variantId;
 
-
-
-  @JsonKey(
-    
-    name: r'variantName',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'variantName', required: true, includeIfNull: false)
   final String variantName;
 
-
-
-  @JsonKey(
-    
-    name: r'variantSku',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'variantSku', required: true, includeIfNull: false)
   final String variantSku;
 
-
-
-  @JsonKey(
-    
-    name: r'expectedQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'expectedQuantity', required: false, includeIfNull: false)
   final int? expectedQuantity;
 
-
-
-  @JsonKey(
-    
-    name: r'unitPrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'unitPrice', required: false, includeIfNull: false)
   final num? unitPrice;
 
-
-
-  @JsonKey(
-    
-    name: r'totalPrice',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'totalPrice', required: false, includeIfNull: false)
   final num? totalPrice;
 
-
-
-  @JsonKey(
-    
-    name: r'rejectedQuantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'rejectedQuantity', required: false, includeIfNull: false)
   final int? rejectedQuantity;
 
-
-
-  @JsonKey(
-    
-    name: r'note',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'note', required: false, includeIfNull: false)
   final String? note;
 
-
-
-  @JsonKey(
-    
-    name: r'batches',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'batches', required: true, includeIfNull: false)
   final List<BatchResponse> batches;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ImportDetailResponse &&
+          other.id == id &&
+          other.variantId == variantId &&
+          other.variantName == variantName &&
+          other.variantSku == variantSku &&
+          other.expectedQuantity == expectedQuantity &&
+          other.unitPrice == unitPrice &&
+          other.totalPrice == totalPrice &&
+          other.rejectedQuantity == rejectedQuantity &&
+          other.note == note &&
+          other.batches == batches;
 
+  @override
+  int get hashCode =>
+      id.hashCode +
+      variantId.hashCode +
+      variantName.hashCode +
+      variantSku.hashCode +
+      expectedQuantity.hashCode +
+      unitPrice.hashCode +
+      totalPrice.hashCode +
+      rejectedQuantity.hashCode +
+      (note == null ? 0 : note.hashCode) +
+      batches.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ImportDetailResponse &&
-      other.id == id &&
-      other.variantId == variantId &&
-      other.variantName == variantName &&
-      other.variantSku == variantSku &&
-      other.expectedQuantity == expectedQuantity &&
-      other.unitPrice == unitPrice &&
-      other.totalPrice == totalPrice &&
-      other.rejectedQuantity == rejectedQuantity &&
-      other.note == note &&
-      other.batches == batches;
-
-    @override
-    int get hashCode =>
-        id.hashCode +
-        variantId.hashCode +
-        variantName.hashCode +
-        variantSku.hashCode +
-        expectedQuantity.hashCode +
-        unitPrice.hashCode +
-        totalPrice.hashCode +
-        rejectedQuantity.hashCode +
-        (note == null ? 0 : note.hashCode) +
-        batches.hashCode;
-
-  factory ImportDetailResponse.fromJson(Map<String, dynamic> json) => _$ImportDetailResponseFromJson(json);
+  factory ImportDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$ImportDetailResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ImportDetailResponseToJson(this);
 
@@ -198,6 +107,4 @@ class ImportDetailResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

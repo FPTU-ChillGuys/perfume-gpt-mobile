@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_stock_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,34 +17,22 @@ part 'update_stock_request.g.dart';
 )
 class UpdateStockRequest {
   /// Returns a new [UpdateStockRequest] instance.
-  UpdateStockRequest({
+  UpdateStockRequest({this.lowStockThreshold});
 
-     this.lowStockThreshold,
-  });
-
-  @JsonKey(
-    
-    name: r'lowStockThreshold',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'lowStockThreshold', required: false, includeIfNull: false)
   final int? lowStockThreshold;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateStockRequest &&
+          other.lowStockThreshold == lowStockThreshold;
 
+  @override
+  int get hashCode => lowStockThreshold.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateStockRequest &&
-      other.lowStockThreshold == lowStockThreshold;
-
-    @override
-    int get hashCode =>
-        lowStockThreshold.hashCode;
-
-  factory UpdateStockRequest.fromJson(Map<String, dynamic> json) => _$UpdateStockRequestFromJson(json);
+  factory UpdateStockRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateStockRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateStockRequestToJson(this);
 
@@ -53,6 +40,4 @@ class UpdateStockRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

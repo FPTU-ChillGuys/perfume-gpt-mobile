@@ -111,6 +111,5 @@ void main() {
     test('to test the property `paymentTransactions`', () async {
       // TODO
     });
-
   });
 }

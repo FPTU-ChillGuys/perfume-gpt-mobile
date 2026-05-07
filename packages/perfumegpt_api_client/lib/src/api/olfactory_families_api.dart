@@ -9,7 +9,6 @@ import 'dart:convert';
 import 'package:perfumegpt_api_client/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:perfumegpt_api_client/src/model/base_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_olfactory_family_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_list_of_olfactory_lookup_response.dart';
 import 'package:perfumegpt_api_client/src/model/base_response_of_olfactory_family_response.dart';
@@ -18,13 +17,12 @@ import 'package:perfumegpt_api_client/src/model/create_olfactory_family_request.
 import 'package:perfumegpt_api_client/src/model/update_olfactory_family_request.dart';
 
 class OlfactoryFamiliesApi {
-
   final Dio _dio;
 
   const OlfactoryFamiliesApi(this._dio);
 
   /// apiOlfactoryfamiliesGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -36,7 +34,8 @@ class OlfactoryFamiliesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfOlfactoryFamilyResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfOlfactoryFamilyResponse>> apiOlfactoryfamiliesGet({ 
+  Future<Response<BaseResponseOfListOfOlfactoryFamilyResponse>>
+  apiOlfactoryfamiliesGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -47,16 +46,10 @@ class OlfactoryFamiliesApi {
     final _path = r'/api/olfactoryfamilies';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -74,9 +67,17 @@ class OlfactoryFamiliesApi {
     BaseResponseOfListOfOlfactoryFamilyResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfactoryFamilyResponse, BaseResponseOfListOfOlfactoryFamilyResponse>(rawData, 'BaseResponseOfListOfOlfactoryFamilyResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfOlfactoryFamilyResponse,
+              BaseResponseOfListOfOlfactoryFamilyResponse
+            >(
+              rawData,
+              'BaseResponseOfListOfOlfactoryFamilyResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -100,10 +101,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfacto
   }
 
   /// apiOlfactoryfamiliesIdDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -113,7 +114,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfacto
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfboolean] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfboolean>> apiOlfactoryfamiliesIdDelete({ 
+  Future<Response<BaseResponseOfboolean>> apiOlfactoryfamiliesIdDelete({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -122,19 +123,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfacto
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/olfactoryfamilies/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/olfactoryfamilies/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -152,9 +152,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfacto
     BaseResponseOfboolean? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(rawData, 'BaseResponseOfboolean', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfboolean, BaseResponseOfboolean>(
+              rawData,
+              'BaseResponseOfboolean',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -178,10 +183,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
   }
 
   /// apiOlfactoryfamiliesIdGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
+  /// * [id]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -191,7 +196,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfOlfactoryFamilyResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfOlfactoryFamilyResponse>> apiOlfactoryfamiliesIdGet({ 
+  Future<Response<BaseResponseOfOlfactoryFamilyResponse>>
+  apiOlfactoryfamiliesIdGet({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -200,19 +206,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/olfactoryfamilies/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/olfactoryfamilies/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -230,9 +235,13 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfboolean, Base
     BaseResponseOfOlfactoryFamilyResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFamilyResponse, BaseResponseOfOlfactoryFamilyResponse>(rawData, 'BaseResponseOfOlfactoryFamilyResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfOlfactoryFamilyResponse,
+              BaseResponseOfOlfactoryFamilyResponse
+            >(rawData, 'BaseResponseOfOlfactoryFamilyResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -256,11 +265,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFami
   }
 
   /// apiOlfactoryfamiliesIdPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [id] 
-  /// * [updateOlfactoryFamilyRequest] 
+  /// * [id]
+  /// * [updateOlfactoryFamilyRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -270,7 +279,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFami
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfOlfactoryFamilyResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfOlfactoryFamilyResponse>> apiOlfactoryfamiliesIdPut({ 
+  Future<Response<BaseResponseOfOlfactoryFamilyResponse>>
+  apiOlfactoryfamiliesIdPut({
     required int id,
     required UpdateOlfactoryFamilyRequest updateOlfactoryFamilyRequest,
     CancelToken? cancelToken,
@@ -280,19 +290,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFami
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/olfactoryfamilies/{id}'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/api/olfactoryfamilies/{id}'.replaceAll(
+      '{'
+      r'id'
+      '}',
+      id.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -303,13 +312,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFami
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updateOlfactoryFamilyRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updateOlfactoryFamilyRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -328,9 +334,13 @@ _bodyData=jsonEncode(updateOlfactoryFamilyRequest);
     BaseResponseOfOlfactoryFamilyResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFamilyResponse, BaseResponseOfOlfactoryFamilyResponse>(rawData, 'BaseResponseOfOlfactoryFamilyResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfOlfactoryFamilyResponse,
+              BaseResponseOfOlfactoryFamilyResponse
+            >(rawData, 'BaseResponseOfOlfactoryFamilyResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -354,7 +364,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFami
   }
 
   /// apiOlfactoryfamiliesLookupGet
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -366,7 +376,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFami
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfListOfOlfactoryLookupResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfListOfOlfactoryLookupResponse>> apiOlfactoryfamiliesLookupGet({ 
+  Future<Response<BaseResponseOfListOfOlfactoryLookupResponse>>
+  apiOlfactoryfamiliesLookupGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -377,16 +388,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFami
     final _path = r'/api/olfactoryfamilies/lookup';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -404,9 +409,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFami
     BaseResponseOfListOfOlfactoryLookupResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfactoryLookupResponse, BaseResponseOfListOfOlfactoryLookupResponse>(rawData, 'BaseResponseOfListOfOlfactoryLookupResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfListOfOlfactoryLookupResponse,
+              BaseResponseOfListOfOlfactoryLookupResponse
+            >(
+              rawData,
+              'BaseResponseOfListOfOlfactoryLookupResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -430,10 +443,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfacto
   }
 
   /// apiOlfactoryfamiliesPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createOlfactoryFamilyRequest] 
+  /// * [createOlfactoryFamilyRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -443,7 +456,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfacto
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfOlfactoryFamilyResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfOlfactoryFamilyResponse>> apiOlfactoryfamiliesPost({ 
+  Future<Response<BaseResponseOfOlfactoryFamilyResponse>>
+  apiOlfactoryfamiliesPost({
     required CreateOlfactoryFamilyRequest createOlfactoryFamilyRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -455,16 +469,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfacto
     final _path = r'/api/olfactoryfamilies';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -475,13 +483,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfListOfOlfacto
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createOlfactoryFamilyRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createOlfactoryFamilyRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -500,9 +505,13 @@ _bodyData=jsonEncode(createOlfactoryFamilyRequest);
     BaseResponseOfOlfactoryFamilyResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFamilyResponse, BaseResponseOfOlfactoryFamilyResponse>(rawData, 'BaseResponseOfOlfactoryFamilyResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfOlfactoryFamilyResponse,
+              BaseResponseOfOlfactoryFamilyResponse
+            >(rawData, 'BaseResponseOfOlfactoryFamilyResponse', growable: true);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -524,5 +533,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfOlfactoryFami
       extra: _response.extra,
     );
   }
-
 }

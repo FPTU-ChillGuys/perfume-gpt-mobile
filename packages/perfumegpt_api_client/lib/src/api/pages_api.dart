@@ -17,21 +17,20 @@ import 'package:perfumegpt_api_client/src/model/create_page_request.dart';
 import 'package:perfumegpt_api_client/src/model/update_page_request.dart';
 
 class PagesApi {
-
   final Dio _dio;
 
   const PagesApi(this._dio);
 
   /// apiPagesGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [searchTerm] 
-  /// * [pageNumber] 
-  /// * [pageSize] 
-  /// * [sortBy] 
-  /// * [sortOrder] 
-  /// * [isDescending] 
+  /// * [searchTerm]
+  /// * [pageNumber]
+  /// * [pageSize]
+  /// * [sortBy]
+  /// * [sortOrder]
+  /// * [isDescending]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -41,7 +40,7 @@ class PagesApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPagedResultOfPageResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPagedResultOfPageResponse>> apiPagesGet({ 
+  Future<Response<BaseResponseOfPagedResultOfPageResponse>> apiPagesGet({
     String? searchTerm,
     int? pageNumber,
     int? pageSize,
@@ -58,16 +57,10 @@ class PagesApi {
     final _path = r'/api/pages';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -95,9 +88,17 @@ class PagesApi {
     BaseResponseOfPagedResultOfPageResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOfPageResponse, BaseResponseOfPagedResultOfPageResponse>(rawData, 'BaseResponseOfPagedResultOfPageResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfPagedResultOfPageResponse,
+              BaseResponseOfPagedResultOfPageResponse
+            >(
+              rawData,
+              'BaseResponseOfPagedResultOfPageResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -121,10 +122,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   }
 
   /// apiPagesImagesTemporaryPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [images] 
+  /// * [images]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -134,7 +135,8 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>> apiPagesImagesTemporaryPost({ 
+  Future<Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>>
+  apiPagesImagesTemporaryPost({
     List<MultipartFile>? images,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -146,16 +148,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     final _path = r'/api/pages/images/temporary';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -165,14 +161,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
 
     dynamic _bodyData;
 
-    try {
-
-    } catch(error, stackTrace) {
+    try {} catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -191,9 +182,17 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPagedResultOf
     BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse, BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>(rawData, 'BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<
+              BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse,
+              BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse
+            >(
+              rawData,
+              'BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -204,7 +203,9 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
       );
     }
 
-    return Response<BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse>(
+    return Response<
+      BaseResponseOfBulkActionResultOfListOfTemporaryMediaResponse
+    >(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -217,10 +218,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
   }
 
   /// apiPagesPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [createPageRequest] 
+  /// * [createPageRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -230,7 +231,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPageResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPageResponse>> apiPagesPost({ 
+  Future<Response<BaseResponseOfPageResponse>> apiPagesPost({
     required CreatePageRequest createPageRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -242,16 +243,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     final _path = r'/api/pages';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -262,13 +257,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfBulkActionRes
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(createPageRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(createPageRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -287,9 +279,14 @@ _bodyData=jsonEncode(createPageRequest);
     BaseResponseOfPageResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse, BaseResponseOfPageResponse>(rawData, 'BaseResponseOfPageResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfPageResponse, BaseResponseOfPageResponse>(
+              rawData,
+              'BaseResponseOfPageResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -313,10 +310,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse,
   }
 
   /// apiPagesSlugDelete
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [slug] 
+  /// * [slug]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -326,7 +323,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse,
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponse>> apiPagesSlugDelete({ 
+  Future<Response<BaseResponse>> apiPagesSlugDelete({
     required String slug,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -335,19 +332,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/pages/{slug}'.replaceAll('{' r'slug' '}', slug.toString());
+    final _path = r'/api/pages/{slug}'.replaceAll(
+      '{'
+      r'slug'
+      '}',
+      slug.toString(),
+    );
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -365,9 +361,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse,
     BaseResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponse, BaseResponse>(rawData, 'BaseResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponse, BaseResponse>(
+              rawData,
+              'BaseResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -391,10 +392,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponse, BaseResponse>
   }
 
   /// apiPagesSlugGet
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [slug] 
+  /// * [slug]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -404,7 +405,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponse, BaseResponse>
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPageResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPageResponse>> apiPagesSlugGet({ 
+  Future<Response<BaseResponseOfPageResponse>> apiPagesSlugGet({
     required String slug,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -413,19 +414,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponse, BaseResponse>
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/pages/{slug}'.replaceAll('{' r'slug' '}', slug.toString());
+    final _path = r'/api/pages/{slug}'.replaceAll(
+      '{'
+      r'slug'
+      '}',
+      slug.toString(),
+    );
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -443,9 +443,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponse, BaseResponse>
     BaseResponseOfPageResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse, BaseResponseOfPageResponse>(rawData, 'BaseResponseOfPageResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfPageResponse, BaseResponseOfPageResponse>(
+              rawData,
+              'BaseResponseOfPageResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -469,10 +474,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse,
   }
 
   /// apiPagesSlugPublishPost
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [slug] 
+  /// * [slug]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -482,7 +487,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse,
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPageResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPageResponse>> apiPagesSlugPublishPost({ 
+  Future<Response<BaseResponseOfPageResponse>> apiPagesSlugPublishPost({
     required String slug,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -491,19 +496,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/pages/{slug}/publish'.replaceAll('{' r'slug' '}', slug.toString());
+    final _path = r'/api/pages/{slug}/publish'.replaceAll(
+      '{'
+      r'slug'
+      '}',
+      slug.toString(),
+    );
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -521,9 +525,14 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse,
     BaseResponseOfPageResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse, BaseResponseOfPageResponse>(rawData, 'BaseResponseOfPageResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfPageResponse, BaseResponseOfPageResponse>(
+              rawData,
+              'BaseResponseOfPageResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -547,11 +556,11 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse,
   }
 
   /// apiPagesSlugPut
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [slug] 
-  /// * [updatePageRequest] 
+  /// * [slug]
+  /// * [updatePageRequest]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -561,7 +570,7 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse,
   ///
   /// Returns a [Future] containing a [Response] with a [BaseResponseOfPageResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BaseResponseOfPageResponse>> apiPagesSlugPut({ 
+  Future<Response<BaseResponseOfPageResponse>> apiPagesSlugPut({
     required String slug,
     required UpdatePageRequest updatePageRequest,
     CancelToken? cancelToken,
@@ -571,19 +580,18 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse,
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/pages/{slug}'.replaceAll('{' r'slug' '}', slug.toString());
+    final _path = r'/api/pages/{slug}'.replaceAll(
+      '{'
+      r'slug'
+      '}',
+      slug.toString(),
+    );
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
+      headers: <String, dynamic>{...?headers},
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'Bearer',
-          },
+          {'type': 'http', 'scheme': 'bearer', 'name': 'Bearer'},
         ],
         ...?extra,
       },
@@ -594,13 +602,10 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse,
     dynamic _bodyData;
 
     try {
-_bodyData=jsonEncode(updatePageRequest);
-    } catch(error, stackTrace) {
+      _bodyData = jsonEncode(updatePageRequest);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
+        requestOptions: _options.compose(_dio.options, _path),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -619,9 +624,14 @@ _bodyData=jsonEncode(updatePageRequest);
     BaseResponseOfPageResponse? _responseData;
 
     try {
-final rawData = _response.data;
-_responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse, BaseResponseOfPageResponse>(rawData, 'BaseResponseOfPageResponse', growable: true);
-
+      final rawData = _response.data;
+      _responseData = rawData == null
+          ? null
+          : deserialize<BaseResponseOfPageResponse, BaseResponseOfPageResponse>(
+              rawData,
+              'BaseResponseOfPageResponse',
+              growable: true,
+            );
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -643,5 +653,4 @@ _responseData = rawData == null ? null : deserialize<BaseResponseOfPageResponse,
       extra: _response.extra,
     );
   }
-
 }

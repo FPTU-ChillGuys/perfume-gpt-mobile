@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CreateCampaignPromotionItemRequest
 void main() {
-  final CreateCampaignPromotionItemRequest? instance = /* CreateCampaignPromotionItemRequest(...) */ null;
+  final CreateCampaignPromotionItemRequest?
+  instance = /* CreateCampaignPromotionItemRequest(...) */ null;
   // TODO add properties to the entity
 
   group(CreateCampaignPromotionItemRequest, () {
@@ -36,6 +37,5 @@ void main() {
     test('to test the property `maxUsage`', () async {
       // TODO
     });
-
   });
 }

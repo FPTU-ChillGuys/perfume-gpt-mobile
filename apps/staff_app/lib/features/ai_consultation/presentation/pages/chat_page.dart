@@ -202,7 +202,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
   Widget build(BuildContext context) {
     final messagesAsync = ref.watch(chatSessionProvider);
     final user = ref.watch(common.authProvider).value;
-    
+
     final currentUserId = user?.id ?? 'user';
 
     return Scaffold(

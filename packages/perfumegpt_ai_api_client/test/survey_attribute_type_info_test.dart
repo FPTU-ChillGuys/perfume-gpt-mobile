@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for SurveyAttributeTypeInfo
 void main() {
-  final SurveyAttributeTypeInfo? instance = /* SurveyAttributeTypeInfo(...) */ null;
+  final SurveyAttributeTypeInfo? instance = /* SurveyAttributeTypeInfo(...) */
+      null;
   // TODO add properties to the entity
 
   group(SurveyAttributeTypeInfo, () {
@@ -21,6 +22,5 @@ void main() {
     test('to test the property `description`', () async {
       // TODO
     });
-
   });
 }

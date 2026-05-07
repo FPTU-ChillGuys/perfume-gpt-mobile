@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'payment_information.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,66 +18,33 @@ part 'payment_information.g.dart';
 )
 class PaymentInformation {
   /// Returns a new [PaymentInformation] instance.
-  PaymentInformation({
+  PaymentInformation({this.method, this.depositGateway, this.posSessionId});
 
-     this.method,
-
-     this.depositGateway,
-
-     this.posSessionId,
-  });
-
-  @JsonKey(
-    
-    name: r'method',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'method', required: false, includeIfNull: false)
   final PaymentMethod? method;
 
-
-
-  @JsonKey(
-    
-    name: r'depositGateway',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'depositGateway', required: false, includeIfNull: false)
   final PaymentMethod? depositGateway;
 
-
-
-  @JsonKey(
-    
-    name: r'posSessionId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'posSessionId', required: false, includeIfNull: false)
   final String? posSessionId;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PaymentInformation &&
+          other.method == method &&
+          other.depositGateway == depositGateway &&
+          other.posSessionId == posSessionId;
 
+  @override
+  int get hashCode =>
+      method.hashCode +
+      (depositGateway == null ? 0 : depositGateway.hashCode) +
+      (posSessionId == null ? 0 : posSessionId.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is PaymentInformation &&
-      other.method == method &&
-      other.depositGateway == depositGateway &&
-      other.posSessionId == posSessionId;
-
-    @override
-    int get hashCode =>
-        method.hashCode +
-        (depositGateway == null ? 0 : depositGateway.hashCode) +
-        (posSessionId == null ? 0 : posSessionId.hashCode);
-
-  factory PaymentInformation.fromJson(Map<String, dynamic> json) => _$PaymentInformationFromJson(json);
+  factory PaymentInformation.fromJson(Map<String, dynamic> json) =>
+      _$PaymentInformationFromJson(json);
 
   Map<String, dynamic> toJson() => _$PaymentInformationToJson(this);
 
@@ -86,6 +52,4 @@ class PaymentInformation {
   String toString() {
     return toJson().toString();
   }
-
 }
-

@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for PaymentTransactionAdminItemResponse
 void main() {
-  final PaymentTransactionAdminItemResponse? instance = /* PaymentTransactionAdminItemResponse(...) */ null;
+  final PaymentTransactionAdminItemResponse?
+  instance = /* PaymentTransactionAdminItemResponse(...) */ null;
   // TODO add properties to the entity
 
   group(PaymentTransactionAdminItemResponse, () {
@@ -71,6 +72,5 @@ void main() {
     test('to test the property `updatedAt`', () async {
       // TODO
     });
-
   });
 }

@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for CustomerForPosResponse
 void main() {
-  final CustomerForPosResponse? instance = /* CustomerForPosResponse(...) */ null;
+  final CustomerForPosResponse? instance = /* CustomerForPosResponse(...) */
+      null;
   // TODO add properties to the entity
 
   group(CustomerForPosResponse, () {
@@ -31,6 +32,5 @@ void main() {
     test('to test the property `loyaltyPoint`', () async {
       // TODO
     });
-
   });
 }

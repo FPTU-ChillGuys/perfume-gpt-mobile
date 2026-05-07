@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for AIReviewSummaryStructuredResponse
 void main() {
-  final AIReviewSummaryStructuredResponse? instance = /* AIReviewSummaryStructuredResponse(...) */ null;
+  final AIReviewSummaryStructuredResponse?
+  instance = /* AIReviewSummaryStructuredResponse(...) */ null;
   // TODO add properties to the entity
 
   group(AIReviewSummaryStructuredResponse, () {
@@ -36,6 +37,5 @@ void main() {
     test('to test the property `metadata`', () async {
       // TODO
     });
-
   });
 }

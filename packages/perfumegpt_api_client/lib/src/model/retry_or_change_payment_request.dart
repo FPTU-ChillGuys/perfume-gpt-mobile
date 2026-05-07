@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'retry_or_change_payment_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,65 +19,38 @@ part 'retry_or_change_payment_request.g.dart';
 class RetryOrChangePaymentRequest {
   /// Returns a new [RetryOrChangePaymentRequest] instance.
   RetryOrChangePaymentRequest({
+    this.newPaymentMethod,
 
-     this.newPaymentMethod,
+    this.newDepositMethod,
 
-     this.newDepositMethod,
-
-     this.posSessionId,
+    this.posSessionId,
   });
 
-  @JsonKey(
-    
-    name: r'newPaymentMethod',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'newPaymentMethod', required: false, includeIfNull: false)
   final PaymentMethod? newPaymentMethod;
 
-
-
-  @JsonKey(
-    
-    name: r'newDepositMethod',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'newDepositMethod', required: false, includeIfNull: false)
   final PaymentMethod? newDepositMethod;
 
-
-
-  @JsonKey(
-    
-    name: r'posSessionId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'posSessionId', required: false, includeIfNull: false)
   final String? posSessionId;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RetryOrChangePaymentRequest &&
+          other.newPaymentMethod == newPaymentMethod &&
+          other.newDepositMethod == newDepositMethod &&
+          other.posSessionId == posSessionId;
 
+  @override
+  int get hashCode =>
+      (newPaymentMethod == null ? 0 : newPaymentMethod.hashCode) +
+      (newDepositMethod == null ? 0 : newDepositMethod.hashCode) +
+      (posSessionId == null ? 0 : posSessionId.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is RetryOrChangePaymentRequest &&
-      other.newPaymentMethod == newPaymentMethod &&
-      other.newDepositMethod == newDepositMethod &&
-      other.posSessionId == posSessionId;
-
-    @override
-    int get hashCode =>
-        (newPaymentMethod == null ? 0 : newPaymentMethod.hashCode) +
-        (newDepositMethod == null ? 0 : newDepositMethod.hashCode) +
-        (posSessionId == null ? 0 : posSessionId.hashCode);
-
-  factory RetryOrChangePaymentRequest.fromJson(Map<String, dynamic> json) => _$RetryOrChangePaymentRequestFromJson(json);
+  factory RetryOrChangePaymentRequest.fromJson(Map<String, dynamic> json) =>
+      _$RetryOrChangePaymentRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$RetryOrChangePaymentRequestToJson(this);
 
@@ -86,6 +58,4 @@ class RetryOrChangePaymentRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for BulkActionResultOfGuid
 void main() {
-  final BulkActionResultOfGuid? instance = /* BulkActionResultOfGuid(...) */ null;
+  final BulkActionResultOfGuid? instance = /* BulkActionResultOfGuid(...) */
+      null;
   // TODO add properties to the entity
 
   group(BulkActionResultOfGuid, () {
@@ -16,6 +17,5 @@ void main() {
     test('to test the property `metadata`', () async {
       // TODO
     });
-
   });
 }

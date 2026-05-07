@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
-
 /// tests for HybridSearchEmbeddingsApi
 void main() {
   final instance = PerfumegptAiApiClient().getHybridSearchEmbeddingsApi();
@@ -34,6 +33,5 @@ void main() {
     test('test rebuildEmbeddingsControllerRebuildOne', () async {
       // TODO
     });
-
   });
 }

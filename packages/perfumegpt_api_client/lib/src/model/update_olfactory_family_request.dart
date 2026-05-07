@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_olfactory_family_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,34 +17,21 @@ part 'update_olfactory_family_request.g.dart';
 )
 class UpdateOlfactoryFamilyRequest {
   /// Returns a new [UpdateOlfactoryFamilyRequest] instance.
-  UpdateOlfactoryFamilyRequest({
+  UpdateOlfactoryFamilyRequest({required this.name});
 
-    required  this.name,
-  });
-
-  @JsonKey(
-    
-    name: r'name',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'name', required: true, includeIfNull: false)
   final String name;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UpdateOlfactoryFamilyRequest && other.name == name;
 
+  @override
+  int get hashCode => name.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is UpdateOlfactoryFamilyRequest &&
-      other.name == name;
-
-    @override
-    int get hashCode =>
-        name.hashCode;
-
-  factory UpdateOlfactoryFamilyRequest.fromJson(Map<String, dynamic> json) => _$UpdateOlfactoryFamilyRequestFromJson(json);
+  factory UpdateOlfactoryFamilyRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateOlfactoryFamilyRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$UpdateOlfactoryFamilyRequestToJson(this);
 
@@ -53,6 +39,4 @@ class UpdateOlfactoryFamilyRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

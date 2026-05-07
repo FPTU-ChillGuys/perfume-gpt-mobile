@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'inventory_controller_get_inventory_log_by_id200_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,91 +19,55 @@ part 'inventory_controller_get_inventory_log_by_id200_response.g.dart';
 class InventoryControllerGetInventoryLogById200Response {
   /// Returns a new [InventoryControllerGetInventoryLogById200Response] instance.
   InventoryControllerGetInventoryLogById200Response({
+    this.success,
 
-     this.success,
+    this.error,
 
-     this.error,
+    this.details,
 
-     this.details,
-
-     this.data,
+    this.data,
   });
 
-      /// Kết quả xử lý
-  @JsonKey(
-    
-    name: r'success',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Kết quả xử lý
+  @JsonKey(name: r'success', required: false, includeIfNull: false)
   final bool? success;
 
-
-
-      /// Thông báo lỗi
-  @JsonKey(
-    
-    name: r'error',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Thông báo lỗi
+  @JsonKey(name: r'error', required: false, includeIfNull: false)
   final String? error;
 
-
-
-      /// Chi tiết lỗi
-  @JsonKey(
-    
-    name: r'details',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  /// Chi tiết lỗi
+  @JsonKey(name: r'details', required: false, includeIfNull: false)
   final String? details;
 
-
-
-  @JsonKey(
-    
-    name: r'data',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'data', required: false, includeIfNull: false)
   final InventoryLog? data;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is InventoryControllerGetInventoryLogById200Response &&
+          other.success == success &&
+          other.error == error &&
+          other.details == details &&
+          other.data == data;
 
+  @override
+  int get hashCode =>
+      success.hashCode +
+      (error == null ? 0 : error.hashCode) +
+      (details == null ? 0 : details.hashCode) +
+      data.hashCode;
 
+  factory InventoryControllerGetInventoryLogById200Response.fromJson(
+    Map<String, dynamic> json,
+  ) => _$InventoryControllerGetInventoryLogById200ResponseFromJson(json);
 
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is InventoryControllerGetInventoryLogById200Response &&
-      other.success == success &&
-      other.error == error &&
-      other.details == details &&
-      other.data == data;
-
-    @override
-    int get hashCode =>
-        success.hashCode +
-        (error == null ? 0 : error.hashCode) +
-        (details == null ? 0 : details.hashCode) +
-        data.hashCode;
-
-  factory InventoryControllerGetInventoryLogById200Response.fromJson(Map<String, dynamic> json) => _$InventoryControllerGetInventoryLogById200ResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$InventoryControllerGetInventoryLogById200ResponseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$InventoryControllerGetInventoryLogById200ResponseToJson(this);
 
   @override
   String toString() {
     return toJson().toString();
   }
-
 }
-

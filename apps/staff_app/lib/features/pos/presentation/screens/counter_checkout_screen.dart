@@ -554,7 +554,8 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
                 width: double.infinity,
                 child: ElevatedButton.icon(
                   onPressed: paymentId != null
-                      ? () => _showQrPayment(paymentId, paymentMethod, order.id!)
+                      ? () =>
+                            _showQrPayment(paymentId, paymentMethod, order.id!)
                       : null,
                   icon: const Icon(Icons.qr_code),
                   label: Text('Thanh toán bằng $paymentMethod'),
@@ -702,25 +703,29 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     final success = await ref
         .read(counterCheckoutNotifier.notifier)
         .confirmPayment(paymentId);
-    
+
     if (success) {
-      ref.read(posSignalRServiceProvider).notifyPaymentSuccess(
-        PosPaymentCompletedDto(
-          orderId: orderId,
-          paymentId: paymentId,
-          status: 'Paid',
-          message: 'Thanh toán tiền mặt thành công',
-        ),
-      );
+      ref
+          .read(posSignalRServiceProvider)
+          .notifyPaymentSuccess(
+            PosPaymentCompletedDto(
+              orderId: orderId,
+              paymentId: paymentId,
+              status: 'Paid',
+              message: 'Thanh toán tiền mặt thành công',
+            ),
+          );
     } else {
-      ref.read(posSignalRServiceProvider).notifyPaymentFailed(
-        PosPaymentCompletedDto(
-          orderId: orderId,
-          paymentId: paymentId,
-          status: 'Failed',
-          message: 'Xác nhận thanh toán thất bại',
-        ),
-      );
+      ref
+          .read(posSignalRServiceProvider)
+          .notifyPaymentFailed(
+            PosPaymentCompletedDto(
+              orderId: orderId,
+              paymentId: paymentId,
+              status: 'Failed',
+              message: 'Xác nhận thanh toán thất bại',
+            ),
+          );
     }
 
     if (mounted) {
@@ -737,20 +742,26 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
     }
   }
 
-  Future<void> _showQrPayment(String paymentId, String method, String orderId) async {
+  Future<void> _showQrPayment(
+    String paymentId,
+    String method,
+    String orderId,
+  ) async {
     final url = await ref
         .read(counterCheckoutNotifier.notifier)
         .retryPayment(paymentId, method);
 
     if (url != null && url.isNotEmpty && mounted) {
-      ref.read(posSignalRServiceProvider).notifyPaymentLinkUpdated(
-        PosPaymentLinkDto(
-          orderId: orderId,
-          paymentId: paymentId,
-          method: method,
-          paymentUrl: url,
-        ),
-      );
+      ref
+          .read(posSignalRServiceProvider)
+          .notifyPaymentLinkUpdated(
+            PosPaymentLinkDto(
+              orderId: orderId,
+              paymentId: paymentId,
+              method: method,
+              paymentUrl: url,
+            ),
+          );
 
       showDialog(
         context: context,
@@ -784,7 +795,10 @@ class _CounterCheckoutScreenState extends ConsumerState<CounterCheckoutScreen> {
                   onPressed: () async {
                     final uri = Uri.parse(url);
                     if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri, mode: LaunchMode.externalApplication);
+                      await launchUrl(
+                        uri,
+                        mode: LaunchMode.externalApplication,
+                      );
                     }
                   },
                   icon: const Icon(Icons.open_in_browser),

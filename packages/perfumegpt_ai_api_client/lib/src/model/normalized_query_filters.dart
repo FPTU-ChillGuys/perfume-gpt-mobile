@@ -12,7 +12,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'normalized_query_filters.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -22,82 +21,35 @@ part 'normalized_query_filters.g.dart';
 )
 class NormalizedQueryFilters {
   /// Returns a new [NormalizedQueryFilters] instance.
-  NormalizedQueryFilters({
+  NormalizedQueryFilters({this.price, this.gender, this.year, this.origin});
 
-     this.price,
-
-     this.gender,
-
-     this.year,
-
-     this.origin,
-  });
-
-  @JsonKey(
-    
-    name: r'price',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'price', required: false, includeIfNull: false)
   final PriceNormalizerOutput? price;
 
-
-
-  @JsonKey(
-    
-    name: r'gender',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'gender', required: false, includeIfNull: false)
   final GenderNormalizerOutput? gender;
 
-
-
-  @JsonKey(
-    
-    name: r'year',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'year', required: false, includeIfNull: false)
   final YearNormalizerOutput? year;
 
-
-
-  @JsonKey(
-    
-    name: r'origin',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'origin', required: false, includeIfNull: false)
   final OriginNormalizerOutput? origin;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is NormalizedQueryFilters &&
+          other.price == price &&
+          other.gender == gender &&
+          other.year == year &&
+          other.origin == origin;
 
+  @override
+  int get hashCode =>
+      price.hashCode + gender.hashCode + year.hashCode + origin.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is NormalizedQueryFilters &&
-      other.price == price &&
-      other.gender == gender &&
-      other.year == year &&
-      other.origin == origin;
-
-    @override
-    int get hashCode =>
-        price.hashCode +
-        gender.hashCode +
-        year.hashCode +
-        origin.hashCode;
-
-  factory NormalizedQueryFilters.fromJson(Map<String, dynamic> json) => _$NormalizedQueryFiltersFromJson(json);
+  factory NormalizedQueryFilters.fromJson(Map<String, dynamic> json) =>
+      _$NormalizedQueryFiltersFromJson(json);
 
   Map<String, dynamic> toJson() => _$NormalizedQueryFiltersToJson(this);
 
@@ -105,6 +57,4 @@ class NormalizedQueryFilters {
   String toString() {
     return toJson().toString();
   }
-
 }
-

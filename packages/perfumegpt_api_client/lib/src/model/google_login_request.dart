@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'google_login_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -18,66 +17,33 @@ part 'google_login_request.g.dart';
 )
 class GoogleLoginRequest {
   /// Returns a new [GoogleLoginRequest] instance.
-  GoogleLoginRequest({
+  GoogleLoginRequest({required this.idToken, this.fcmToken, this.deviceType});
 
-    required  this.idToken,
-
-     this.fcmToken,
-
-     this.deviceType,
-  });
-
-  @JsonKey(
-    
-    name: r'idToken',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'idToken', required: true, includeIfNull: false)
   final String idToken;
 
-
-
-  @JsonKey(
-    
-    name: r'fcmToken',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'fcmToken', required: false, includeIfNull: false)
   final String? fcmToken;
 
-
-
-  @JsonKey(
-    
-    name: r'deviceType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'deviceType', required: false, includeIfNull: false)
   final String? deviceType;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GoogleLoginRequest &&
+          other.idToken == idToken &&
+          other.fcmToken == fcmToken &&
+          other.deviceType == deviceType;
 
+  @override
+  int get hashCode =>
+      idToken.hashCode +
+      (fcmToken == null ? 0 : fcmToken.hashCode) +
+      (deviceType == null ? 0 : deviceType.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is GoogleLoginRequest &&
-      other.idToken == idToken &&
-      other.fcmToken == fcmToken &&
-      other.deviceType == deviceType;
-
-    @override
-    int get hashCode =>
-        idToken.hashCode +
-        (fcmToken == null ? 0 : fcmToken.hashCode) +
-        (deviceType == null ? 0 : deviceType.hashCode);
-
-  factory GoogleLoginRequest.fromJson(Map<String, dynamic> json) => _$GoogleLoginRequestFromJson(json);
+  factory GoogleLoginRequest.fromJson(Map<String, dynamic> json) =>
+      _$GoogleLoginRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$GoogleLoginRequestToJson(this);
 
@@ -85,6 +51,4 @@ class GoogleLoginRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

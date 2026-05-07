@@ -8,7 +8,6 @@ export 'package:perfumegpt_ai_api_client/src/auth/basic_auth.dart';
 export 'package:perfumegpt_ai_api_client/src/auth/bearer_auth.dart';
 export 'package:perfumegpt_ai_api_client/src/auth/oauth.dart';
 
-
 export 'package:perfumegpt_ai_api_client/src/api/ai_acceptance_api.dart';
 export 'package:perfumegpt_ai_api_client/src/api/admin_instructions_api.dart';
 export 'package:perfumegpt_ai_api_client/src/api/admin_maintenance_api.dart';
@@ -158,4 +157,3 @@ export 'package:perfumegpt_ai_api_client/src/model/variant_media_response.dart';
 export 'package:perfumegpt_ai_api_client/src/model/variant_sales_analytics_response.dart';
 export 'package:perfumegpt_ai_api_client/src/model/variant_stock_response.dart';
 export 'package:perfumegpt_ai_api_client/src/model/year_normalizer_output.dart';
-

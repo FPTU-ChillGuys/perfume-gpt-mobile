@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for InventoryControllerGetInventoryStock200Response
 void main() {
-  final InventoryControllerGetInventoryStock200Response? instance = /* InventoryControllerGetInventoryStock200Response(...) */ null;
+  final InventoryControllerGetInventoryStock200Response?
+  instance = /* InventoryControllerGetInventoryStock200Response(...) */ null;
   // TODO add properties to the entity
 
   group(InventoryControllerGetInventoryStock200Response, () {
@@ -23,6 +24,5 @@ void main() {
     test('to test the property `payload`', () async {
       // TODO
     });
-
   });
 }

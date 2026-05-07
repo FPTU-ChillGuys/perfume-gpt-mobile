@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProductVariantForPosResponse
 void main() {
-  final ProductVariantForPosResponse? instance = /* ProductVariantForPosResponse(...) */ null;
+  final ProductVariantForPosResponse?
+  instance = /* ProductVariantForPosResponse(...) */ null;
   // TODO add properties to the entity
 
   group(ProductVariantForPosResponse, () {
@@ -51,6 +52,5 @@ void main() {
     test('to test the property `primaryImageUrl`', () async {
       // TODO
     });
-
   });
 }

@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ProcessInStoreReturnFastTrackDto
 void main() {
-  final ProcessInStoreReturnFastTrackDto? instance = /* ProcessInStoreReturnFastTrackDto(...) */ null;
+  final ProcessInStoreReturnFastTrackDto?
+  instance = /* ProcessInStoreReturnFastTrackDto(...) */ null;
   // TODO add properties to the entity
 
   group(ProcessInStoreReturnFastTrackDto, () {
@@ -71,6 +72,5 @@ void main() {
     test('to test the property `temporaryMediaIds`', () async {
       // TODO
     });
-
   });
 }

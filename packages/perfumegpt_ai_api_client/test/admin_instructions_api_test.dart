@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
-
 /// tests for AdminInstructionsApi
 void main() {
   final instance = PerfumegptAiApiClient().getAdminInstructionsApi();
@@ -55,6 +54,5 @@ void main() {
     test('test adminInstructionControllerUpdateInstruction', () async {
       // TODO
     });
-
   });
 }

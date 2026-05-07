@@ -3,7 +3,9 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for ConversationControllerGetAllConversations200Response
 void main() {
-  final ConversationControllerGetAllConversations200Response? instance = /* ConversationControllerGetAllConversations200Response(...) */ null;
+  final ConversationControllerGetAllConversations200Response?
+  instance = /* ConversationControllerGetAllConversations200Response(...) */
+      null;
   // TODO add properties to the entity
 
   group(ConversationControllerGetAllConversations200Response, () {
@@ -29,6 +31,5 @@ void main() {
     test('to test the property `data`', () async {
       // TODO
     });
-
   });
 }

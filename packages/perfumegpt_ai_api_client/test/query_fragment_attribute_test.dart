@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for QueryFragmentAttribute
 void main() {
-  final QueryFragmentAttribute? instance = /* QueryFragmentAttribute(...) */ null;
+  final QueryFragmentAttribute? instance = /* QueryFragmentAttribute(...) */
+      null;
   // TODO add properties to the entity
 
   group(QueryFragmentAttribute, () {
@@ -23,6 +24,5 @@ void main() {
     test('to test the property `match`', () async {
       // TODO
     });
-
   });
 }

@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'applicable_voucher_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -20,113 +19,59 @@ part 'applicable_voucher_response.g.dart';
 class ApplicableVoucherResponse {
   /// Returns a new [ApplicableVoucherResponse] instance.
   ApplicableVoucherResponse({
+    this.voucherId,
 
-     this.voucherId,
+    required this.code,
 
-    required  this.code,
+    this.discountValue,
 
-     this.discountValue,
+    this.discountType,
 
-     this.discountType,
+    this.isApplicable,
 
-     this.isApplicable,
-
-     this.ineligibleReason,
+    this.ineligibleReason,
   });
 
-  @JsonKey(
-    
-    name: r'voucherId',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'voucherId', required: false, includeIfNull: false)
   final String? voucherId;
 
-
-
-  @JsonKey(
-    
-    name: r'code',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'code', required: true, includeIfNull: false)
   final String code;
 
-
-
-  @JsonKey(
-    
-    name: r'discountValue',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'discountValue', required: false, includeIfNull: false)
   final num? discountValue;
 
-
-
-  @JsonKey(
-    
-    name: r'discountType',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'discountType', required: false, includeIfNull: false)
   final DiscountType? discountType;
 
-
-
-  @JsonKey(
-    
-    name: r'isApplicable',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'isApplicable', required: false, includeIfNull: false)
   final bool? isApplicable;
 
-
-
-  @JsonKey(
-    
-    name: r'ineligibleReason',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'ineligibleReason', required: false, includeIfNull: false)
   final String? ineligibleReason;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ApplicableVoucherResponse &&
+          other.voucherId == voucherId &&
+          other.code == code &&
+          other.discountValue == discountValue &&
+          other.discountType == discountType &&
+          other.isApplicable == isApplicable &&
+          other.ineligibleReason == ineligibleReason;
 
+  @override
+  int get hashCode =>
+      voucherId.hashCode +
+      code.hashCode +
+      discountValue.hashCode +
+      discountType.hashCode +
+      isApplicable.hashCode +
+      (ineligibleReason == null ? 0 : ineligibleReason.hashCode);
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ApplicableVoucherResponse &&
-      other.voucherId == voucherId &&
-      other.code == code &&
-      other.discountValue == discountValue &&
-      other.discountType == discountType &&
-      other.isApplicable == isApplicable &&
-      other.ineligibleReason == ineligibleReason;
-
-    @override
-    int get hashCode =>
-        voucherId.hashCode +
-        code.hashCode +
-        discountValue.hashCode +
-        discountType.hashCode +
-        isApplicable.hashCode +
-        (ineligibleReason == null ? 0 : ineligibleReason.hashCode);
-
-  factory ApplicableVoucherResponse.fromJson(Map<String, dynamic> json) => _$ApplicableVoucherResponseFromJson(json);
+  factory ApplicableVoucherResponse.fromJson(Map<String, dynamic> json) =>
+      _$ApplicableVoucherResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApplicableVoucherResponseToJson(this);
 
@@ -134,6 +79,4 @@ class ApplicableVoucherResponse {
   String toString() {
     return toJson().toString();
   }
-
 }
-

@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'pos_scan_item_request.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,65 +18,35 @@ part 'pos_scan_item_request.g.dart';
 class PosScanItemRequest {
   /// Returns a new [PosScanItemRequest] instance.
   PosScanItemRequest({
+    required this.barcode,
 
-    required  this.barcode,
+    required this.batchCode,
 
-    required  this.batchCode,
-
-     this.quantity,
+    this.quantity,
   });
 
-  @JsonKey(
-    
-    name: r'barcode',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'barcode', required: true, includeIfNull: false)
   final String barcode;
 
-
-
-  @JsonKey(
-    
-    name: r'batchCode',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'batchCode', required: true, includeIfNull: false)
   final String batchCode;
 
-
-
-  @JsonKey(
-    
-    name: r'quantity',
-    required: false,
-    includeIfNull: false,
-  )
-
-
+  @JsonKey(name: r'quantity', required: false, includeIfNull: false)
   final int? quantity;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PosScanItemRequest &&
+          other.barcode == barcode &&
+          other.batchCode == batchCode &&
+          other.quantity == quantity;
 
+  @override
+  int get hashCode => barcode.hashCode + batchCode.hashCode + quantity.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is PosScanItemRequest &&
-      other.barcode == barcode &&
-      other.batchCode == batchCode &&
-      other.quantity == quantity;
-
-    @override
-    int get hashCode =>
-        barcode.hashCode +
-        batchCode.hashCode +
-        quantity.hashCode;
-
-  factory PosScanItemRequest.fromJson(Map<String, dynamic> json) => _$PosScanItemRequestFromJson(json);
+  factory PosScanItemRequest.fromJson(Map<String, dynamic> json) =>
+      _$PosScanItemRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$PosScanItemRequestToJson(this);
 
@@ -85,6 +54,4 @@ class PosScanItemRequest {
   String toString() {
     return toJson().toString();
   }
-
 }
-

@@ -9,7 +9,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'chat_v11_response.g.dart';
 
-
 @CopyWith()
 @JsonSerializable(
   checked: true,
@@ -19,52 +18,28 @@ part 'chat_v11_response.g.dart';
 )
 class ChatV11Response {
   /// Returns a new [ChatV11Response] instance.
-  ChatV11Response({
+  ChatV11Response({required this.conversationId, required this.aiMessage});
 
-    required  this.conversationId,
-
-    required  this.aiMessage,
-  });
-
-      /// ID cuộc hội thoại
-  @JsonKey(
-    
-    name: r'conversationId',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// ID cuộc hội thoại
+  @JsonKey(name: r'conversationId', required: true, includeIfNull: false)
   final String conversationId;
 
-
-
-      /// Tin nhắn AI phản hồi
-  @JsonKey(
-    
-    name: r'aiMessage',
-    required: true,
-    includeIfNull: false,
-  )
-
-
+  /// Tin nhắn AI phản hồi
+  @JsonKey(name: r'aiMessage', required: true, includeIfNull: false)
   final ChatV11AiMessage aiMessage;
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ChatV11Response &&
+          other.conversationId == conversationId &&
+          other.aiMessage == aiMessage;
 
+  @override
+  int get hashCode => conversationId.hashCode + aiMessage.hashCode;
 
-
-
-    @override
-    bool operator ==(Object other) => identical(this, other) || other is ChatV11Response &&
-      other.conversationId == conversationId &&
-      other.aiMessage == aiMessage;
-
-    @override
-    int get hashCode =>
-        conversationId.hashCode +
-        aiMessage.hashCode;
-
-  factory ChatV11Response.fromJson(Map<String, dynamic> json) => _$ChatV11ResponseFromJson(json);
+  factory ChatV11Response.fromJson(Map<String, dynamic> json) =>
+      _$ChatV11ResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ChatV11ResponseToJson(this);
 
@@ -72,6 +47,4 @@ class ChatV11Response {
   String toString() {
     return toJson().toString();
   }
-
 }
-

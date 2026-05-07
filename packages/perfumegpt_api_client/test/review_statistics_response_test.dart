@@ -3,7 +3,8 @@ import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
 
 // tests for ReviewStatisticsResponse
 void main() {
-  final ReviewStatisticsResponse? instance = /* ReviewStatisticsResponse(...) */ null;
+  final ReviewStatisticsResponse? instance = /* ReviewStatisticsResponse(...) */
+      null;
   // TODO add properties to the entity
 
   group(ReviewStatisticsResponse, () {
@@ -46,6 +47,5 @@ void main() {
     test('to test the property `oneStarCount`', () async {
       // TODO
     });
-
   });
 }

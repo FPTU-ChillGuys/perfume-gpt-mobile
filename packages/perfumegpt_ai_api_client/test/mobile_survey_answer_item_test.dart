@@ -3,7 +3,8 @@ import 'package:perfumegpt_ai_api_client/perfumegpt_ai_api_client.dart';
 
 // tests for MobileSurveyAnswerItem
 void main() {
-  final MobileSurveyAnswerItem? instance = /* MobileSurveyAnswerItem(...) */ null;
+  final MobileSurveyAnswerItem? instance = /* MobileSurveyAnswerItem(...) */
+      null;
   // TODO add properties to the entity
 
   group(MobileSurveyAnswerItem, () {
@@ -24,6 +25,5 @@ void main() {
     test('to test the property `displayText`', () async {
       // TODO
     });
-
   });
 }
