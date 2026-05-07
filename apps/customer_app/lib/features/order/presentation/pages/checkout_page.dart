@@ -106,28 +106,24 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted) return;
-      unawaited(ref.read(cartProvider.notifier).reload());
-      ref.invalidate(cartTotalProvider);
-    });
-    final selectedFromCart = widget.selectedItemIdsFromCart;
-    if (selectedFromCart != null && selectedFromCart.isNotEmpty) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
+      final selectedFromCart = widget.selectedItemIdsFromCart;
+      if (selectedFromCart != null && selectedFromCart.isNotEmpty) {
         ref
             .read(selectedCartItemIdsProvider.notifier)
             .update(selectedFromCart.toSet());
-      });
-    }
-    // Auto-populate voucher from cart navigation (matching React FE pattern)
-    final code = widget.voucherCodeFromCart;
-    if (code != null && code.isNotEmpty) {
-      _voucherController.text = code;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _applyVoucher();
-      });
-    }
+      }
+      await ref.read(cartProvider.notifier).reload();
+      ref.invalidate(cartTotalProvider);
+
+      // Auto-apply voucher only after cart/selected items are ready.
+      final code = widget.voucherCodeFromCart;
+      if (code != null && code.trim().isNotEmpty) {
+        _voucherController.text = code.trim();
+        await _applyVoucher(silentIfItemsMissing: true);
+      }
+    });
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _prewarmPaymentWebView();
     });
@@ -252,7 +248,28 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     } catch (_) {}
   }
 
-  Future<void> _applyVoucher() async {
+  Future<bool> _ensureCheckoutItemsReady() async {
+    final (_, currentIds) = _computeEffectiveItemIds();
+    if (currentIds.isNotEmpty) return true;
+    await ref.read(cartProvider.notifier).reload();
+    if (!mounted) return false;
+    final (_, nextIds) = _computeEffectiveItemIds();
+    return nextIds.isNotEmpty;
+  }
+
+  String _voucherErrorMessage(Object e) {
+    if (e is DioException) {
+      final data = e.response?.data;
+      if (data is Map) {
+        final msg = data['message']?.toString().trim();
+        if (msg != null && msg.isNotEmpty) return msg;
+      }
+      if (data is String && data.trim().isNotEmpty) return data.trim();
+    }
+    return 'Mã giảm giá không hợp lệ hoặc đã hết hạn';
+  }
+
+  Future<void> _applyVoucher({bool silentIfItemsMissing = false}) async {
     final code = _voucherController.text.trim();
     if (code.isEmpty) return;
     if (_appliedVoucherCode?.toLowerCase() == code.toLowerCase()) return;
@@ -263,7 +280,28 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     });
 
     try {
+      final ready = await _ensureCheckoutItemsReady();
+      if (!ready) {
+        if (!mounted) return;
+        setState(() {
+          _isApplyingVoucher = false;
+          if (!silentIfItemsMissing) {
+            _voucherError = 'Chưa có sản phẩm hợp lệ để áp mã giảm giá';
+          }
+        });
+        return;
+      }
       final (allIds, effectiveIds) = _computeEffectiveItemIds();
+      if (effectiveIds.isEmpty) {
+        if (!mounted) return;
+        setState(() {
+          _isApplyingVoucher = false;
+          if (!silentIfItemsMissing) {
+            _voucherError = 'Chưa có sản phẩm hợp lệ để áp mã giảm giá';
+          }
+        });
+        return;
+      }
       final total = await ref
           .read(cartRepositoryProvider)
           .getTotal(
@@ -318,7 +356,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     } catch (e) {
       if (mounted) {
         setState(() {
-          _voucherError = 'Mã giảm giá không hợp lệ hoặc đã hết hạn';
+          _voucherError = _voucherErrorMessage(e);
           _isApplyingVoucher = false;
         });
       }
