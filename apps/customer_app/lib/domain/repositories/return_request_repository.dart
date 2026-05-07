@@ -6,6 +6,7 @@ typedef PendingUploadMedia = ({
   Uint8List? bytes,
   String? filePath,
 });
+typedef UploadProgressCallback = void Function(int sentBytes, int totalBytes);
 
 abstract class ReturnRequestRepository {
   Future<PaginatedReturnRequests> getMyRequests({
@@ -24,6 +25,7 @@ abstract class ReturnRequestRepository {
   Future<List<String>> uploadTemporaryMedia({
     List<PendingUploadMedia>? images,
     List<PendingUploadMedia>? videos,
+    UploadProgressCallback? onProgress,
   });
   Future<void> syncShippingStatus();
   Future<String?> getOrderInfoUrl(String trackingNumber);

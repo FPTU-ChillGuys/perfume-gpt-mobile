@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 import 'core/services/fcm_service.dart';
@@ -47,6 +48,7 @@ void main() {
   runZonedGuarded(
     () {
       WidgetsFlutterBinding.ensureInitialized();
+      FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
       // Increase image cache so product images are retained when scrolling,
       // preventing re-fetches that cause blank images.
       PaintingBinding.instance.imageCache
@@ -70,7 +72,7 @@ void main() {
         ProviderScope(
           overrides: [
             googleSignInServerClientIdProvider.overrideWithValue(
-              '173433966327-fuvt92u2qgeobctvlni6fl52onvak7e8.apps.googleusercontent.com',
+              '854882232373-0md9uigpg546cq1gq2n18qpqp7lla77d.apps.googleusercontent.com',
             ),
           ],
           child: const MyApp(),

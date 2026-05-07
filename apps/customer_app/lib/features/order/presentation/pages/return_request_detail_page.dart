@@ -694,6 +694,7 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
                   (e) => _thumbPicked(
                     e.value.bytes,
                     isVideo: false,
+                    filePath: e.value.filePath,
                     onRemove: () => setState(() => _newImages.removeAt(e.key)),
                   ),
                 ),
@@ -760,6 +761,7 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
   Widget _thumbPicked(
     Uint8List? bytes, {
     required bool isVideo,
+    String? filePath,
     String? videoPath,
     required VoidCallback onRemove,
   }) {
@@ -777,6 +779,8 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
               ? _VideoThumbnailView(videoPath: videoPath)
               : (bytes != null
                     ? Image.memory(bytes, fit: BoxFit.cover)
+                    : (filePath != null && filePath.isNotEmpty)
+                    ? Image.file(File(filePath), fit: BoxFit.cover)
                     : Container(
                         color: Colors.grey.shade100,
                         child: const Center(
@@ -857,11 +861,14 @@ class _State extends ConsumerState<ReturnRequestDetailPage> {
   }
 
   Future<void> _pickImages() async {
-    final files = await ImagePicker().pickMultiImage(imageQuality: 80);
+    final files = await ImagePicker().pickMultiImage(
+      imageQuality: 70,
+      maxWidth: 1600,
+      maxHeight: 1600,
+    );
     final picked = <PendingUploadMedia>[];
     for (final f in files) {
-      final bytes = await f.readAsBytes();
-      picked.add((filename: f.name, bytes: bytes, filePath: f.path));
+      picked.add((filename: f.name, bytes: null, filePath: f.path));
     }
     if (picked.isNotEmpty && mounted) {
       setState(() => _newImages.addAll(picked));

@@ -8,6 +8,54 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
 
+const String kFcmChannelId = 'order_updates';
+final FlutterLocalNotificationsPlugin _backgroundLocalNotifications =
+    FlutterLocalNotificationsPlugin();
+bool _backgroundNotificationReady = false;
+
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  if (!_backgroundNotificationReady) {
+    const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+    const initSettings = InitializationSettings(android: androidSettings);
+    await _backgroundLocalNotifications.initialize(settings: initSettings);
+    final androidPlugin = _backgroundLocalNotifications
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
+    await androidPlugin?.createNotificationChannel(
+      const AndroidNotificationChannel(
+        kFcmChannelId,
+        'Order Updates',
+        description: 'Notifications for orders and payments',
+        importance: Importance.high,
+      ),
+    );
+    _backgroundNotificationReady = true;
+  }
+
+  final notification = message.notification;
+  final title =
+      notification?.title ?? message.data['title']?.toString() ?? 'PerfumeGPT';
+  final body = notification?.body ?? message.data['body']?.toString() ?? '';
+  if (title.isEmpty && body.isEmpty) return;
+
+  await _backgroundLocalNotifications.show(
+    id: message.hashCode,
+    title: title,
+    body: body,
+    notificationDetails: const NotificationDetails(
+      android: AndroidNotificationDetails(
+        kFcmChannelId,
+        'Order Updates',
+        channelDescription: 'Notifications for orders and payments',
+        importance: Importance.high,
+        priority: Priority.high,
+      ),
+    ),
+  );
+}
+
 class FcmService {
   FcmService._();
   static final FcmService instance = FcmService._();
@@ -18,7 +66,7 @@ class FcmService {
     'name': 'Bearer',
   };
 
-  static const String _channelId = 'order_updates';
+  static const String _channelId = kFcmChannelId;
   final FlutterLocalNotificationsPlugin _localNotifications =
       FlutterLocalNotificationsPlugin();
 

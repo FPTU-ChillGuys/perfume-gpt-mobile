@@ -89,6 +89,7 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
   Future<List<String>> uploadTemporaryMedia({
     List<PendingUploadMedia>? images,
     List<PendingUploadMedia>? videos,
+    UploadProgressCallback? onProgress,
   }) async {
     final hasImages = images != null && images.isNotEmpty;
     final hasVideos = videos != null && videos.isNotEmpty;
@@ -130,6 +131,7 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
     final response = await _dio.post<Map<String, dynamic>>(
       '/api/orderreturnrequests/videos/temporary',
       data: formData,
+      onSendProgress: onProgress,
       options: Options(
         contentType: 'multipart/form-data',
         // Media upload (especially video) needs longer time than normal APIs.

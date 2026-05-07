@@ -15,6 +15,9 @@ const _debugReceiveTimeout = Duration(seconds: 25);
 const _releaseConnectTimeout = Duration(seconds: 8);
 const _releaseSendTimeout = Duration(seconds: 12);
 const _releaseReceiveTimeout = Duration(seconds: 12);
+const _releaseAiConnectTimeout = Duration(seconds: 12);
+const _releaseAiSendTimeout = Duration(seconds: 30);
+const _releaseAiReceiveTimeout = Duration(seconds: 30);
 
 const _defaultProdApiBaseUrl = 'https://backend-sep490.vqnofficial.win';
 const _defaultLocalApiBaseUrl = 'https://backend-sep490.vqnofficial.win';
@@ -97,6 +100,13 @@ PerfumegptAiApiClient aiApiClient(Ref ref) {
 
   final dio = Dio(BaseOptions(baseUrl: baseUrl));
   _configureDioPolicies(dio, isRelease: kReleaseMode);
+  if (kReleaseMode) {
+    // AI responses can be slower than regular APIs on mobile networks.
+    dio.options
+      ..connectTimeout = _releaseAiConnectTimeout
+      ..sendTimeout = _releaseAiSendTimeout
+      ..receiveTimeout = _releaseAiReceiveTimeout;
+  }
 
   if (!kIsWeb && kDebugMode) {
     (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {

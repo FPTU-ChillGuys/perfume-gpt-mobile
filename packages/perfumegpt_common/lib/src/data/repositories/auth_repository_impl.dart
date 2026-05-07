@@ -40,7 +40,13 @@ class AuthRepositoryImpl implements AuthRepository {
 
   Future<void> _ensureGoogleSignInInitialized() async {
     if (!_isGoogleSignInInitialized) {
-      await _googleSignIn.initialize(serverClientId: _serverClientId);
+      try {
+        await _googleSignIn.initialize(serverClientId: _serverClientId);
+      } catch (_) {
+        // Fallback: some Android builds fail when explicit serverClientId is
+        // misconfigured; default initialization can still allow sign-in.
+        await _googleSignIn.initialize();
+      }
       _isGoogleSignInInitialized = true;
     }
   }
@@ -84,17 +90,22 @@ class AuthRepositoryImpl implements AuthRepository {
       GoogleSignInAccount? googleUser;
 
       try {
-        // Ensure a clean state before authenticating
-        try {
-          await _googleSignIn.signOut();
-        } catch (_) {}
-
         googleUser = await _googleSignIn.authenticate(scopeHint: ['email']);
       } on GoogleSignInException catch (e) {
+        final code = e.code.toString().toLowerCase();
+        if (code.contains('unknown') || code.contains('failed')) {
+          // Retry once with fallback initialization path.
+          _isGoogleSignInInitialized = false;
+          await _ensureGoogleSignInInitialized();
+          googleUser = await _googleSignIn.authenticate(scopeHint: ['email']);
+          // If retry succeeds, continue flow.
+        }
         if (e.code == GoogleSignInExceptionCode.canceled) {
           return null; // User canceled the sign-in flow
         }
-        rethrow;
+        if (googleUser == null) {
+          throw Exception(_googleSignInErrorMessage(e));
+        }
       }
 
       final GoogleSignInAuthentication googleAuth = googleUser.authentication;
@@ -113,8 +124,42 @@ class AuthRepositoryImpl implements AuthRepository {
       try {
         await _googleSignIn.signOut();
       } catch (_) {}
-      rethrow;
+      if (e is Exception) rethrow;
+      throw Exception(_googleSignInErrorMessage(e));
     }
+  }
+
+  String _googleSignInErrorMessage(Object error) {
+    if (error is GoogleSignInException) {
+      final code = error.code.toString().toLowerCase();
+      if (code.contains('network')) {
+        return 'Đăng nhập Google thất bại do mạng. Vui lòng kiểm tra internet và thử lại.';
+      }
+      if (code.contains('client') || code.contains('configuration')) {
+        return 'Google Sign-In chưa cấu hình đúng cho APK release (SHA-1/SHA-256, package name, Web client ID).';
+      }
+      if (code.contains('unknown') ||
+          code.contains('sign_in_failed') ||
+          code.contains('failed')) {
+        return 'Đăng nhập Google thất bại (unknownError). Thường do thiếu SHA-1/SHA-256 hoặc sai cấu hình OAuth cho package APK.';
+      }
+      if (code.contains('canceled')) {
+        return 'Bạn đã hủy đăng nhập Google.';
+      }
+      return 'Đăng nhập Google thất bại (${error.code.name}).';
+    }
+    if (error is DioException) {
+      final data = error.response?.data;
+      if (data is Map) {
+        final msg = data['message']?.toString().trim();
+        if (msg != null && msg.isNotEmpty) return msg;
+      }
+      if (data is String && data.trim().isNotEmpty) return data.trim();
+      if (error.response?.statusCode != null) {
+        return 'Máy chủ trả về lỗi ${error.response!.statusCode} khi đăng nhập Google.';
+      }
+    }
+    return 'Đăng nhập Google thất bại. Vui lòng thử lại.';
   }
 
   Future<User?> _handleTokenResponse(String? token) async {
