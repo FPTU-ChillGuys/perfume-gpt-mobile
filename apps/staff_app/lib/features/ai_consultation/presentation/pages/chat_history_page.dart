@@ -46,7 +46,7 @@ class _ChatHistoryPageState extends ConsumerState<ChatHistoryPage> {
       final currentUser = ref.read(common.authProvider).value;
       final currentUserId = currentUser?.id;
       final userConvs = localConvs
-          .where((c) => currentUserId == null || c.userId == currentUserId)
+          .where((c) => c.userId == currentUserId)
           .toList();
 
       if (mounted && userConvs.isNotEmpty) {
