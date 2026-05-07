@@ -10,6 +10,10 @@ AI-Powered Staff Mobile App for the PerfumeGPT ecosystem, providing Mobile POS a
     -   Real-time cart management with quantity adjustments and persistent sync to customer-facing displays.
     -   **QR Payment Handling:** Integrated checkout flow with generated QR codes for VnPay and Momo, including deep-link support for direct payment.
     -   Type-safe checkout flow integrated with backend `OrdersApi`.
+-   **AI-Powered Consultation:**
+    -   Provides staff with an AI-powered conversational interface for quick product and fragrance consultation.
+    -   Mirrors the customer-facing AI chat for a consistent experience.
+    -   Includes local chat history and message caching for offline access.
 -   **Stock Management:**
     -   Real-time inventory list with search and filtering by SKU, name, or brand.
     -   Detailed product views including current stock levels and pricing fetched from the API.
@@ -36,6 +40,7 @@ lib/
 â”‚   â”œâ”€â”€ entities/     # Pure Dart entities
 â”‚   â””â”€â”€ repositories/ # Abstract repository interfaces
 â””â”€â”€ features/         # Feature-based modules
+    â”œâ”€â”€ ai_consultation/ # AI-powered chat for staff
     â”œâ”€â”€ inventory/    # Inventory listing and stock adjustment
     â””â”€â”€ pos/          # Point of Sale and Cart management
 ```
@@ -50,5 +55,4 @@ lib/
 
 -   Full integration with hardware barcode scanners.
 -   Bluetooth thermal printer integration for receipt printing.
--   Quick customer consultation tool powered by AI.
 -   Real-time synchronization with the backend API.
