@@ -2,7 +2,6 @@ import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 import 'tables.dart';
 import 'dao/conversation_dao.dart';
-import 'dao/survey_dao.dart';
 
 part 'database.g.dart';
 
@@ -35,6 +34,4 @@ class AppDatabase extends _$AppDatabase {
       await customStatement('PRAGMA foreign_keys = ON');
     },
   );
-
-  late final surveyDao = SurveyDao(this);
 }
