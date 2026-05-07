@@ -205,54 +205,57 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
   }
 
   Future<void> _refreshTotals([String? voucherOverride]) async {
-    final (allIds, effectiveIds) = _computeEffectiveItemIds();
-    if (effectiveIds.isEmpty) return;
-
-    final voucher = voucherOverride ?? _appliedVoucherCode;
-
     try {
-      final total = await ref
-          .read(cartRepositoryProvider)
-          .getTotal(
-            voucherCode: (voucher != null && voucher.isNotEmpty)
-                ? voucher
-                : null,
-            itemIds: _shouldQuerySelectedItems(allIds, effectiveIds)
-                ? effectiveIds
-                : null,
-            savedAddressId: (!_isPickupInStore && !_useNewAddress)
-                ? _selectedAddressId
-                : null,
-            recipientContactName: (!_isPickupInStore && _useNewAddress)
-                ? _nameController.text.trim()
-                : null,
-            recipientContactPhoneNumber: (!_isPickupInStore && _useNewAddress)
-                ? _phoneController.text.trim()
-                : null,
-            recipientDistrictId: (!_isPickupInStore && _useNewAddress)
-                ? _selectedDistrict?.districtID
-                : null,
-            recipientDistrictName: (!_isPickupInStore && _useNewAddress)
-                ? _selectedDistrict?.districtName
-                : null,
-            recipientWardCode: (!_isPickupInStore && _useNewAddress)
-                ? _selectedWard?.wardCode
-                : null,
-            recipientWardName: (!_isPickupInStore && _useNewAddress)
-                ? _selectedWard?.wardName
-                : null,
-            recipientProvinceId: (!_isPickupInStore && _useNewAddress)
-                ? _selectedProvince?.provinceID
-                : null,
-            recipientProvinceName: (!_isPickupInStore && _useNewAddress)
-                ? _selectedProvince?.provinceName
-                : null,
-            recipientFullAddress: (!_isPickupInStore && _useNewAddress)
-                ? _streetController.text.trim()
-                : null,
-          );
+      final total = await _loadCheckoutTotal(voucherOverride: voucherOverride);
       if (mounted) setState(() => _computedTotal = total);
     } catch (_) {}
+  }
+
+  Future<CartTotal> _loadCheckoutTotal({String? voucherOverride}) {
+    final (allIds, effectiveIds) = _computeEffectiveItemIds();
+    if (effectiveIds.isEmpty) {
+      throw StateError('Chưa có sản phẩm hợp lệ để thanh toán');
+    }
+
+    final voucher = voucherOverride ?? _appliedVoucherCode;
+    return ref
+        .read(cartRepositoryProvider)
+        .getTotal(
+          voucherCode: (voucher != null && voucher.isNotEmpty) ? voucher : null,
+          itemIds: _shouldQuerySelectedItems(allIds, effectiveIds)
+              ? effectiveIds
+              : null,
+          savedAddressId: (!_isPickupInStore && !_useNewAddress)
+              ? _selectedAddressId
+              : null,
+          recipientContactName: (!_isPickupInStore && _useNewAddress)
+              ? _nameController.text.trim()
+              : null,
+          recipientContactPhoneNumber: (!_isPickupInStore && _useNewAddress)
+              ? _phoneController.text.trim()
+              : null,
+          recipientDistrictId: (!_isPickupInStore && _useNewAddress)
+              ? _selectedDistrict?.districtID
+              : null,
+          recipientDistrictName: (!_isPickupInStore && _useNewAddress)
+              ? _selectedDistrict?.districtName
+              : null,
+          recipientWardCode: (!_isPickupInStore && _useNewAddress)
+              ? _selectedWard?.wardCode
+              : null,
+          recipientWardName: (!_isPickupInStore && _useNewAddress)
+              ? _selectedWard?.wardName
+              : null,
+          recipientProvinceId: (!_isPickupInStore && _useNewAddress)
+              ? _selectedProvince?.provinceID
+              : null,
+          recipientProvinceName: (!_isPickupInStore && _useNewAddress)
+              ? _selectedProvince?.provinceName
+              : null,
+          recipientFullAddress: (!_isPickupInStore && _useNewAddress)
+              ? _streetController.text.trim()
+              : null,
+        );
   }
 
   Future<bool> _ensureCheckoutItemsReady() async {
@@ -298,55 +301,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
         });
         return;
       }
-      final (allIds, effectiveIds) = _computeEffectiveItemIds();
-      if (effectiveIds.isEmpty) {
-        if (!mounted) return;
-        setState(() {
-          _isApplyingVoucher = false;
-          if (!silentIfItemsMissing) {
-            _voucherError = 'Chưa có sản phẩm hợp lệ để áp mã giảm giá';
-          }
-        });
-        return;
-      }
-      final total = await ref
-          .read(cartRepositoryProvider)
-          .getTotal(
-            voucherCode: code,
-            itemIds: _shouldQuerySelectedItems(allIds, effectiveIds)
-                ? effectiveIds
-                : null,
-            savedAddressId: (!_isPickupInStore && !_useNewAddress)
-                ? _selectedAddressId
-                : null,
-            recipientContactName: (!_isPickupInStore && _useNewAddress)
-                ? _nameController.text.trim()
-                : null,
-            recipientContactPhoneNumber: (!_isPickupInStore && _useNewAddress)
-                ? _phoneController.text.trim()
-                : null,
-            recipientDistrictId: (!_isPickupInStore && _useNewAddress)
-                ? _selectedDistrict?.districtID
-                : null,
-            recipientDistrictName: (!_isPickupInStore && _useNewAddress)
-                ? _selectedDistrict?.districtName
-                : null,
-            recipientWardCode: (!_isPickupInStore && _useNewAddress)
-                ? _selectedWard?.wardCode
-                : null,
-            recipientWardName: (!_isPickupInStore && _useNewAddress)
-                ? _selectedWard?.wardName
-                : null,
-            recipientProvinceId: (!_isPickupInStore && _useNewAddress)
-                ? _selectedProvince?.provinceID
-                : null,
-            recipientProvinceName: (!_isPickupInStore && _useNewAddress)
-                ? _selectedProvince?.provinceName
-                : null,
-            recipientFullAddress: (!_isPickupInStore && _useNewAddress)
-                ? _streetController.text.trim()
-                : null,
-          );
+      final total = await _loadCheckoutTotal(voucherOverride: code);
       if (mounted) {
         setState(() {
           _appliedVoucherCode = code;
@@ -420,8 +375,10 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
     setState(() => _isPlacingOrder = true);
 
     try {
+      await ref.read(cartProvider.notifier).reload();
+      if (!mounted) return;
+
       final (_, effectiveIds) = _computeEffectiveItemIds();
-      final total = _computedTotal ?? ref.read(cartTotalProvider).value;
 
       if (effectiveIds.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -432,6 +389,9 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
         );
         return;
       }
+
+      final total = await _loadCheckoutTotal();
+      if (mounted) setState(() => _computedTotal = total);
 
       RecipientAddress? recipient;
       String? savedAddressId;
@@ -455,8 +415,8 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
       }
 
       final requireDeposit =
-          (total?.depositPolicy?.isDepositRequired == true) ||
-          ((total?.depositPolicy?.depositAmount ?? 0) > 0);
+          (total.depositPolicy?.isDepositRequired == true) ||
+          ((total.depositPolicy?.depositAmount ?? 0) > 0);
 
       // If deposit is required but gateway is still COD, default to VnPay or show error
       String effectiveDepositGateway = _depositGateway;
@@ -482,7 +442,7 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
             : null,
         deliveryMethod: _isPickupInStore ? 'PickupInStore' : 'Delivery',
         itemIds: effectiveIds,
-        expectedTotalPrice: total?.totalPrice,
+        expectedTotalPrice: total.totalPrice,
         voucherCode: _appliedVoucherCode,
         savedAddressId: savedAddressId,
         recipient: recipient,
@@ -1282,34 +1242,6 @@ class _CheckoutPageState extends ConsumerState<CheckoutPage> {
                               fontSize: 13,
                             ),
                           ),
-                          const SizedBox(width: 8),
-                          if (item.hasDiscount) ...[
-                            Text(
-                              _formatCurrency(item.unitFinalPrice),
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: Theme.of(context).colorScheme.error,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            const SizedBox(width: 4),
-                            Text(
-                              _formatCurrency(item.variantPrice),
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey.shade500,
-                                decoration: TextDecoration.lineThrough,
-                                decorationColor: Colors.grey.shade500,
-                              ),
-                            ),
-                          ] else
-                            Text(
-                              _formatCurrency(item.variantPrice),
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.grey.shade600,
-                              ),
-                            ),
                         ],
                       ),
                     ],

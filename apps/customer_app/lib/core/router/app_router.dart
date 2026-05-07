@@ -10,6 +10,7 @@ import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/loyalty/presentation/pages/loyalty_page.dart';
+import '../../features/notification/presentation/pages/notification_list_page.dart';
 import '../../features/order/presentation/pages/cart_page.dart';
 import '../../features/order/presentation/pages/checkout_page.dart';
 import '../../features/order/presentation/pages/cancel_order_page.dart';
@@ -43,6 +44,10 @@ class AppRouter {
         builder: (context, state) => const RegisterPage(),
       ),
       GoRoute(path: '/', builder: (context, state) => const HomePage()),
+      GoRoute(
+        path: '/notifications',
+        builder: (context, state) => const NotificationListPage(),
+      ),
       GoRoute(path: '/chat', builder: (context, state) => const ChatPage()),
       GoRoute(
         path: '/chat/history',

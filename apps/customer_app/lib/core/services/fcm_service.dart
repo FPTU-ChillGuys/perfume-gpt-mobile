@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
+import 'package:uuid/uuid.dart';
 
 const String kFcmChannelId = 'order_updates';
 final FlutterLocalNotificationsPlugin _backgroundLocalNotifications =
@@ -65,6 +66,8 @@ class FcmService {
     'scheme': 'bearer',
     'name': 'Bearer',
   };
+  static const _deviceIdKey = 'device_instance_id';
+  static const _uuid = Uuid();
 
   static const String _channelId = kFcmChannelId;
   final FlutterLocalNotificationsPlugin _localNotifications =
@@ -98,6 +101,9 @@ class FcmService {
   Future<void> syncToken(WidgetRef ref) async {
     try {
       final token = await FirebaseMessaging.instance.getToken();
+      debugPrint('========== FCM TOKEN ==========');
+      debugPrint(token ?? '<null>');
+      debugPrint('===============================');
       if (token == null || token.isEmpty) return;
       await _sendTokenToBackend(ref, token);
       debugPrint('FCM token synced: $token');
@@ -150,11 +156,22 @@ class FcmService {
         'body=${message.notification?.body}, data=${message.data}',
       );
       final notification = message.notification;
-      if (notification == null) return;
+      final title =
+          notification?.title ??
+          message.data['title']?.toString() ??
+          message.data['Title']?.toString() ??
+          'PerfumeGPT';
+      final body =
+          notification?.body ??
+          message.data['body']?.toString() ??
+          message.data['message']?.toString() ??
+          message.data['Message']?.toString() ??
+          '';
+      if (title.trim().isEmpty && body.trim().isEmpty) return;
       await _localNotifications.show(
         id: message.hashCode,
-        title: notification.title ?? 'PerfumeGPT',
-        body: notification.body ?? '',
+        title: title,
+        body: body,
         notificationDetails: const NotificationDetails(
           android: AndroidNotificationDetails(
             _channelId,
@@ -178,12 +195,14 @@ class FcmService {
 
   Future<void> _sendTokenToBackend(WidgetRef ref, String token) async {
     try {
+      final deviceId = await _resolveDeviceId(ref);
       final dio = ref.read(apiClientProvider).dio;
       await dio.post(
         '/api/notifications/device-token',
         data: <String, dynamic>{
           'token': token,
           'platform': kIsWeb ? 'Web' : (Platform.isAndroid ? 'Android' : 'iOS'),
+          'deviceId': deviceId,
         },
         options: Options(
           extra: const {
@@ -195,5 +214,14 @@ class FcmService {
       // Keep app flow unaffected if backend endpoint is unavailable.
       debugPrint('Send FCM token to backend failed: $e');
     }
+  }
+
+  Future<String> _resolveDeviceId(WidgetRef ref) async {
+    final storage = ref.read(flutterSecureStorageProvider);
+    final existing = await storage.read(key: _deviceIdKey);
+    if (existing != null && existing.isNotEmpty) return existing;
+    final created = _uuid.v4();
+    await storage.write(key: _deviceIdKey, value: created);
+    return created;
   }
 }

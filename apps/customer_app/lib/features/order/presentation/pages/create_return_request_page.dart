@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:collection';
 import 'package:dio/dio.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -58,10 +60,12 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
   final Map<String, String> _uploadedTempMediaIds = {};
   final Set<String> _uploadingMediaKeys = {};
   final Set<String> _failedMediaKeys = {};
-  final Map<String, double> _mediaProgress = {};
+  final Map<String, int> _mediaPlannedBytes = {};
+  final Map<String, int> _mediaUploadedBytes = {};
   int _mediaKeySeed = 0;
   bool _isSubmitting = false;
   bool _isRefundOnly = false;
+  bool _slowNetworkMode = false;
 
   // Bank info
   VnBank? _selectedBank;
@@ -124,6 +128,18 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
       if (item != null) total += item.unitPrice * entry.value;
     }
     return total;
+  }
+
+  int get _totalPlannedUploadBytes =>
+      _mediaPlannedBytes.values.fold(0, (sum, value) => sum + value);
+
+  int get _totalUploadedBytes =>
+      _mediaUploadedBytes.values.fold(0, (sum, value) => sum + value);
+
+  double get _uploadProgress {
+    final total = _totalPlannedUploadBytes;
+    if (total <= 0) return 0;
+    return (_totalUploadedBytes / total).clamp(0, 1);
   }
 
   @override
@@ -631,28 +647,12 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
               ),
             ],
           ),
+          if (_uploadingMediaKeys.isNotEmpty || _totalPlannedUploadBytes > 0) ...[
+            const SizedBox(height: 12),
+            _uploadProgressView(),
+          ],
           if (_images.isNotEmpty || _videos.isNotEmpty) ...[
             const SizedBox(height: 14),
-            if (_uploadingMediaKeys.isNotEmpty) ...[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: LinearProgressIndicator(
-                  minHeight: 8,
-                  value: _overallUploadProgress,
-                  backgroundColor: AppColors.border,
-                  color: AppColors.primary,
-                ),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                'Đang tải media ${(100 * _overallUploadProgress).clamp(0, 100).toStringAsFixed(0)}%',
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: AppColors.textSecondary,
-                ),
-              ),
-              const SizedBox(height: 10),
-            ],
             Wrap(
               spacing: 8,
               runSpacing: 8,
@@ -664,8 +664,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
                     filePath: e.value.media.filePath,
                     isUploading: _uploadingMediaKeys.contains(e.value.key),
                     hasError: _failedMediaKeys.contains(e.value.key),
-                    progress: _mediaProgress[e.value.key] ?? 0,
-                    onRetry: () => _uploadPickedMedia(e.value),
+                    onRetry: () => _uploadPickedBatch([e.value], isVideo: false),
                     onRemove: () => _removeMedia(e.value, isVideo: false),
                   ),
                 ),
@@ -676,14 +675,53 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
                     videoPath: e.value.media.filePath,
                     isUploading: _uploadingMediaKeys.contains(e.value.key),
                     hasError: _failedMediaKeys.contains(e.value.key),
-                    progress: _mediaProgress[e.value.key] ?? 0,
-                    onRetry: () => _uploadPickedMedia(e.value),
+                    onRetry: () => _uploadPickedBatch([e.value], isVideo: true),
                     onRemove: () => _removeMedia(e.value, isVideo: true),
                   ),
                 ),
               ],
             ),
           ],
+        ],
+      ),
+    );
+  }
+
+  Widget _uploadProgressView() {
+    final percent = (_uploadProgress * 100).toStringAsFixed(0);
+    final uploadedMb = (_totalUploadedBytes / (1024 * 1024)).toStringAsFixed(1);
+    final totalMb = (_totalPlannedUploadBytes / (1024 * 1024)).toStringAsFixed(
+      1,
+    );
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            _slowNetworkMode
+                ? 'Đang tải lên (mạng chậm, đã tăng nén ảnh)...'
+                : 'Đang tải lên media...',
+            style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(height: 8),
+          LinearProgressIndicator(
+            value: _uploadProgress > 0 ? _uploadProgress : null,
+            minHeight: 6,
+            borderRadius: BorderRadius.circular(999),
+            color: AppColors.primary,
+            backgroundColor: AppColors.skeleton,
+          ),
+          const SizedBox(height: 6),
+          Text(
+            '$percent%  •  $uploadedMb/$totalMb MB',
+            style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
+          ),
         ],
       ),
     );
@@ -717,7 +755,6 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
     String? videoPath,
     bool isUploading = false,
     bool hasError = false,
-    double progress = 0,
     VoidCallback? onRetry,
     required VoidCallback onRemove,
   }) {
@@ -748,23 +785,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
                         ),
                       )),
         ),
-        if (isUploading)
-          Positioned.fill(
-            child: Container(
-              color: Colors.black.withValues(alpha: 0.38),
-              alignment: Alignment.center,
-              child: SizedBox(
-                width: 24,
-                height: 24,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2.2,
-                  value: progress > 0 ? progress : null,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        if (hasError && !isUploading)
+        if (hasError)
           Positioned.fill(
             child: GestureDetector(
               onTap: onRetry,
@@ -800,9 +821,9 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
 
   Future<void> _pickImages() async {
     final files = await ImagePicker().pickMultiImage(
-      imageQuality: 70,
-      maxWidth: 1600,
-      maxHeight: 1600,
+      imageQuality: 60,
+      maxWidth: 1400,
+      maxHeight: 1400,
     );
     final picked = <_LocalMediaItem>[];
     for (final f in files) {
@@ -815,9 +836,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
     }
     if (picked.isNotEmpty && mounted) {
       setState(() => _images.addAll(picked));
-      for (final item in picked) {
-        unawaited(_uploadPickedMedia(item));
-      }
+      unawaited(_uploadPickedBatch(picked, isVideo: false));
     }
   }
 
@@ -843,7 +862,7 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
         return;
       }
       setState(() => _videos.add(mediaItem));
-      unawaited(_uploadPickedMedia(mediaItem, isVideo: true));
+      unawaited(_uploadPickedBatch([mediaItem], isVideo: true));
     }
   }
 
@@ -1581,60 +1600,129 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
     }
   }
 
-  double get _overallUploadProgress {
-    final keys = <String>[
-      ..._images.map((e) => e.key),
-      ..._videos.map((e) => e.key),
-    ];
-    if (keys.isEmpty) return 0;
-    var sum = 0.0;
-    for (final key in keys) {
-      if (_uploadedTempMediaIds.containsKey(key)) {
-        sum += 1;
-      } else if (_failedMediaKeys.contains(key)) {
-        sum += 0;
-      } else {
-        sum += _mediaProgress[key] ?? 0;
-      }
-    }
-    return (sum / keys.length).clamp(0.0, 1.0);
-  }
-
   String _nextMediaKey() {
     _mediaKeySeed++;
     return 'media_${DateTime.now().microsecondsSinceEpoch}_$_mediaKeySeed';
   }
 
-  Future<void> _uploadPickedMedia(
-    _LocalMediaItem item, {
-    bool? isVideo,
+  Future<void> _uploadPickedBatch(
+    List<_LocalMediaItem> items, {
+    required bool isVideo,
   }) async {
+    if (items.isEmpty) return;
     final repo = ref.read(returnRequestRepositoryProvider);
-    final video = isVideo ?? _videos.any((v) => v.key == item.key);
     setState(() {
-      _uploadingMediaKeys.add(item.key);
-      _failedMediaKeys.remove(item.key);
-      _mediaProgress[item.key] = 0;
+      for (final item in items) {
+        _uploadingMediaKeys.add(item.key);
+        _failedMediaKeys.remove(item.key);
+      }
     });
-    try {
-      final ids = await repo.uploadTemporaryMedia(
-        images: video ? null : [item.media],
-        videos: video ? [item.media] : null,
+    final queue = Queue<_LocalMediaItem>.from(items);
+    final workerCount = items.length >= 2 ? 2 : 1;
+
+    Future<void> worker() async {
+      while (queue.isNotEmpty) {
+        final item = queue.removeFirst();
+        await _uploadSingleMedia(item, isVideo: isVideo, repo: repo);
+      }
+    }
+
+    await Future.wait(List.generate(workerCount, (_) => worker()));
+  }
+
+  Future<void> _uploadSingleMedia(
+    _LocalMediaItem item, {
+    required bool isVideo,
+    required ReturnRequestRepository repo,
+  }) async {
+    PendingUploadMedia mediaToUpload = item.media;
+    if (!isVideo) {
+      mediaToUpload = await _prepareCompressedImage(
+        item.media,
+        aggressive: _slowNetworkMode,
+      );
+    }
+
+    final plannedBytes =
+        await _resolveMediaSizeBytes(mediaToUpload) ??
+        await _resolveMediaSizeBytes(item.media) ??
+        0;
+    if (mounted) {
+      setState(() {
+        _mediaPlannedBytes[item.key] = plannedBytes;
+        _mediaUploadedBytes.putIfAbsent(item.key, () => 0);
+      });
+    }
+
+    Future<List<String>> doUpload(PendingUploadMedia uploadMedia) {
+      return repo.uploadTemporaryMedia(
+        images: isVideo ? null : [uploadMedia],
+        videos: isVideo ? [uploadMedia] : null,
         onProgress: (sent, total) {
           if (!mounted) return;
-          final progress = total > 0 ? (sent / total) : 0.0;
-          setState(() => _mediaProgress[item.key] = progress.clamp(0.0, 1.0));
+          final totalSafe = total > 0 ? total : plannedBytes;
+          setState(() {
+            _mediaUploadedBytes[item.key] = sent.clamp(0, totalSafe);
+          });
         },
       );
-      final id = ids.firstWhere((e) => e.isNotEmpty, orElse: () => '');
-      if (id.isEmpty) {
+    }
+
+    try {
+      final ids = await doUpload(mediaToUpload);
+      if (ids.isEmpty) {
         throw Exception('Không nhận được media id từ máy chủ.');
       }
       if (!mounted) return;
       setState(() {
-        _uploadedTempMediaIds[item.key] = id;
-        _mediaProgress[item.key] = 1;
+        _uploadedTempMediaIds[item.key] = ids.first;
         _uploadingMediaKeys.remove(item.key);
+        _failedMediaKeys.remove(item.key);
+        _mediaUploadedBytes[item.key] = _mediaPlannedBytes[item.key] ?? plannedBytes;
+      });
+    } on DioException catch (e) {
+      final isTimeout =
+          e.type == DioExceptionType.connectionTimeout ||
+          e.type == DioExceptionType.sendTimeout ||
+          e.type == DioExceptionType.receiveTimeout;
+      if (!isVideo && isTimeout && !_slowNetworkMode) {
+        if (mounted) {
+          setState(() {
+            _slowNetworkMode = true;
+            _mediaUploadedBytes[item.key] = 0;
+          });
+        }
+        try {
+          final strongerCompressed = await _prepareCompressedImage(
+            item.media,
+            aggressive: true,
+          );
+          final retryPlanned =
+              await _resolveMediaSizeBytes(strongerCompressed) ?? plannedBytes;
+          if (mounted) {
+            setState(() {
+              _mediaPlannedBytes[item.key] = retryPlanned;
+            });
+          }
+          final retryIds = await doUpload(strongerCompressed);
+          if (retryIds.isEmpty) {
+            throw Exception('Không nhận được media id từ máy chủ.');
+          }
+          if (!mounted) return;
+          setState(() {
+            _uploadedTempMediaIds[item.key] = retryIds.first;
+            _uploadingMediaKeys.remove(item.key);
+            _failedMediaKeys.remove(item.key);
+            _mediaUploadedBytes[item.key] =
+                _mediaPlannedBytes[item.key] ?? retryPlanned;
+          });
+          return;
+        } catch (_) {}
+      }
+      if (!mounted) return;
+      setState(() {
+        _uploadingMediaKeys.remove(item.key);
+        _failedMediaKeys.add(item.key);
       });
     } catch (_) {
       if (!mounted) return;
@@ -1642,6 +1730,69 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
         _uploadingMediaKeys.remove(item.key);
         _failedMediaKeys.add(item.key);
       });
+    }
+  }
+
+  Future<PendingUploadMedia> _prepareCompressedImage(
+    PendingUploadMedia media, {
+    required bool aggressive,
+  }) async {
+    final quality = aggressive ? 40 : 55;
+    final minWidth = aggressive ? 960 : 1280;
+    final minHeight = aggressive ? 960 : 1280;
+
+    try {
+      if (media.filePath != null && media.filePath!.isNotEmpty) {
+        final compressed = await FlutterImageCompress.compressWithFile(
+          media.filePath!,
+          quality: quality,
+          minWidth: minWidth,
+          minHeight: minHeight,
+          format: CompressFormat.jpeg,
+        );
+        if (compressed != null && compressed.isNotEmpty) {
+          return (
+            filename: _toJpgFilename(media.filename),
+            bytes: compressed,
+            filePath: null,
+          );
+        }
+      } else if (media.bytes != null && media.bytes!.isNotEmpty) {
+        final compressed = await FlutterImageCompress.compressWithList(
+          media.bytes!,
+          quality: quality,
+          minWidth: minWidth,
+          minHeight: minHeight,
+          format: CompressFormat.jpeg,
+        );
+        if (compressed.isNotEmpty) {
+          return (
+            filename: _toJpgFilename(media.filename),
+            bytes: compressed,
+            filePath: null,
+          );
+        }
+      }
+    } catch (_) {}
+
+    return media;
+  }
+
+  String _toJpgFilename(String original) {
+    final dot = original.lastIndexOf('.');
+    final base = dot > 0 ? original.substring(0, dot) : original;
+    return '${base}_compressed.jpg';
+  }
+
+  Future<int?> _resolveMediaSizeBytes(PendingUploadMedia media) async {
+    if (media.bytes != null) return media.bytes!.lengthInBytes;
+    final path = media.filePath;
+    if (path == null || path.isEmpty) return null;
+    try {
+      final len = await File(path).length();
+      return len >= 0 ? len : null;
+    } catch (_) {
+      return null;
     }
   }
 
@@ -1655,7 +1806,8 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
       _uploadedTempMediaIds.remove(item.key);
       _uploadingMediaKeys.remove(item.key);
       _failedMediaKeys.remove(item.key);
-      _mediaProgress.remove(item.key);
+      _mediaPlannedBytes.remove(item.key);
+      _mediaUploadedBytes.remove(item.key);
     });
   }
 
@@ -1849,24 +2001,50 @@ class _QuantitySelector extends StatelessWidget {
   }
 }
 
-class _VideoThumbnailView extends StatelessWidget {
+class _VideoThumbnailView extends StatefulWidget {
   final String? videoPath;
 
   const _VideoThumbnailView({required this.videoPath});
 
   @override
+  State<_VideoThumbnailView> createState() => _VideoThumbnailViewState();
+}
+
+class _VideoThumbnailViewState extends State<_VideoThumbnailView> {
+  Future<Uint8List?>? _thumbnailFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _thumbnailFuture = _buildThumbnailFuture(widget.videoPath);
+  }
+
+  @override
+  void didUpdateWidget(covariant _VideoThumbnailView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.videoPath != widget.videoPath) {
+      _thumbnailFuture = _buildThumbnailFuture(widget.videoPath);
+    }
+  }
+
+  Future<Uint8List?>? _buildThumbnailFuture(String? path) {
+    if (path == null || path.isEmpty) return null;
+    return VideoThumbnail.thumbnailData(
+      video: path,
+      imageFormat: ImageFormat.JPEG,
+      maxWidth: 180,
+      quality: 55,
+      timeMs: 0,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (videoPath == null || videoPath!.isEmpty) {
+    if (_thumbnailFuture == null) {
       return _fallback();
     }
     return FutureBuilder<Uint8List?>(
-      future: VideoThumbnail.thumbnailData(
-        video: videoPath!,
-        imageFormat: ImageFormat.JPEG,
-        maxWidth: 180,
-        quality: 55,
-        timeMs: 0,
-      ),
+      future: _thumbnailFuture,
       builder: (context, snapshot) {
         final bytes = snapshot.data;
         if (bytes == null) return _fallback();

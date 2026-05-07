@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
+import 'package:perfumegpt_api_client/perfumegpt_api_client.dart';
+import '../../../notification/presentation/providers/notification_providers.dart';
 import '../../../order/presentation/providers/cart_provider.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/price_formatter.dart';
@@ -15,6 +18,7 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cartItemCount = ref.watch(cartItemCountProvider);
+    final unreadNotifications = ref.watch(unreadNotificationsCountProvider);
     final newArrivalsAsync = ref.watch(newArrivalsProvider);
     final bestSellersAsync = ref.watch(bestSellersProvider);
     final bannersAsync = ref.watch(homeHeroBannersProvider);
@@ -38,6 +42,15 @@ class HomePage extends ConsumerWidget {
               ),
             ),
             actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: _circleButton(
+                  Icons.notifications_none_rounded,
+                  () => _openNotificationsSheet(context, ref),
+                  context: context,
+                  badgeCount: unreadNotifications,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(right: 16),
                 child: _circleButton(
@@ -135,6 +148,304 @@ class HomePage extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  void _openNotificationsSheet(BuildContext context, WidgetRef ref) {
+    const pageSize = 8;
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (sheetContext) {
+        var page = 1;
+        var markingAll = false;
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            final notificationsAsync = ref.watch(customerNotificationsProvider);
+            final unreadCount = ref.watch(unreadNotificationsCountProvider);
+            return Container(
+              height: MediaQuery.of(context).size.height * 0.72,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+              ),
+              child: notificationsAsync.when(
+                loading: () => const Center(
+                  child: CircularProgressIndicator(color: AppColors.primary),
+                ),
+                error: (error, _) => Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Text('Không tải được thông báo: $error'),
+                  ),
+                ),
+                data: (notifications) {
+                  final totalPages = (notifications.length / pageSize).ceil().clamp(
+                    1,
+                    9999,
+                  );
+                  if (page > totalPages) {
+                    page = totalPages;
+                  }
+                  final start = (page - 1) * pageSize;
+                  final end = (start + pageSize).clamp(0, notifications.length);
+                  final paged = notifications.sublist(start, end);
+
+                  Future<void> markAllRead() async {
+                    if (markingAll || unreadCount == 0) return;
+                    setSheetState(() => markingAll = true);
+                    try {
+                      await ref
+                          .read(notificationsApiProvider)
+                          .apiNotificationsReadAllPatch();
+                      ref.invalidate(customerNotificationsProvider);
+                    } finally {
+                      if (context.mounted) {
+                        setSheetState(() => markingAll = false);
+                      }
+                    }
+                  }
+
+                  Future<void> onTapItem(NotificationListItemResponse item) async {
+                    final id = item.id;
+                    if (id != null && id.isNotEmpty && item.isRead != true) {
+                      await ref
+                          .read(notificationsApiProvider)
+                          .apiNotificationsIdReadPatch(id: id);
+                      ref.invalidate(customerNotificationsProvider);
+                    }
+                    if (!context.mounted) return;
+                    Navigator.pop(context);
+                    final refId = item.referenceId;
+                    if (refId == null || refId.isEmpty) return;
+                    switch (item.referenceType) {
+                      case NotifiReferecneType.order:
+                        context.push('/orders/$refId');
+                        break;
+                      case NotifiReferecneType.orderReturnRequest:
+                        context.push('/return-requests/$refId');
+                        break;
+                      case NotifiReferecneType.orderCancelRequest:
+                        context.push('/cancel-requests/$refId');
+                        break;
+                      default:
+                        break;
+                    }
+                  }
+
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 14, 8, 8),
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Thông báo',
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            if (unreadCount > 0)
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 2,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(999),
+                                ),
+                                child: Text(
+                                  '$unreadCount',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            const Spacer(),
+                            IconButton(
+                              onPressed: unreadCount == 0 || markingAll
+                                  ? null
+                                  : markAllRead,
+                              icon: markingAll
+                                  ? const SizedBox(
+                                      width: 16,
+                                      height: 16,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                      ),
+                                    )
+                                  : const Icon(Icons.done_all_rounded),
+                            ),
+                            IconButton(
+                              onPressed: () => Navigator.pop(context),
+                              icon: const Icon(Icons.close_rounded),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(height: 1),
+                      Expanded(
+                        child: notifications.isEmpty
+                            ? const Center(
+                                child: Text(
+                                  'Không có thông báo mới.',
+                                  style: TextStyle(color: AppColors.textSecondary),
+                                ),
+                              )
+                            : ListView.separated(
+                                padding: const EdgeInsets.all(12),
+                                itemCount: paged.length,
+                                separatorBuilder: (_, _) => const SizedBox(height: 8),
+                                itemBuilder: (_, index) {
+                                  final item = paged[index];
+                                  final cfg = _typeStyle(item.referenceType?.value);
+                                  final isUnread = item.isRead != true;
+                                  return InkWell(
+                                    onTap: () => onTapItem(item),
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Container(
+                                      padding: const EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                        color: isUnread
+                                            ? AppColors.primaryLight
+                                            : Colors.white,
+                                        border: Border.all(color: AppColors.border),
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: 34,
+                                            height: 34,
+                                            decoration: BoxDecoration(
+                                              color: cfg.$2,
+                                              borderRadius: BorderRadius.circular(17),
+                                            ),
+                                            child: Icon(cfg.$1, color: cfg.$3, size: 18),
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  (item.title?.trim().isNotEmpty == true)
+                                                      ? item.title!.trim()
+                                                      : 'Thông báo',
+                                                  maxLines: 1,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                    fontSize: 13.5,
+                                                    fontWeight: isUnread
+                                                        ? FontWeight.w700
+                                                        : FontWeight.w600,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 2),
+                                                Text(
+                                                  item.message ?? '',
+                                                  maxLines: 2,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: const TextStyle(
+                                                    fontSize: 12.5,
+                                                    color: AppColors.textSecondary,
+                                                    height: 1.35,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 4),
+                                                Text(
+                                                  _formatRelativeTime(item.createdAt),
+                                                  style: const TextStyle(
+                                                    fontSize: 11,
+                                                    color: AppColors.textSecondary,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          if (isUnread)
+                                            Container(
+                                              width: 7,
+                                              height: 7,
+                                              margin: const EdgeInsets.only(top: 3),
+                                              decoration: const BoxDecoration(
+                                                color: AppColors.primary,
+                                                shape: BoxShape.circle,
+                                              ),
+                                            ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                      ),
+                      if (notifications.length > pageSize)
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(12, 4, 12, 12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                onPressed: page > 1
+                                    ? () => setSheetState(() => page--)
+                                    : null,
+                                icon: const Icon(Icons.chevron_left_rounded),
+                              ),
+                              Text('$page / $totalPages'),
+                              IconButton(
+                                onPressed: page < totalPages
+                                    ? () => setSheetState(() => page++)
+                                    : null,
+                                icon: const Icon(Icons.chevron_right_rounded),
+                              ),
+                            ],
+                          ),
+                        ),
+                    ],
+                  );
+                },
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  String _formatRelativeTime(DateTime? date) {
+    if (date == null) return '';
+    final now = DateTime.now().toUtc().add(const Duration(hours: 7));
+    final target = (date.isUtc ? date : date.toUtc()).add(const Duration(hours: 7));
+    final diff = now.difference(target);
+    if (diff.inSeconds < 60) return 'Vừa xong';
+    if (diff.inMinutes < 60) return '${diff.inMinutes} phút trước';
+    if (diff.inHours < 24) return '${diff.inHours} giờ trước';
+    if (diff.inDays < 30) return '${diff.inDays} ngày trước';
+    return DateFormat('dd/MM/yyyy').format(target);
+  }
+
+  (IconData, Color, Color) _typeStyle(String? type) {
+    switch (type) {
+      case 'Order':
+        return (Icons.shopping_bag_outlined, const Color(0x1A3B82F6), const Color(0xFF3B82F6));
+      case 'OrderCancelRequest':
+        return (Icons.cancel_outlined, const Color(0x1AEF4444), const Color(0xFFEF4444));
+      case 'OrderReturnRequest':
+        return (Icons.assignment_return_outlined, const Color(0x1AF59E0B), const Color(0xFFF59E0B));
+      case 'ImportTicket':
+        return (Icons.inventory_2_outlined, const Color(0x1A10B981), const Color(0xFF10B981));
+      case 'Adjustment':
+        return (Icons.tune_rounded, const Color(0x1A8B5CF6), const Color(0xFF8B5CF6));
+      default:
+        return (Icons.notifications_none_rounded, const Color(0x1A6B7280), const Color(0xFF6B7280));
+    }
   }
 
   // ═══════════════════════════════════════════════════════════════════════

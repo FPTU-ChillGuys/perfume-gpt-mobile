@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
@@ -46,8 +47,9 @@ class _DevHttpOverrides extends HttpOverrides {
 
 void main() {
   runZonedGuarded(
-    () {
+    () async {
       WidgetsFlutterBinding.ensureInitialized();
+      await Firebase.initializeApp();
       FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
       // Increase image cache so product images are retained when scrolling,
       // preventing re-fetches that cause blank images.
@@ -98,7 +100,13 @@ class _MyAppState extends ConsumerState<MyApp> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      unawaited(FcmService.instance.initialize(ref));
+      unawaited(() async {
+        await FcmService.instance.initialize(ref);
+        final user = await ref.read(authProvider.future);
+        if (user != null) {
+          await FcmService.instance.syncToken(ref);
+        }
+      }());
       PaymentWebViewPreloader.instance.prewarm();
     });
   }
