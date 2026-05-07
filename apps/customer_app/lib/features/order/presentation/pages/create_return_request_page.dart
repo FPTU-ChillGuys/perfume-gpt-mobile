@@ -1463,10 +1463,10 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
       }
     } on DioException catch (e) {
       if (mounted) {
-        final body = e.response?.data;
+        final message = _friendlyDioMessage(e);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Lỗi ${e.response?.statusCode}: $body'),
+            content: Text(message),
             backgroundColor: Colors.red,
             duration: const Duration(seconds: 10),
           ),
@@ -1481,6 +1481,31 @@ class _State extends ConsumerState<CreateReturnRequestPage> {
     } finally {
       if (mounted) setState(() => _isSubmitting = false);
     }
+  }
+
+  String _friendlyDioMessage(DioException e) {
+    if (e.type == DioExceptionType.connectionTimeout ||
+        e.type == DioExceptionType.sendTimeout ||
+        e.type == DioExceptionType.receiveTimeout) {
+      return 'Tải media quá lâu hoặc mạng chậm. Vui lòng thử lại (ưu tiên Wi-Fi/4G mạnh).';
+    }
+    final data = e.response?.data;
+    if (data is Map) {
+      final msg = data['message']?.toString().trim();
+      if (msg != null && msg.isNotEmpty) return msg;
+      final errors = data['errors'];
+      if (errors is List && errors.isNotEmpty) {
+        final text = errors
+            .map((x) => x?.toString().trim() ?? '')
+            .firstWhere((x) => x.isNotEmpty, orElse: () => '');
+        if (text.isNotEmpty) return text;
+      }
+    }
+    if (data is String && data.trim().isNotEmpty) return data.trim();
+    if (e.response?.statusCode != null) {
+      return 'Máy chủ trả về lỗi ${e.response!.statusCode}. Vui lòng thử lại.';
+    }
+    return 'Không thể gửi yêu cầu hoàn trả lúc này. Vui lòng thử lại.';
   }
 
   // ─────────────────────────────────────────────────────────────────────────

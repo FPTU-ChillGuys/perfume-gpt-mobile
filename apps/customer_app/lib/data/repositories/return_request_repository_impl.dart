@@ -132,6 +132,9 @@ class ReturnRequestRepositoryImpl implements ReturnRequestRepository {
       data: formData,
       options: Options(
         contentType: 'multipart/form-data',
+        // Media upload (especially video) needs longer time than normal APIs.
+        sendTimeout: const Duration(minutes: 3),
+        receiveTimeout: const Duration(minutes: 3),
         extra: <String, dynamic>{
           'secure': <Map<String, String>>[
             {
