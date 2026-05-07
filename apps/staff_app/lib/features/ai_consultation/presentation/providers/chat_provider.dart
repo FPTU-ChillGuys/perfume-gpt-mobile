@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
 import 'package:perfumegpt_common/perfumegpt_common.dart';
@@ -12,66 +12,28 @@ import '../../../../core/db/database.dart';
 
 part 'chat_provider.g.dart';
 
-const _guestIdKey = 'guest_user_id';
-
-Future<String> resolveGuestUserId() async {
-  const storage = FlutterSecureStorage();
-  final stored = await storage.read(key: _guestIdKey);
-  if (stored != null) return stored;
-  final newId = const Uuid().v4();
-  await storage.write(key: _guestIdKey, value: newId);
-  return newId;
-}
-
 @riverpod
 class ChatSession extends _$ChatSession {
-  final _secureStorage = const FlutterSecureStorage();
-
   String? _conversationId;
-  String? _guestUserId;
   bool _isSending = false;
-
-  String? get guestUserId => _guestUserId;
-
-  String ensureGuestUserId() {
-    if (_guestUserId != null) return _guestUserId!;
-    _guestUserId = const Uuid().v4();
-    _secureStorage.write(key: _guestIdKey, value: _guestUserId);
-    return _guestUserId!;
-  }
 
   @override
   Future<List<Message>> build() async {
-    final storedId = await _secureStorage.read(key: _guestIdKey);
-    _guestUserId = storedId;
-
     final dao = ref.read(conversationDaoProvider);
     final localConvs = await dao.getAllConversations();
 
     final currentUser = ref.read(authProvider).value;
     final currentUserId = currentUser?.id;
-    final activeGuestId = currentUserId == null
-        ? (_guestUserId ?? await resolveGuestUserId())
-        : null;
-    _guestUserId = activeGuestId ?? _guestUserId;
 
     final userConvs = localConvs
         .where(
-          (c) => currentUserId != null
-              ? c.userId == currentUserId
-              : c.userId == activeGuestId,
+          (c) => c.userId == currentUserId,
         )
         .toList();
 
     if (userConvs.isNotEmpty) {
       final latestLocal = userConvs.first;
       _conversationId = latestLocal.id;
-      if (currentUserId == null) {
-        _guestUserId ??= latestLocal.userId;
-        if (_guestUserId != null) {
-          await _secureStorage.write(key: _guestIdKey, value: _guestUserId);
-        }
-      }
       final localMessages = await dao.getMessagesByConversationId(
         latestLocal.id,
       );
@@ -93,16 +55,9 @@ class ChatSession extends _$ChatSession {
 
     if (localConv != null) {
       final currentUser = ref.read(authProvider).value;
-      if (currentUser != null) {
-        if (localConv.userId != currentUser.id) return;
-      } else {
-        final guestId = _guestUserId ?? await resolveGuestUserId();
-        _guestUserId = guestId;
-        if (localConv.userId != guestId) return;
-      }
+      if (localConv.userId != currentUser?.id) return;
 
       _conversationId = localConv.id;
-      _guestUserId = localConv.userId;
       final localMessages = await dao.getMessagesByConversationId(localConv.id);
       final messages = localMessages
           .map((m) => _mapLocalMessageToChat(m))
@@ -122,7 +77,12 @@ class ChatSession extends _$ChatSession {
     _isSending = true;
 
     final user = ref.read(authProvider).value;
-    final userId = user?.id ?? ensureGuestUserId();
+    final userId = user?.id;
+    if (userId == null) {
+      // Or handle error appropriately
+      _isSending = false;
+      return;
+    }
 
     final userMessage = Message.text(
       authorId: userId,
@@ -173,12 +133,12 @@ class ChatSession extends _$ChatSession {
             message: msgText,
             products: storedProducts != null
                 ? (storedProducts as List<dynamic>)
-                      .map(
-                        (p) => ProductCardOutputItemDto.fromJson(
-                          p as Map<String, dynamic>,
-                        ),
-                      )
-                      .toList()
+                    .map(
+                      (p) => ProductCardOutputItemDto.fromJson(
+                        p as Map<String, dynamic>,
+                      ),
+                    )
+                    .toList()
                 : null,
             suggestedQuestions: storedSuggestions?.cast<String>().toList(),
           );
@@ -197,7 +157,7 @@ class ChatSession extends _$ChatSession {
         isMobile: true,
       );
 
-      final response = await conversationApi.conversationControllerChat(
+      final response = await conversationApi.conversationControllerChatStaff(
         chatRequest: request,
       );
 
@@ -225,9 +185,8 @@ class ChatSession extends _$ChatSession {
             id: const Uuid().v4(),
             metadata: {
               'text': aiLastMessage.message,
-              'products': aiLastMessage.products
-                  ?.map((p) => p.toJson())
-                  .toList(),
+              'products':
+                  aiLastMessage.products?.map((p) => p.toJson()).toList(),
               'suggestedQuestions': aiLastMessage.suggestedQuestions,
             },
           );
@@ -404,7 +363,7 @@ class ChatSession extends _$ChatSession {
     if (_conversationId == null) return;
 
     final user = ref.read(authProvider).value;
-    final userId = user?.id ?? _guestUserId;
+    final userId = user?.id;
     if (userId == null) return;
 
     final messages = state.value ?? [];
@@ -424,9 +383,8 @@ class ChatSession extends _$ChatSession {
         lastMessage.metadata?['text'] != null) {
       preview = lastMessage.metadata!['text'] as String;
     }
-    final previewTrimmed = preview.length > 60
-        ? preview.substring(0, 60)
-        : preview;
+    final previewTrimmed =
+        preview.length > 60 ? preview.substring(0, 60) : preview;
 
     final dao = ref.read(conversationDaoProvider);
     await dao.upsertConversation(
@@ -464,7 +422,7 @@ class ChatSession extends _$ChatSession {
         metadataJson: Value(metadataJson),
         createdAt:
             m.createdAt?.millisecondsSinceEpoch ??
-            DateTime.now().millisecondsSinceEpoch,
+                DateTime.now().millisecondsSinceEpoch,
         messageIndex: index,
       );
     }).toList();
